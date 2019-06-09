@@ -43,7 +43,7 @@
                         <tr>
                             <td>{{ $aluno->matricula }}</td>
                             <td>{{ $aluno->nome }}</td>
-                            <td>{{ $aluno->curso }}</td>
+                            <td>{{ $aluno->curso->abreviacao }}</td>
                             <td>{{ $aluno->email }}</td>
                             <td>
     

@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['prefix' => 'alunos', 'middleware' => 'auth'], function () {
+    Route::get('/', 'AlunoController@index')->name('alunos.index');
+    Route::get('/{aluno}/editar', 'AlunoController@edit')->name('alunos.edit');
+    Route::get('/{aluno}/deletar', 'AlunoController@destroy')->name('alunos.delete');
+});

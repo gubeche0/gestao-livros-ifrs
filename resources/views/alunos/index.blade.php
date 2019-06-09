@@ -9,6 +9,7 @@
             </div>
             <div class="panel-body">
                 @include('layouts.statusMessages')
+                
                 <form>
     
                     <div class="input-group mb-3">
@@ -24,7 +25,7 @@
                 {{-- <p class="float-right">
                     <a class="text-right" href="#">Importar Alunos</a>
                 </p> --}}
-                <a href="#">Novo Aluno</a>
+                <a href="{{ route('alunos.create') }}">Novo Aluno</a>
                 <table class="table table-striped table-bordered table-hover" id="table">
                     <thead class="thead-light">
                         <tr>

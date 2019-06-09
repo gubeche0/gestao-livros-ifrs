@@ -23,6 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'alunos', 'middleware' => 'auth'], function () {
     Route::get('/', 'AlunoController@index')->name('alunos.index');
+    Route::get('/create', 'AlunoController@create')->name('alunos.create');
+    Route::post('/create', 'AlunoController@store')->name('alunos.store');
     Route::get('/{aluno}/editar', 'AlunoController@edit')->name('alunos.edit');
+    Route::post('/{aluno}/editar', 'AlunoController@update')->name('alunos.update');
     Route::get('/{aluno}/deletar', 'AlunoController@destroy')->name('alunos.delete');
 });

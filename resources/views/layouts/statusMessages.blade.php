@@ -1,15 +1,15 @@
-@isset($erros)
-    @foreach ($erros as $erro)
+@if(session('erros'))
+    @foreach (session('erros') as $erro)
     <div class="alert alert-danger" role="alert">
         {{ $erro }}
     </div>
     @endforeach
-@endisset
+@endif
 
-@isset($success)
-    @foreach ($success as $succes)
+@if(session('success'))
+    @foreach (session('success') as $succes)
     <div class="alert alert-success" role="alert">
         {{ $succes }}
     </div>
     @endforeach
-@endisset
+@endif

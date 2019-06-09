@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Cursos extends Model
+class Curso extends Model
 {
-    use softDeletes;
+    use SoftDeletes;
     
     protected $dates = ['deleted_at'];
 }

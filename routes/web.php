@@ -16,10 +16,12 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::get('/logout', function(){
+    Auth::logout();
+    return redirect('/');
+});
 
-
-Route::get('/home', 'HomeController@index')->name('home');
-
+Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix' => 'alunos', 'middleware' => 'auth'], function () {
     Route::get('/', 'AlunoController@index')->name('alunos.index');

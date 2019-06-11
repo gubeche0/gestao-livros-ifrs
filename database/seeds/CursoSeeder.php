@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Curso;
+use App\User;
 
 class CursoSeeder extends Seeder
 {
@@ -12,24 +13,29 @@ class CursoSeeder extends Seeder
      */
     public function run()
     {
+        $id = User::first()->id;
         Curso::create([
             'nome' => 'Técnico em informática para internet',
-            'abreviacao' => 'INFO'
+            'abreviacao' => 'INFO',
+            'user_id' => $id
         ]);
 
         Curso::create([
             'nome' => 'Agropecuária',
-            'abreviacao' => 'AGRO'
+            'abreviacao' => 'AGRO',
+            'user_id' => $id
         ]);
 
         Curso::create([
             'nome' => 'Viticultura e Enologia',
-            'abreviacao' => 'ENO'
+            'abreviacao' => 'ENO',
+            'user_id' => $id
         ]);
 
         Curso::create([
             'nome' => 'Meio Ambiente',
-            'abreviacao' => 'MEIO'
+            'abreviacao' => 'MEIO',
+            'user_id' => $id
         ]);
     }
 }

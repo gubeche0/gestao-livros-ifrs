@@ -40,3 +40,12 @@ Route::group(['prefix' => 'categorias', 'middleware' => 'auth'], function () {
     Route::post('/{categoria}/editar', 'CategoriaController@update')->name('categoria.update');
     Route::get('/{categoria}/deletar', 'CategoriaController@destroy')->name('categoria.delete');
 });
+
+Route::group(['prefix' => 'cursos', 'middleware' => 'auth'], function () {
+    Route::get('/', 'CursoController@index')->name('curso.index');
+    Route::get('/create', 'CursoController@create')->name('curso.create');
+    Route::post('/create', 'CursoController@store')->name('curso.store');
+    Route::get('/{curso}/editar', 'CursoController@edit')->name('curso.edit');
+    Route::post('/{curso}/editar', 'CursoController@update')->name('curso.update');
+    Route::get('/{curso}/deletar', 'CursoController@destroy')->name('curso.delete');
+});

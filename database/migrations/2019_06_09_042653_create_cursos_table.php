@@ -18,8 +18,13 @@ class CreateCursosTable extends Migration
             $table->string('nome');
             $table->string('abreviacao');
 
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
+        });
+
+        Schema::table('cursos', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

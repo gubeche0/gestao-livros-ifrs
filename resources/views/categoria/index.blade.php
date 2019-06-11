@@ -53,22 +53,22 @@
     <script>
         $("#query").quicksearch('table tbody tr')
         function excluir(url) {
-        // var resposta = confirm("Deseja deletar a aluno?");
-        swal({
-            title: 'Deseja deletar a categoria?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Sim, deletar!',
-            cancelButtonText: "Cancelar",
-            focusCancel: true
-        }).then((result) => {
-            if (result.value) {
-                window.location.href = url;
-            }
+            // var resposta = confirm("Deseja deletar a aluno?");
+            swal({
+                title: 'Deseja deletar a categoria?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, deletar!',
+                cancelButtonText: "Cancelar",
+                focusCancel: true
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = url;
+                }
 
-        })
-    }
+            })
+        }
     </script>
 @endsection

@@ -17,7 +17,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="alunos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Alunos</a>
                         <div class="dropdown-menu" aria-labelledby="alunos">
                             <a class="dropdown-item" href="{{ route('alunos.index') }}"><i class="fas fa-list"></i> Listar</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Adicionar</a>
+                            <a class="dropdown-item" href="{{ route('alunos.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
                         </div>
                     </li>
                    
@@ -49,13 +49,13 @@
                     <li class="nav-item">
 
                     
-                    <li class="nav-item dropdown {{ Route::is('outros*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ Route::is(['categoria*', 'curso*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="outros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Outros</a>
                         <div class="dropdown-menu" aria-labelledby="outros">
                             <!-- <a class="dropdown-item" href="#">Configurações</a>
                             <div class="dropdown-divider"></div> -->
-                            <a class="dropdown-item" href="/categorias">Categorias</a>
-                            <a class="dropdown-item" href="/cursos">Cursos</a>
+                            <a class="dropdown-item" href="{{ route('categoria.index') }}">Categorias</a>
+                            <a class="dropdown-item" href="{{ route('curso.index') }}">Cursos</a>
                         </div>
                     </li>
                     <li class="nav-item">

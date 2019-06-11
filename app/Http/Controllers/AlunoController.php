@@ -54,7 +54,6 @@ class AlunoController extends Controller
         $aluno->nome = $request->input('nome');
         $aluno->email = $request->input('email');
         $aluno->curso_id = $request->input('curso');
-        $aluno->user_id = auth()->user()->id;
         $aluno->save();
         return redirect()->route('aluno.index')->
             with('success', ['Aluno(a) alterado(a) com sucesso!']);

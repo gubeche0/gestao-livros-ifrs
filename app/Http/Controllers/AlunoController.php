@@ -12,13 +12,13 @@ class AlunoController extends Controller
     public function index()
     {
         $alunos = Aluno::all();
-        return view('alunos.index', compact('alunos'));
+        return view('aluno.index', compact('alunos'));
     }
 
     public function create()
     {
         $cursos = Curso::all();
-        return view('alunos.form', compact('cursos'));
+        return view('aluno.form', compact('cursos'));
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class AlunoController extends Controller
         $aluno->curso_id = $request->input('curso');
         $aluno->user_id = auth()->user()->id;
         $aluno->save();
-        return redirect()->route('alunos.index')->
+        return redirect()->route('aluno.index')->
             with('success', ['Aluno(a) cadastrado(a) com sucesso!']);
 
     }
@@ -45,7 +45,7 @@ class AlunoController extends Controller
     {
 
         $cursos = Curso::all();
-        return view('alunos.form', compact(['aluno', 'cursos']));
+        return view('aluno.form', compact(['aluno', 'cursos']));
     }
 
     
@@ -56,7 +56,7 @@ class AlunoController extends Controller
         $aluno->curso_id = $request->input('curso');
         $aluno->user_id = auth()->user()->id;
         $aluno->save();
-        return redirect()->route('alunos.index')->
+        return redirect()->route('aluno.index')->
             with('success', ['Aluno(a) alterado(a) com sucesso!']);
     }
 
@@ -64,7 +64,7 @@ class AlunoController extends Controller
     public function destroy(Aluno $aluno)
     {
         $aluno->delete();
-        return redirect()->route('alunos.index')->
+        return redirect()->route('aluno.index')->
             with('success', ['Aluno(a) deletado(a) com sucesso!']);
     }
 }

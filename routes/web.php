@@ -31,3 +31,12 @@ Route::group(['prefix' => 'alunos', 'middleware' => 'auth'], function () {
     Route::post('/{aluno}/editar', 'AlunoController@update')->name('alunos.update');
     Route::get('/{aluno}/deletar', 'AlunoController@destroy')->name('alunos.delete');
 });
+
+Route::group(['prefix' => 'categorias', 'middleware' => 'auth'], function () {
+    Route::get('/', 'CategoriaController@index')->name('categoria.index');
+    Route::get('/create', 'CategoriaController@create')->name('categoria.create');
+    Route::post('/create', 'CategoriaController@store')->name('categoria.store');
+    Route::get('/{categoria}/editar', 'CategoriaController@edit')->name('categoria.edit');
+    Route::post('/{categoria}/editar', 'CategoriaController@update')->name('categoria.update');
+    Route::get('/{categoria}/deletar', 'CategoriaController@destroy')->name('categoria.delete');
+});

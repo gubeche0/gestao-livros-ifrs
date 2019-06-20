@@ -1,5 +1,5 @@
-@if(session('erros'))
-    @foreach (session('erros') as $erro)
+@if(session('erros') || $errors->any())
+    @foreach (array_merge(session('erros') !== null ? session('erros'): [], $errors->all()) as $erro)
     <div class="alert alert-danger" role="alert">
         {{ $erro }}
     </div>

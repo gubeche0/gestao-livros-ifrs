@@ -23,6 +23,13 @@ class AlunoController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'matricula' => 'required|unique:alunos',
+            'nome' => 'required',
+            'email' => 'required|email|unique:alunos',
+            'curso' => 'required'
+        ]);
+
         $aluno = new Aluno();
         $aluno->matricula = $request->input('matricula');
         $aluno->nome = $request->input('nome');

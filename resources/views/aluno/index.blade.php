@@ -25,7 +25,7 @@
                 {{-- <p class="float-right">
                     <a class="text-right" href="#">Importar Alunos</a>
                 </p> --}}
-                <a href="{{ route('alunos.create') }}">Novo Aluno</a>
+                <a href="{{ route('aluno.create') }}">Novo Aluno</a>
                 <table class="table table-striped table-bordered table-hover" id="table">
                     <thead class="thead-light">
                         <tr>
@@ -48,9 +48,9 @@
                             <td>{{ $aluno->email }}</td>
                             <td>
     
-                                <a class="text-dark" href='{{ route('alunos.edit', ["aluno" => $aluno->id]) }}'><i class="fas fa-edit"
+                                <a class="text-dark" href='{{ route('aluno.edit', ["aluno" => $aluno->id]) }}'><i class="fas fa-edit"
                                         aria-hidden="true"></i> Editar</a> |
-                                <a class="text-dark" href="#" onclick="excluir('{{ route('alunos.delete', ['aluno' => $aluno->id]) }}')"><i class="fas fa-trash"
+                                <a class="text-dark" href="#" onclick="excluir('{{ route('aluno.delete', ['aluno' => $aluno->id]) }}')"><i class="fas fa-trash"
                                         aria-hidden="true"></i> Excluir</a></td>
                         </tr>
                         @endforeach 

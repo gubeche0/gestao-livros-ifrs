@@ -13,11 +13,11 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     
-                    <li class="nav-item dropdown {{ Route::is('alunos*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ Route::is('aluno*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="alunos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Alunos</a>
                         <div class="dropdown-menu" aria-labelledby="alunos">
-                            <a class="dropdown-item" href="{{ route('alunos.index') }}"><i class="fas fa-list"></i> Listar</a>
-                            <a class="dropdown-item" href="{{ route('alunos.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
+                            <a class="dropdown-item" href="{{ route('aluno.index') }}"><i class="fas fa-list"></i> Listar</a>
+                            <a class="dropdown-item" href="{{ route('aluno.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
                         </div>
                     </li>
                    

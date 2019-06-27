@@ -14,32 +14,32 @@ class CategoriasSeeder extends Seeder
     {
         $id = User::first()->id;
         Categoria::create([
-            'nome' => 'Matematica',
+            'nome' => 'Matemática',
             'user_id' => $id
         ]);
 
         Categoria::create([
-            'nome' => 'Portugues',
+            'nome' => 'Português',
             'user_id' => $id
         ]);
 
         Categoria::create([
-            'nome' => 'Fisica',
+            'nome' => 'Física',
             'user_id' => $id
         ]);
 
         Categoria::create([
-            'nome' => 'Quimica',
+            'nome' => 'Química',
             'user_id' => $id
         ]);
 
         Categoria::create([
-            'nome' => 'Matematica',
+            'nome' => 'Geografia',
             'user_id' => $id
         ]);
 
         Categoria::create([
-            'nome' => 'Matematica',
+            'nome' => 'Espanhol',
             'user_id' => $id
         ]);
     }

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>Gestão Livros IFRS</title>
@@ -33,8 +32,6 @@
         <button class="btn btn-lg btn btn-success btn-block mt-3" type="submit">Entrar</button>
         
     </form>
-
-
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

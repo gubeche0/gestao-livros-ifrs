@@ -15,25 +15,25 @@ class CursoSeeder extends Seeder
     {
         $id = User::first()->id;
         Curso::create([
-            'nome' => 'Técnico em informática para internet',
+            'nome' => 'Técnico em Informática para Internet',
             'abreviacao' => 'INFO',
             'user_id' => $id
         ]);
 
         Curso::create([
-            'nome' => 'Agropecuária',
+            'nome' => 'Técnico em Agropecuária',
             'abreviacao' => 'AGRO',
             'user_id' => $id
         ]);
 
         Curso::create([
-            'nome' => 'Viticultura e Enologia',
+            'nome' => 'Técnico em Viticultura e Enologia',
             'abreviacao' => 'ENO',
             'user_id' => $id
         ]);
 
         Curso::create([
-            'nome' => 'Meio Ambiente',
+            'nome' => 'Técnico em Meio Ambiente',
             'abreviacao' => 'MEIO',
             'user_id' => $id
         ]);

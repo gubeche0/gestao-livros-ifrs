@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                <a href="/cursos/create">Novo Curso</a>
+                <a href="{{ route('curso.create') }}">Novo Curso</a>
                 <table class="table table-striped table-bordered table-hover">
                     <thead class="thead-light">
                         <tr>

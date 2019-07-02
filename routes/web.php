@@ -49,3 +49,12 @@ Route::group(['prefix' => 'cursos', 'middleware' => 'auth'], function () {
     Route::post('/{curso}/editar', 'CursoController@update')->name('curso.update');
     Route::get('/{curso}/deletar', 'CursoController@destroy')->name('curso.delete');
 });
+
+Route::group(['prefix' => 'livros', 'middleware' => 'auth'], function () {
+    Route::get('/', 'LivroController@index')->name('livro.index');
+    Route::get('/create', 'LivroController@create')->name('livro.create');
+    Route::post('/create', 'LivroController@store')->name('livro.store');
+    Route::get('/{livro}/editar', 'LivroController@edit')->name('livro.edit');
+    Route::post('/{livro}/editar', 'LivroController@update')->name('livro.update');
+    Route::get('/{livro}/deletar', 'LivroController@destroy')->name('livro.delete');
+});

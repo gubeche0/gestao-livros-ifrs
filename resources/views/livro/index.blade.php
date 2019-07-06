@@ -42,7 +42,7 @@
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                             <a class="text-dark" href='{{ route('livro.edit', ['livro' => $livro->id]) }}'><i class="fas fa-edit"
                                     aria-hidden="true"></i> Editar</a> |
-                            <a class="text-dark" href="#" onclick="excluir('{{ route('livro.delete', ['curso' => $livro->id]) }}')"><i class="fas fa-trash"
+                            <a class="text-dark" href="#" onclick="excluir('{{ route('livro.delete', ['livro' => $livro->id]) }}')"><i class="fas fa-trash"
                                     aria-hidden="true"></i> Excluir</a></td>
                     </tr>
                     @endforeach

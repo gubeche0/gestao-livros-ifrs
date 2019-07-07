@@ -22,19 +22,19 @@
                     </li>
                    
 
-                    <li class="nav-item dropdown {{ Route::is('livros*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ Route::is('livro*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="livros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Livros</a>
                         <div class="dropdown-menu" aria-labelledby="livros">
                             <a class="dropdown-item" href="{{ route('livro.index') }}"><i class="fas fa-list"></i> Listar</a>
                             <a class="dropdown-item" href="{{ route('livro.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
                         </div>
                     </li>
-
-                    <li class="nav-item dropdown {{ Route::is('exemplares*') ? 'active' : '' }}">
+                    
+                    <li class="nav-item dropdown {{ Route::is('exemplar*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="livros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Exemplares</a>
                         <div class="dropdown-menu" aria-labelledby="livros">
-                            <a class="dropdown-item" href="#"><i class="fas fa-list"></i> Listar</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Adicionar</a>
+                            <a class="dropdown-item" href="{{ route('exemplar.index') }}"><i class="fas fa-list"></i> Listar</a>
+                            <a class="dropdown-item" href="{{ route('exemplar.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
                         </div>
                     </li>
 

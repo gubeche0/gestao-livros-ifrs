@@ -18,4 +18,8 @@ class Livro extends Model
     public function categoria(){
         return $this->belongsTo('App\Categoria');
     }
+
+    public function exemplares(){
+        return $this->hasMany('App\Exemplar');
+    }
 }

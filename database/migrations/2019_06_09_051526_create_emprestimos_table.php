@@ -17,8 +17,6 @@ class CreateEmprestimosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('exemplar_id')->unsigned();
             $table->bigInteger('aluno_id')->unsigned();
-            $table->tinyInteger('periodo_entrega')->nullable();
-            $table->bigInteger('user_id')->unsigned();
 
             $table->timestamps();
             $table->softDeletes();
@@ -27,7 +25,6 @@ class CreateEmprestimosTable extends Migration
         Schema::table('emprestimos', function (Blueprint $table) {
             $table->foreign('exemplar_id')->references('id')->on('exemplares');
             $table->foreign('aluno_id')->references('id')->on('alunos');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

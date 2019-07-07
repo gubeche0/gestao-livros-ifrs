@@ -20,7 +20,7 @@
                 <label for="titulo" class="col-sm-2 col-form-label">Título:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="titulo" required value='@isset($livro){{ $livro->titulo }}@endif' @if(!isset($livro)) autofocus @endif>
+                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título" required value='@isset($livro){{ $livro->titulo }}@endif' @if(!isset($livro)) autofocus @endif>
                 </div>
             </div> 
 
@@ -38,7 +38,7 @@
                 <label for="autor" class="col-sm-2 col-form-label">Autor:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="autor" id="autor" class="form-control" placeholder="autor" required value='@isset($livro){{ $livro->autor }}@endif'>
+                    <input type="text" name="autor" id="autor" class="form-control" placeholder="Autor" required value='@isset($livro){{ $livro->autor }}@endif'>
                 </div>
             </div>
 

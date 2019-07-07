@@ -28,12 +28,11 @@ class EmprestimoController extends Controller
     
     public function registerLoan(EmprestimoLoanRequest $request)
     {
-        $emprestimos = new Emprestimo();
-        $emprestimos->aluno()->associate($request['aluno']);
-        $emprestimos->exemplar()->associate($request['exemplar']);
-        $emprestimos->user_id = auth()->user()->id;
-        $emprestimos->periodo_entrega = $request['periodoEntrega'];
-        $emprestimos->save();
+        Emprestimo::create([
+            'aluno_id' => $request['aluno'], 
+            'exemplar_id' => $request['exemplar'], 
+            'email' => $request['email'], 
+        ]);
 
         return redirect()->route('emprestimo.index')->
             with('success', ['Emprestimo registrado com sucesso!']);

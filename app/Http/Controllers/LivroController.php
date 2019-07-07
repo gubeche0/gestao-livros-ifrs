@@ -40,7 +40,7 @@ class LivroController extends Controller
     {
         Livro::create([
             'isbn' => $request['isbn'], 
-            'titulo' => $request['nome'], 
+            'titulo' => $request['titulo'], 
             'volume' => $request['volume'], 
             'autor' => $request['autor'], 
             'urlFoto' => $request['foto']->getClientOriginalName(),

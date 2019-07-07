@@ -15,7 +15,7 @@ class Livro extends Model
         'isbn', 'titulo', 'volume', 'autor', 'urlFoto',
     ];
 
-    public function categoria(){
+    public function categoria(){    
         return $this->belongsTo('App\Categoria');
     }
 

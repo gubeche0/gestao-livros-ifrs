@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Livro;
 use App\Categoria;
+use Illuminate\Http\Request;
+use App\Http\Requests\LivroRequest;
+use Illuminate\Support\Facades\Storage;
 
 class LivroController extends Controller
 {
@@ -36,21 +38,23 @@ class LivroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LivroRequest $request)
     {
-        $livro = new Livro([
-            'isbn' => $request->input('isbn'),
-            'nome' => $request->input('nome'),
-            'volume' => $request->input('volume'),
-            'autor' => $request->input('autor'),
-            'categoria_id' => $request->input('categoria')
+        Livro::create([
+            'isbn' => $request['isbn'], 
+            'nome' => $request['nome'], 
+            'volume' => $request['volume'], 
+            'autor' => $request['autor'], 
+            'categoria_id' => $request['categoria'], 
+            'user_id' => auth()->user()->id,    
+            'urlFoto' => $request['foto']->getClientOriginalName(),
         ]);
-        $livro->user_id = auth()->user()->id;
-        $livro->save();
+
+        Storage::disk('public')->putFileAs('fotoLivro' ,$request['foto'], $request['foto']->getClientOriginalName());
+        
         return redirect()->route('livro.index')->
             with('success', ['Livro cadastrado com sucesso!']);
     }
-
     /**
      * Display the specified resource.
      *

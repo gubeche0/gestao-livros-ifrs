@@ -37,7 +37,7 @@
                         <td>{{ $livro->volume}}</td>
                         <td>{{ $livro->autor}}</td>
                         <td>{{ $livro->categoria->nome}}</td>
-                        <td></td>
+                        <td>{{ $livro->exemplares->count() }}</td>
                         <td>
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                             <a class="text-dark" href='{{ route('livro.edit', ['livro' => $livro->id]) }}'><i class="fas fa-edit"

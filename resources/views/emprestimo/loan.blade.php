@@ -75,14 +75,15 @@
 @endsection
 
 @section('js')
-
+<script src="{{ asset('js/chosen.jquery.min.js')}}"></script>
 <script>
 
     var livro = false;
     $(document).ready(function () {
+        $("#aluno").chosen();
         $(window).keydown(function (event) {
             if (event.keyCode == 13) {
-                if($('#exemplar').is(':focus') || !livro) {
+                if($('#exemplar').is(':focus')) {
                     consultarLivro();
                     event.preventDefault();
                     return false;
@@ -97,9 +98,13 @@
     });
 
     function consultarLivro(){
+        var code = $('#exemplar').val();
+        if(!code){
+            code = 0;
+        }
         $.ajax({
             method: "GET",
-            url: "/api/exemplar/" + $('#exemplar').val(),
+            url: "/api/exemplar/" + code,
             dataType: "json",
         }).done(function (e) {
             console.log(e);
@@ -114,8 +119,8 @@
                     livro = true;
                     $("#exemplar").removeClass("is-invalid");
                     $("#exemplar").addClass("is-valid");
-                }else{
                     $('#exemplar').focus();
+                }else{
                     $("#exemplar-error").html("Livro já emprestado!");
                     $("#exemplar-error").show();
                     $("#exemplar").removeClass("is-valid");

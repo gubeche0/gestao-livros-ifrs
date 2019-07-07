@@ -113,7 +113,7 @@ var livro = false;
     $(document).ready(function () {
         $(window).keydown(function (event) {
             if (event.keyCode == 13) {
-                if($('#exemplar').is(':focus') || !livro) {
+                if($('#exemplar').is(':focus')) {
                     consultarLivro();
                     event.preventDefault();
                     return false;
@@ -128,9 +128,13 @@ var livro = false;
     });
 
     function consultarLivro(){
+        var code = $('#exemplar').val();
+        if(!code){
+            code = 0;
+        }
         $.ajax({
                 method: "GET",
-                url: "/api/exemplar/" + $('#exemplar').val(),
+                url: "/api/exemplar/" + code,
                 dataType: "json",
 
             }).done(function (e) {

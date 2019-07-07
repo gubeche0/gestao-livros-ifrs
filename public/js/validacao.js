@@ -11,12 +11,11 @@ $(document).ready(function (){
                 required: true,
                 email: true
             },
-            isbm:{
-                required:true
+            isbn:{
+                required:true,
             },
             nome:{
                 required: true
-                
             },
             volume:{
                 required: true
@@ -29,7 +28,7 @@ $(document).ready(function (){
             },
             quantidade:{
                 required: true
-            }
+            },
         },
     })
 });

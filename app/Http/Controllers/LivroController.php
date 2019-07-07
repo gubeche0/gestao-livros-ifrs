@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Livro;
 use App\Categoria;
 use Illuminate\Http\Request;
+use App\Http\Requests\LivroRequest;
 use Illuminate\Support\Facades\Storage;
 
 class LivroController extends Controller
@@ -37,7 +38,7 @@ class LivroController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LivroRequest $request)
     {
         Livro::create([
             'isbn' => $request['isbn'], 

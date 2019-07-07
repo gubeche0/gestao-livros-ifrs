@@ -115,6 +115,7 @@
                     $("#exemplar").removeClass("is-invalid");
                     $("#exemplar").addClass("is-valid");
                 }else{
+                    $('#exemplar').focus();
                     $("#exemplar-error").html("Livro já emprestado!");
                     $("#exemplar-error").show();
                     $("#exemplar").removeClass("is-valid");

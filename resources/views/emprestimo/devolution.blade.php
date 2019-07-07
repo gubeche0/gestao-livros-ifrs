@@ -152,6 +152,7 @@ var livro = false;
                         $("#idEmprestimo").val(e.exemplar.emprestimos[0].id);
                         $("#idExemplar").val(e.exemplar.id);
                     } else {
+                        $('#exemplar').focus();
                         $("#exemplar-error").html("Livro não emprestado!");
                         $("#exemplar-error").show();
                         $("#exemplar").removeClass("is-valid");

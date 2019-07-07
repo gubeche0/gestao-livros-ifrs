@@ -35,7 +35,7 @@ class EmprestimoController extends Controller
             'email' => $request['email'], 
         ]);
 
-        return redirect()->route('emprestimo.index')->
+        return redirect()->route('emprestimo.loan')->
             with('success', ['Emprestimo registrado com sucesso!']);
     }
 
@@ -66,7 +66,7 @@ class EmprestimoController extends Controller
             $exemplar->delete();
         }
 
-        return redirect()->route('emprestimo.index')->
+        return redirect()->route('emprestimo.devolution')->
             with('success', ['Emprestimo devolvido com sucesso!']);
     }
 

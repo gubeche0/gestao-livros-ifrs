@@ -74,10 +74,4 @@
 <script type="text/javascript" src="{{ asset('js/localization/messages_pt_BR.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/validacao.js') }}"></script>
 <script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
-    <script>
-        $(document).ready(function(){
-            $("#categoria").chosen();
-            
-        });
-    </script>
 @endsection

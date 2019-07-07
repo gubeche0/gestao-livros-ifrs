@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Emprestimo;
 use App\Aluno;
 use App\Exemplar;
+use App\Emprestimo;
+use Illuminate\Http\Request;
+use App\Http\Requests\EmprestimoRequest;
 
 class EmprestimoController extends Controller
 {
@@ -24,7 +25,7 @@ class EmprestimoController extends Controller
     }
 
     
-    public function registerLoan(Request $request)
+    public function registerLoan(EmprestimoRequest $request)
     {
         $emprestimos = new Emprestimo();
         $emprestimos->aluno()->associate($request['aluno']);
@@ -51,7 +52,7 @@ class EmprestimoController extends Controller
     }
 
     
-    public function registerDevolution(Request $request)
+    public function registerDevolution(EmprestimoRequest $request)
     {
         $emprestimos = Emprestimo::findOrFail($request['idEmprestimo']);
         

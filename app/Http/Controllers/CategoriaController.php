@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Categoria;
+use Illuminate\Http\Request;
+use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -21,7 +22,7 @@ class CategoriaController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(CategoriaRequest $request)
     {
         $categoria = new Categoria();
         $categoria->nome = $request->input('nome');
@@ -43,7 +44,7 @@ class CategoriaController extends Controller
     }
 
 
-    public function update(Request $request, Categoria $categoria)
+    public function update(CategoriaRequest $request, Categoria $categoria)
     {
         $categoria->nome = $request->input('nome');
         $categoria->save();
@@ -53,7 +54,7 @@ class CategoriaController extends Controller
 
     public function destroy(Categoria $categoria)
     {
-        $categoria->destroy();
+        $categoria->delete();
         return redirect()->route('categoria.index')->
             with('success', ['Categoria deletada com sucesso!']);
     }

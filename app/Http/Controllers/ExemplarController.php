@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Exemplar;
 use App\Livro;
+use App\Exemplar;
+use Illuminate\Http\Request;
+use App\Http\Requests\ExemplarRequest;
 
 class ExemplarController extends Controller
 {
@@ -36,7 +37,7 @@ class ExemplarController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ExemplarRequest $request)
     {
 
         $coders = [];
@@ -85,7 +86,7 @@ class ExemplarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exemplar $exemplar)
+    public function update(ExemplarRequest $request, Exemplar $exemplar)
     {
         $exemplar->livro()->associate($request->input('livro'));
         $exemplar->save();

@@ -85,7 +85,7 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Livro $livro)
+    public function update(LivroRequest $request, Livro $livro)
     {
         $livro->fill($request->all());
         $livro->categoria()->associate(Categoria::findOrFail($request->input('categoria')));

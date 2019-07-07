@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Curso;
+use Illuminate\Http\Request;
+use App\Http\Requests\CursoRequest;
 
 class CursoController extends Controller
 {
@@ -34,7 +35,7 @@ class CursoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CursoRequest $request)
     {
         $curso = new Curso();
         $curso->nome = $request->input('nome');
@@ -75,7 +76,7 @@ class CursoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Curso $curso)
+    public function update(CursoRequest $request, Curso $curso)
     {
         $curso->nome = $request->input('nome');
         $curso->abreviacao = $request->input('abreviacao');

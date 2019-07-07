@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Aluno;
 use App\Curso;
+use Illuminate\Http\Request;
+use App\Http\Requests\AlunoRequest;
 
 class AlunoController extends Controller
 {
@@ -21,7 +22,7 @@ class AlunoController extends Controller
         return view('aluno.form', compact('cursos'));
     }
 
-    public function store(Request $request)
+    public function store(AlunoRequest $request)
     {
         $request->validate([
             'matricula' => 'required|unique:alunos',
@@ -56,7 +57,7 @@ class AlunoController extends Controller
     }
 
     
-    public function update(Request $request, Aluno $aluno)
+    public function update(AlunoRequest $request, Aluno $aluno)
     {
         $aluno->nome = $request->input('nome');
         $aluno->email = $request->input('email');

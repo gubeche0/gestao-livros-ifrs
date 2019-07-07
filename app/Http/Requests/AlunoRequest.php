@@ -13,18 +13,21 @@ class AlunoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
+     *  
      * @return array
      */
     public function rules()
     {
         return [
-            //
+            'matricula' => ['required', 'numeric', 'unique:alunos'],
+            'nome' => ['required'],
+            'email' => ['required', 'email', 'unique:alunos'],
+            'curso' => ['required'],
         ];
     }
 }

@@ -27,7 +27,7 @@
                     <div class="form-group row">
                         <label for="email" class="col-sm-2 col-form-label">Email:</label>
                         <div class="col-sm-10">
-                            <input type="email" name="email" id="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" required value='@isset($aluno){{ $aluno->email }}@endif'>
+                            <input type="text" name="email" id="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" required value='@isset($aluno){{ $aluno->email }}@endif'>
                         </div>
                     </div>
 
@@ -37,7 +37,6 @@
                             <select class="custom-select @error('curso') is-invalid @enderror" name="curso" id="curso">
                                 {loop="$cursos"}
                                 @foreach ($cursos as $curso)
-                                    
                                     <option value="{{ $curso->id }}" @if(isset($aluno) && $aluno->curso->id == $curso->id) selected @endif>{{ $curso->nome }}</option>
                                 @endforeach
                                 {/loop}

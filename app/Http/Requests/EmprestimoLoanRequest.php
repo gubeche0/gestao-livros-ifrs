@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Exemplar;
 
 class EmprestimoLoanRequest extends FormRequest
 {
@@ -24,8 +26,14 @@ class EmprestimoLoanRequest extends FormRequest
     public function rules()
     {
         return [
-            'exemplar' => ['required', 'numeric'],
-            'aluno' => ['required'],
+            'exemplar' => ['bail', 'required', 'numeric', 'exists:exemplares,id', function($attr, $value, $fail){
+                $exemplar = Exemplar::findOrFail($value);
+                if($exemplar->emprestado()){
+                    $fail($attr . ' já emprestado!');
+                    return;
+                }
+            }],
+            'aluno' => ['required', 'exists:alunos,id'],
         ];
     }
 }

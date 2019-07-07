@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LivroRequest extends FormRequest
+class AlunoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class LivroRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,11 +24,7 @@ class LivroRequest extends FormRequest
     public function rules()
     {
         return [
-            'isbn' => ['required', 'numeric'],
-            'nome' => ['required'],
-            'volume' => ['required'],
-            'autor' => ['required'],
-            'foto' => ['file'],
+            //
         ];
     }
 }

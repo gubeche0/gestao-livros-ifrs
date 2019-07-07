@@ -67,3 +67,11 @@ Route::group(['prefix' => 'exemplares', 'middleware' => 'auth'], function () {
     Route::post('/{exemplar}/editar', 'ExemplarController@update')->name('exemplar.update');
     Route::get('/{exemplar}/deletar', 'ExemplarController@destroy')->name('exemplar.delete');
 });
+
+Route::group(['prefix' => 'emprestimo', 'middleware' => 'auth'], function () {
+    Route::get('/', 'EmprestimoController@index')->name('emprestimo.index');
+    Route::get('/registrar', 'EmprestimoController@loan')->name('emprestimo.loan');
+    Route::post('/registrar', 'EmprestimoController@registerLoan')->name('emprestimo.registerLoan');
+    Route::get('/devolver', 'EmprestimoController@devolution')->name('emprestimo.devolution');
+    Route::post('/devolver', 'EmprestimoController@registerDevolution')->name('emprestimo.registerDevolution');
+});

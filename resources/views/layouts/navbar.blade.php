@@ -38,12 +38,12 @@
                         </div>
                     </li>
 
-                    <li class="nav-item dropdown {{ Route::is('emprestimos*') ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ Route::is('emprestimo*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="emprestimos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Empréstimos</a>
                         <div class="dropdown-menu" aria-labelledby="emprestimos">
-                            <a class="dropdown-item" href="#"><i class="fas fa-list"></i> Listar</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-plus"></i> Adicionar</a>
-                            <a class="dropdown-item" href="#"><i class="fas fa-minus"></i> Devolver</a>
+                            <a class="dropdown-item" href="{{ route('emprestimo.index') }}"><i class="fas fa-list"></i> Listar</a>
+                            <a class="dropdown-item" href="{{ route('emprestimo.loan') }}"><i class="fas fa-plus"></i> Adicionar</a>
+                            <a class="dropdown-item" href="{{ route('emprestimo.devolution') }}"><i class="fas fa-minus"></i> Devolver</a>
                         </div>
                     </li>
                     <li class="nav-item">

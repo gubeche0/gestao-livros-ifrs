@@ -18,5 +18,12 @@ class Exemplar extends Model
         return $this->belongsTo('App\Livro');
     }
 
+    public function emprestimos(){
+        return $this->hasMany('App\Emprestimo');
+    }
+
+    public function emprestado(){
+        return ($this->emprestimos->count() == 1) ? true : false;
+    }
     
 }

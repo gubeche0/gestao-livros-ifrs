@@ -5,11 +5,6 @@ use App\Categoria;
 
 class CategoriasSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $id = User::first()->id;

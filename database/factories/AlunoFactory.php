@@ -11,6 +11,5 @@ $factory->define(Aluno::class, function (Faker $faker) {
         'matricula' => $faker->unique()->ean13(),
         'email' => $faker->unique()->safeEmail,
         'curso_id' => $faker->numberBetween(1, 4),
-        'user_id' => 1
     ];
 });

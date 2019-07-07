@@ -19,14 +19,12 @@ class CreateAlunosTable extends Migration
             $table->string('nome');
             $table->string('email')->unique();
             $table->bigInteger('curso_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });
 
         Schema::table('alunos', function (Blueprint $table) {
             $table->foreign('curso_id')->references('id')->on('cursos');
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

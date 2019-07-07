@@ -17,10 +17,10 @@
             
             <div class="form-group row">
 
-                <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+                <label for="titulo" class="col-sm-2 col-form-label">Título:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required value='@isset($livro){{ $livro->nome }}@endif' @if(!isset($livro)) autofocus @endif>
+                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="titulo" required value='@isset($livro){{ $livro->titulo }}@endif' @if(!isset($livro)) autofocus @endif>
                 </div>
             </div> 
 

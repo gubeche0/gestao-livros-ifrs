@@ -16,17 +16,12 @@ class CreateLivrosTable extends Migration
         Schema::create('livros', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('isbn')->unique();
-            $table->string('nome');
+            $table->string('titulo');
             $table->string('volume')->nullable();
             $table->string('autor')->nullable();
             $table->string('urlFoto')->nullable();
-            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();
-        });
-
-        Schema::table('livros', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

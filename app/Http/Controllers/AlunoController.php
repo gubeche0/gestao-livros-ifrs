@@ -24,20 +24,12 @@ class AlunoController extends Controller
 
     public function store(AlunoRequest $request)
     {
-        $request->validate([
-            'matricula' => 'required|unique:alunos',
-            'nome' => 'required',
-            'email' => 'required|email|unique:alunos',
-            'curso' => 'required'
+        Aluno::create([
+            'matricula' => $request['matricula'], 
+            'nome' => $request['nome'], 
+            'email' => $request['email'], 
+            'curso_id' => $request['curso'],
         ]);
-
-        $aluno = new Aluno();
-        $aluno->matricula = $request->input('matricula');
-        $aluno->nome = $request->input('nome');
-        $aluno->email = $request->input('email');
-        $aluno->curso_id = $request->input('curso');
-        $aluno->user_id = auth()->user()->id;
-        $aluno->save();
         return redirect()->route('aluno.index')->
             with('success', ['Aluno(a) cadastrado(a) com sucesso!']);
 

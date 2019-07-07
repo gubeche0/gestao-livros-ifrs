@@ -21,7 +21,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>ISBN</th>
-                        <th>Nome</th>
+                        <th>Título</th>
                         <th>Volume</th>
                         <th>Autor</th>
                         <th>Estoque</th>
@@ -32,7 +32,7 @@
                     @foreach($livros as $livro)
                     <tr>
                         <td>{{ $livro->isbn}}</td>
-                        <td>{{ $livro->nome}}</td>
+                        <td>{{ $livro->titulo}}</td>
                         <td>{{ $livro->volume}}</td>
                         <td>{{ $livro->autor}}</td>
                         <td>{{ $livro->exemplares->count() }}</td>

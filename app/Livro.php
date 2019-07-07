@@ -12,7 +12,7 @@ class Livro extends Model
     
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'isbn', 'nome', 'volume', 'autor', 'urlFoto', 'categoria_id', 'user_id'
+        'isbn', 'titulo', 'volume', 'autor', 'urlFoto',
     ];
 
     public function categoria(){

@@ -25,7 +25,7 @@ class LivroRequest extends FormRequest
     {
         return [
             'isbn' => ['required', 'numeric'],
-            'nome' => ['required'],
+            'titulo' => ['required'],
             'volume' => ['required'],
             'autor' => ['required'],
             'foto' => ['file'],

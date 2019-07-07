@@ -6,7 +6,8 @@ use App\Aluno;
 use App\Exemplar;
 use App\Emprestimo;
 use Illuminate\Http\Request;
-use App\Http\Requests\EmprestimoRequest;
+use App\Http\Requests\EmprestimoLoanRequest;
+use App\Http\Requests\EmprestimoDevolutionRequest;
 
 class EmprestimoController extends Controller
 {
@@ -25,7 +26,7 @@ class EmprestimoController extends Controller
     }
 
     
-    public function registerLoan(EmprestimoRequest $request)
+    public function registerLoan(EmprestimoLoanRequest $request)
     {
         $emprestimos = new Emprestimo();
         $emprestimos->aluno()->associate($request['aluno']);
@@ -52,7 +53,7 @@ class EmprestimoController extends Controller
     }
 
     
-    public function registerDevolution(EmprestimoRequest $request)
+    public function registerDevolution(EmprestimoDevolutionRequest $request)
     {
         $emprestimos = Emprestimo::findOrFail($request['idEmprestimo']);
         

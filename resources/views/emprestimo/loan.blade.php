@@ -47,7 +47,8 @@
             </div>
             <div class="col-2">
 
-                <img id="fotoLivro" src="" class="img-thumbnail" style="display: none">
+                {{-- <img id="fotoLivro" src="" class="img-thumbnail" style="display: none"> --}}
+                <img id="fotoLivro" class="img-thumbnail" style="display: none" src="{{ asset('storage') }}/fotoLivro/4cfa33829556f3f32b476dbabac6d9d9.jpg">
             </div>
         </div>
 
@@ -143,12 +144,7 @@ var livro = false;
                     $("#fotoLivro").hide().attr('src', "");
                 }
             });
-
         });
-
-
-
     });
-        
-    </script>
+</script>
 @endsection

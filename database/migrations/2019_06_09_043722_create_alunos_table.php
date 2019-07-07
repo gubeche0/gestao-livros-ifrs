@@ -17,7 +17,6 @@ class CreateAlunosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('matricula')->unsigned()->unique();
             $table->string('nome');
-            $table->string('turma')->nullable();
             $table->string('email')->unique();
             $table->bigInteger('curso_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();

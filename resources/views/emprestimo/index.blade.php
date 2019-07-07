@@ -25,7 +25,6 @@
                         <th>Livro</th>
                         <th>Codigo</th>
                         <th>Data Emprestimo</th>
-                        <th>Período de entrega</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,10 +33,9 @@
                     <tr>
                         <td>{{ $emprestimo->id }}</td>
                         <td>{{ $emprestimo->aluno->nome }}</td>
-                        <td>{{ $emprestimo->exemplar->livro->nome }}</td>
+                        <td>{{ $emprestimo->exemplar->livro->titulo }}</td>
                         <td>{{ $emprestimo->exemplar->id }}</td>
-                        <td>{{ $emprestimo->created_at }}</td>
-                        <td>{{ $emprestimo->periodo_entrega }} Anos</td>
+                        <td>{{ date('d/m/Y', strtotime($emprestimo->created_at)) }}</td>
                     @endforeach
                 </tbody>
             </table>

@@ -19,7 +19,7 @@
 
                 <div class="form-group row">
 
-                    <label for="nome" class="col-sm-2 col-form-label">Nome do livro:</label>
+                    <label for="titulo" class="col-sm-2 col-form-label">Nome do livro:</label>
                     <div class="col-sm-10">
 
                         <input type="text" name="nomeLivro" id="nomeLivro" class="form-control" placeholder="Nome do Livro"
@@ -46,9 +46,7 @@
                 </div>
             </div>
             <div class="col-2">
-
-                {{-- <img id="fotoLivro" src="" class="img-thumbnail" style="display: none"> --}}
-                <img id="fotoLivro" class="img-thumbnail" style="display: none" src="{{ asset('storage') }}/fotoLivro/{{$livro->urlFoto}}">
+                <img id="fotoLivro" src="" class="img-thumbnail" style="display: none">
             </div>
         </div>
 
@@ -62,16 +60,6 @@
                     @endforeach
                     
                 </select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-
-            <label for="nome" class="col-sm-2 col-form-label">Periodo de entrega:</label>
-            <div class="col-sm-10">
-
-                <input type="number" name="periodoEntrega" id="periodoEntrega" class="form-control" placeholder="Codigo de barras"
-                    required value="1">
             </div>
         </div>
 
@@ -109,9 +97,10 @@ var livro = false;
                 console.log(e);
                 if (e.status) {
                     $("#exemplar-error").hide();
-                    $("#nomeLivro").val(e.exemplar.livro.nome);
+                    $("#nomeLivro").val(e.exemplar.livro.titulo);
                     $("#volumeLivro").val(e.exemplar.livro.volume);
                     $("#autorLivro").val(e.exemplar.livro.autor);
+                    $("#fotoLivro").val(e.exemplar.livro.urlFoto);
                     
                     if(e.emprestado == false){
                         livro = true;

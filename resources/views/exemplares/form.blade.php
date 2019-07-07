@@ -12,7 +12,7 @@
                 <select class="custom-select" name="livro" id="livro">
                     
                     @foreach ($livros as $livro)
-                    <option value="{{ $livro->id }}" @if(isset($exemplar) && $exemplar->livro->id == $livro->id) selected @endif >{{ $livro->nome}}</option> 
+                    <option value="{{ $livro->id }}" @if(isset($exemplar) && $exemplar->livro->id == $livro->id) selected @endif >{{ $livro->titulo}}</option> 
                     @endforeach
                     
                 </select> 
@@ -22,7 +22,7 @@
         @if(!isset($exemplar))
             <div class="form-group row">
 
-                <label for="nome" class="col-sm-2 col-form-label">Quantidade:</label>
+                <label for="titulo" class="col-sm-2 col-form-label">Quantidade:</label>
                 <div class="col-sm-10">
 
                     <input type="number" min="0" name="quantidade" id="quantidade" class="form-control" placeholder="Quantidade" required value="">

@@ -28,7 +28,7 @@ class LivroRequest extends FormRequest
             'titulo' => ['required'],
             'volume' => ['required'],
             'autor' => ['required'],
-            'foto' => ['file'],
+            'foto' => ['required'],
         ];
     }
 }

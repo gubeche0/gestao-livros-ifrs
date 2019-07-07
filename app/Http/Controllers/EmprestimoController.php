@@ -28,6 +28,7 @@ class EmprestimoController extends Controller
     
     public function registerLoan(EmprestimoLoanRequest $request)
     {
+        // dd($request);
         Emprestimo::create([
             'aluno_id' => $request['aluno'], 
             'exemplar_id' => $request['exemplar'], 
@@ -36,7 +37,6 @@ class EmprestimoController extends Controller
 
         return redirect()->route('emprestimo.index')->
             with('success', ['Emprestimo registrado com sucesso!']);
-
     }
 
     

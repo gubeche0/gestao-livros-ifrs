@@ -31,9 +31,9 @@
                     @foreach($exemplares as $exemplar)
                     <tr>
                         <td>{{ $exemplar->id }}</td>
-                        <td>{{ $exemplar->livro->nome }}</td>
+                        <td>{{ $exemplar->livro->titulo }}</td>
                         <td>{{ $exemplar->status }}</td>
-                        <td></td>
+                        <td>@if($exemplar->emprestado())Emprestado @else Disponivel @endif</td>
                         <td>
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                             <a class="text-dark" href='{{ route('exemplar.edit', ['exemplar' => $exemplar->id]) }}'><i class="fas fa-edit" aria-hidden="true"></i> Editar</a> |

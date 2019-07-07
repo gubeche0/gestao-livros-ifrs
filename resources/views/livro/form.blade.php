@@ -43,21 +43,6 @@
             </div>
 
             <div class="form-group row">
-                <label for="categoria" class="col-sm-2 col-form-label">Categoria:</label>
-                <div class="col-sm-10">
-                    <select class="chosen-select" name="categoria" id="categoria">
-                        
-                        @foreach ($categorias as $categoria)
-
-                            <option value="{{ $categoria->id}}" @if(isset($livro) && $livro->categoria->id == $categoria->id)selected @endif >{{$categoria->nome}}</option>
-                        
-                        @endforeach
-                        
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group row">
 
                 <label for="foto" class="col-sm-2 col-form-label">Foto do livro:</label>
                 <div class="col-sm-10">

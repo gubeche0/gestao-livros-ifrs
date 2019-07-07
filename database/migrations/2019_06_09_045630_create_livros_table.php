@@ -19,10 +19,7 @@ class CreateLivrosTable extends Migration
             $table->string('nome');
             $table->string('volume')->nullable();
             $table->string('autor')->nullable();
-            
             $table->string('urlFoto')->nullable();
-            
-            $table->bigInteger('categoria_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
             $table->softDeletes();

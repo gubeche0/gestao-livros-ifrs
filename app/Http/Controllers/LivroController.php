@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Livro;
-use App\Categoria;
 use Illuminate\Http\Request;
 use App\Http\Requests\LivroRequest;
 use Illuminate\Support\Facades\Storage;
@@ -28,8 +27,7 @@ class LivroController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
-        return view('livro.form', compact('categorias'));
+        return view('livro.form');
     }
 
     /**
@@ -45,7 +43,6 @@ class LivroController extends Controller
             'nome' => $request['nome'], 
             'volume' => $request['volume'], 
             'autor' => $request['autor'], 
-            'categoria_id' => $request['categoria'], 
             'user_id' => auth()->user()->id,    
             'urlFoto' => $request['foto']->getClientOriginalName(),
         ]);
@@ -74,8 +71,7 @@ class LivroController extends Controller
      */
     public function edit(Livro $livro)
     {
-        $categorias = Categoria::all();
-        return view('livro.form', compact(['livro', 'categorias']));
+        return view('livro.form', compact(['livro']));
     }
 
     /**
@@ -88,7 +84,6 @@ class LivroController extends Controller
     public function update(LivroRequest $request, Livro $livro)
     {
         $livro->fill($request->all());
-        $livro->categoria()->associate(Categoria::findOrFail($request->input('categoria')));
         $livro->save();
         return redirect()->route('livro.index')->
             with('success', ['Livro atualizado com sucesso!']);

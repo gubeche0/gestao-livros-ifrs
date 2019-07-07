@@ -48,10 +48,9 @@
             <div class="col-2">
 
                 {{-- <img id="fotoLivro" src="" class="img-thumbnail" style="display: none"> --}}
-                <img id="fotoLivro" class="img-thumbnail" style="display: none" src="{{ asset('storage') }}/fotoLivro/4cfa33829556f3f32b476dbabac6d9d9.jpg">
+                <img id="fotoLivro" class="img-thumbnail" style="display: none" src="{{ asset('storage') }}/fotoLivro/{{$livro->urlFoto}}">
             </div>
         </div>
-
 
         <div class="form-group row">
             <label for="livro" class="col-sm-2 col-form-label">Aluno:</label>

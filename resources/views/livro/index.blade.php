@@ -24,7 +24,6 @@
                         <th>Nome</th>
                         <th>Volume</th>
                         <th>Autor</th>
-                        <th>Categoria</th>
                         <th>Estoque</th>
                         <th>Ação</th>
                     </tr>
@@ -36,7 +35,6 @@
                         <td>{{ $livro->nome}}</td>
                         <td>{{ $livro->volume}}</td>
                         <td>{{ $livro->autor}}</td>
-                        <td>{{ $livro->categoria->nome}}</td>
                         <td>{{ $livro->exemplares->count() }}</td>
                         <td>
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->

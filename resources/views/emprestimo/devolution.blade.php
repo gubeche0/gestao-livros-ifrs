@@ -3,7 +3,7 @@
 
 <div class="container">
         @include('layouts.statusMessages')
-        <form method="post" id="form" onsubmit="if(!livro) return false">
+        <form method="post" id="form" onsubmit="return confirm()">
             @csrf
             <div class="form-row" id="livro-row">
                 <div class="col">
@@ -113,15 +113,24 @@ var livro = false;
     $(document).ready(function () {
         $(window).keydown(function (event) {
             if (event.keyCode == 13) {
-                event.preventDefault();
-                return false;
+                if($('#exemplar').is(':focus') || !livro) {
+                    consultarLivro();
+                    event.preventDefault();
+                    return false;
+                }
             }
         });
 
         $("#exemplar").change(function () {
-            $.ajax({
+            consultarLivro();
+
+        });
+    });
+
+    function consultarLivro(){
+        $.ajax({
                 method: "GET",
-                url: "/api/exemplar/" + this.value,
+                url: "/api/exemplar/" + $('#exemplar').val(),
                 dataType: "json",
 
             }).done(function (e) {
@@ -161,6 +170,7 @@ var livro = false;
                     }
                 } else {
                     livro = false;
+                    $('#exemplar').focus();
                     $("#exemplar-error").html("Livro Não cadastrado!");
                     $("#exemplar-error").show();
                     $("#exemplar").removeClass("is-valid");
@@ -176,13 +186,34 @@ var livro = false;
                     $("#data").val("");
                 }
             });
+    }
 
-        });
+    function confirm(){
+        
+        if(livro) {
+            Swal({
+                title: 'Deseja registrar a devolução?',
+                // text: 'Não é possivel reverter isso',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, registrar!',
+                cancelButtonText: "Cancelar",
+                focusCancel: false
+            }).then((result) => {
+                if (result.value) {
+                    $('#form').removeAttr('onsubmit').submit();
+                }
 
-
-
-    });
-
+            })
+            
+        } else {
+            $('#exemplar').focus();
+        }
+        
+        return false;
+    }
         
 </script>
 @endsection

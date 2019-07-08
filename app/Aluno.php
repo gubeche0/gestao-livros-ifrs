@@ -12,6 +12,8 @@ class Aluno extends Model
     
     protected $dates = ['deleted_at'];
 
+    protected $fillable = ['matricula','nome', 'email', 'curso', 'curso_id'];
+    
     public function curso(){
         return $this->belongsTo('App\Curso');
     }

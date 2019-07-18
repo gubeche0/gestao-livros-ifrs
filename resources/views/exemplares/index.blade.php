@@ -16,7 +16,7 @@
                     </div>
                 </div>
             
-            <a href="{{ route('exemplar.create') }}">Novo exemplar</a>
+            <a href="{{ route('exemplar.register') }}">Registrar exemplar</a>
             <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-light">
                     <tr>
@@ -30,14 +30,14 @@
                 <tbody>
                     @foreach($exemplares as $exemplar)
                     <tr>
-                        <td>{{ $exemplar->id }}</td>
-                        <td>{{ $exemplar->livro->titulo }}</td>
+                        <td>{{ $exemplar->code }}</td>
+                        <td>@if(isset($exemplar->livro)) {{ $exemplar->livro->titulo }} @endif</td>
                         <td>{{ $exemplar->status }}</td>
                         <td>@if($exemplar->emprestado())Emprestado @else Disponivel @endif</td>
                         <td>
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
-                            <a class="text-dark" href='{{ route('exemplar.edit', ['exemplar' => $exemplar->id]) }}'><i class="fas fa-edit" aria-hidden="true"></i> Editar</a> |
-                            <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->id]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                            <a class="text-dark" href='{{ route('exemplar.edit', ['exemplar' => $exemplar->code]) }}'><i class="fas fa-edit" aria-hidden="true"></i> Editar</a> |
+                            <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>
                         </tr>
                     @endforeach
                 </tbody>

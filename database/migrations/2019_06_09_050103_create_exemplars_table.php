@@ -14,8 +14,8 @@ class CreateExemplarsTable extends Migration
     public function up()
     {
         Schema::create('exemplares', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('livro_id')->unsigned();
+            $table->bigInteger('code')->unsigned();
+            $table->bigInteger('livro_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->string('status')->default('Utilizavel');
 
@@ -24,6 +24,7 @@ class CreateExemplarsTable extends Migration
         });
 
         Schema::table('exemplares', function (Blueprint $table) {
+            $table->primary('code');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('livro_id')->references('id')->on('livros');
         });

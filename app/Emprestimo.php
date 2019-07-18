@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Emprestimo extends Model
 {
     use softDeletes;
-    protected $fillable = ['exemplar_id', 'aluno_id'];
+    protected $fillable = ['exemplar_code', 'aluno_id'];
 
 
     protected $dates = ['deleted_at'];

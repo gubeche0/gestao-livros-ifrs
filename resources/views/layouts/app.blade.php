@@ -16,6 +16,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-chosen.css') }}">
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/toastr.min.css') }}">
     
     @yield('css')
 

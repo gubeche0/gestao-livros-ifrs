@@ -34,7 +34,7 @@
                         <td>{{ $emprestimo->id }}</td>
                         <td>{{ $emprestimo->aluno->nome }}</td>
                         <td>{{ $emprestimo->exemplar->livro->titulo }}</td>
-                        <td>{{ $emprestimo->exemplar->id }}</td>
+                        <td>{{ $emprestimo->exemplar->code }}</td>
                         <td>{{ date('d/m/Y', strtotime($emprestimo->created_at)) }}</td>
                     @endforeach
                 </tbody>

@@ -16,19 +16,19 @@ class ExemplarController extends Controller
      */
     public function index()
     {
-        $exemplares = Exemplar::all();
+        $exemplares = Exemplar::whereNotNull('livro_id')->get();
         return view('exemplares.index', compact('exemplares'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for register a resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function register()
     {
         $livros = Livro::all();
-        return view('exemplares.form', compact('livros'));
+        return view('exemplares.register', compact('livros'));
     }
 
     /**
@@ -39,21 +39,7 @@ class ExemplarController extends Controller
      */
     public function store(ExemplarRequest $request)
     {
-
-        $coders = [];
-        $quantidade = $request->input('quantidade', 0);
-
-        for ($x=0; $x < $quantidade; $x++) { 
-            $exemplar = new Exemplar();
-            $exemplar->livro()->associate($request->input('livro'));
-            $exemplar->user_id = auth()->user()->id;
-            $exemplar->save();
-            $coders[] = $exemplar->id;
-        }
-
-        $livros = Livro::all();
-        
-        return view('exemplares.form', compact('livros', 'coders'));
+    
     }
 
     /**
@@ -73,8 +59,9 @@ class ExemplarController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Exemplar $exemplar)
+    public function edit($id)
     {
+        $exemplar = Exemplar::whereNotNull('livro_id')->findOrFail($id);
         $livros = Livro::all();
         return view('exemplares.form', compact('livros', 'exemplar'));
     }

@@ -6,6 +6,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.quicksearch/2.3.1/jquery.quicksearch.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.29.2/dist/sweetalert2.all.min.js"></script>
     
+    <script src="{{ asset('js/toastr.min.js') }}"></script>
+    <script src="{{ asset('js/utils.js') }}"></script>
+   
     @yield('js')
     
     </body>

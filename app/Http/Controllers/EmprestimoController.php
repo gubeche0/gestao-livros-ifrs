@@ -31,7 +31,7 @@ class EmprestimoController extends Controller
         // dd($request);
         Emprestimo::create([
             'aluno_id' => $request['aluno'], 
-            'exemplar_id' => $request['exemplar'], 
+            'exemplar_code' => $request['exemplar'], 
             'email' => $request['email'], 
         ]);
 
@@ -58,10 +58,9 @@ class EmprestimoController extends Controller
         
         $emprestimos->delete();
 
-        $status = isset($_POST['statusLivro']) ? $_POST['idEmprestimo'] : 'Não Utilizavel';
-        if($status == 'Não Utilizavel') {
-            $exemplar = Exemplar::findOrFail($request['idExemplar']);
-            $exemplar->status = $status;
+        if(!$request->has('statusLivro')) {
+            $exemplar = Exemplar::findOrFail($request->input('idExemplar'));
+            $exemplar->status = 'Não Utilizavel';
             $exemplar->save();
             $exemplar->delete();
         }

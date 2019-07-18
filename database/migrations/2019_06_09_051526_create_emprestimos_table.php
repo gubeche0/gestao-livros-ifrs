@@ -15,7 +15,7 @@ class CreateEmprestimosTable extends Migration
     {
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('exemplar_id')->unsigned();
+            $table->bigInteger('exemplar_code')->unsigned();
             $table->bigInteger('aluno_id')->unsigned();
 
             $table->timestamps();
@@ -23,7 +23,7 @@ class CreateEmprestimosTable extends Migration
         });
 
         Schema::table('emprestimos', function (Blueprint $table) {
-            $table->foreign('exemplar_id')->references('id')->on('exemplares');
+            $table->foreign('exemplar_code')->references('code')->on('exemplares');
             $table->foreign('aluno_id')->references('id')->on('alunos');
         });
     }

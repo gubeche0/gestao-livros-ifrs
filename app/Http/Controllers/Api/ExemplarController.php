@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Exemplar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Livro;
 
 class ExemplarController extends Controller
 {
@@ -37,8 +38,7 @@ class ExemplarController extends Controller
      */
     public function show($exemplar)
     {
-        // return $exemplar->loadMissing('livro');
-        $exemplar = Exemplar::find($exemplar);
+        $exemplar = Exemplar::whereNotNull('livro_id')->find($exemplar);
         
         if($exemplar){
             return [
@@ -60,9 +60,38 @@ class ExemplarController extends Controller
      * @param  \App\Exemplar  $exemplar
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Exemplar $exemplar)
+    public function update(Request $request, $exemplar)
     {
-        //
+        $exemplar = Exemplar::find($exemplar);
+        if(!$exemplar){
+            return [
+                'status' => false,
+                'error' => 'Exemplar não cadastrado!'
+            ];
+        }
+        if($request->has('livro')){
+            if($exemplar->livro){
+                return [
+                    'status' => false,
+                    'error' => 'Exemplar já registrado!'
+                ];
+            }
+
+            $livro = Livro::find($request->input('livro'));
+            if(!$livro){
+                return [
+                    'status' => false,
+                    'error' => 'Livro não cadastrado!'
+                ];
+            }
+            $exemplar->livro()->associate($livro);
+        }
+
+        $exemplar->save();
+        return [
+            'status' => true,
+            'exemplar' => $exemplar
+        ];
     }
 
     /**

@@ -22,6 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'exemplar'], function () {
     Route::get('/', 'Api\ExemplarController@index')->name('api.exemplar.index');
-    Route::get('/{id}', 'Api\ExemplarController@show')->name('api.exemplar.show');
+    Route::get('/{exemplar}', 'Api\ExemplarController@show')->name('api.exemplar.show');
+    Route::post('/{exemplar}/editar', 'Api\ExemplarController@update')->name('api.exemplar.update');
 });
 

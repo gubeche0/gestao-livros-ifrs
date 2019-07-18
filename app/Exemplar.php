@@ -13,6 +13,8 @@ class Exemplar extends Model
     protected $fillable = ['livro_id', 'user_id', 'status'];
     protected $dates = ['deleted_at'];
     protected $table = 'exemplares';
+    protected $primaryKey = 'code';
+    public $incrementing = false;
 
     public function livro(){
         return $this->belongsTo('App\Livro');

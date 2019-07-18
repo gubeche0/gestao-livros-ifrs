@@ -52,8 +52,8 @@ Route::group(['prefix' => 'livros', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'exemplares', 'middleware' => 'auth'], function () {
     Route::get('/', 'ExemplarController@index')->name('exemplar.index');
-    Route::get('/create', 'ExemplarController@create')->name('exemplar.create');
-    Route::post('/create', 'ExemplarController@store')->name('exemplar.store');
+    Route::get('/register', 'ExemplarController@register')->name('exemplar.register');
+    // Route::post('/create', 'ExemplarController@store')->name('exemplar.store');
     Route::get('/{exemplar}/editar', 'ExemplarController@edit')->name('exemplar.edit');
     Route::post('/{exemplar}/editar', 'ExemplarController@update')->name('exemplar.update');
     Route::get('/{exemplar}/deletar', 'ExemplarController@destroy')->name('exemplar.delete');
@@ -65,4 +65,9 @@ Route::group(['prefix' => 'emprestimo', 'middleware' => 'auth'], function () {
     Route::post('/registrar', 'EmprestimoController@registerLoan')->name('emprestimo.registerLoan');
     Route::get('/devolver', 'EmprestimoController@devolution')->name('emprestimo.devolution');
     Route::post('/devolver', 'EmprestimoController@registerDevolution')->name('emprestimo.registerDevolution');
+});
+
+Route::group(['prefix' => 'barcode', 'middleware' => 'auth'], function () {
+    Route::get('/', 'BarcodeController@index')->name('barcode.index');
+    Route::post('/', 'BarcodeController@store')->name('barcode.store');
 });

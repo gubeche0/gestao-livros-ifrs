@@ -154,13 +154,15 @@ var livro = false;
                         $("#exemplar").removeClass("is-invalid");
                         $("#exemplar").addClass("is-valid");
                         $("#idEmprestimo").val(e.exemplar.emprestimos[0].id);
-                        $("#idExemplar").val(e.exemplar.id);
+                        $("#idExemplar").val(e.exemplar.code);
                     } else {
                         $('#exemplar').focus();
                         $("#exemplar-error").html("Livro não emprestado!");
                         $("#exemplar-error").show();
                         $("#exemplar").removeClass("is-valid");
                         $("#exemplar").addClass("is-invalid");
+                        $("#idEmprestimo").val('');
+                        $("#idExemplar").val('');
 
                         $("#aluno").val("");
                         $("#matricula").val("");
@@ -180,6 +182,8 @@ var livro = false;
                     $("#exemplar-error").show();
                     $("#exemplar").removeClass("is-valid");
                     $("#exemplar").addClass("is-invalid");
+                    $("#idEmprestimo").val('');
+                    $("#idExemplar").val('');
 
                     $("#nomeLivro").val("");
                     $("#volumeLivro").val("");

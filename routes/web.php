@@ -71,3 +71,12 @@ Route::group(['prefix' => 'barcode', 'middleware' => 'auth'], function () {
     Route::get('/', 'BarcodeController@index')->name('barcode.index');
     Route::post('/', 'BarcodeController@store')->name('barcode.store');
 });
+
+Route::group(['prefix' => 'usuarios', 'middleware' => 'auth'], function () {
+    Route::get('/', 'UserController@index')->name('user.index');
+    Route::get('/create', 'UserController@create')->name('user.create');
+    Route::post('/create', 'UserController@store')->name('user.store');
+    Route::get('/{user}/editar', 'UserController@edit')->name('user.edit');
+    Route::post('/{user}/editar', 'UserController@update')->name('user.update');
+    Route::get('/{user}/deletar', 'UserController@destroy')->name('user.delete');
+});

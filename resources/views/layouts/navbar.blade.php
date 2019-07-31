@@ -56,6 +56,7 @@
                             <!-- <a class="dropdown-item" href="#">Configurações</a>
                             <div class="dropdown-divider"></div> -->
                             <a class="dropdown-item" href="{{ route('curso.index') }}">Cursos</a>
+                            <a class="dropdown-item" href="{{ route('user.index') }}">Usuários</a>
                         </div>
                     </li>
                     <li class="nav-item">

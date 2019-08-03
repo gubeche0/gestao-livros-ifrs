@@ -27,5 +27,5 @@ class Exemplar extends Model
     public function emprestado(){
         return ($this->emprestimos->count() >= 1) ? true : false;
     }
-    
+
 }

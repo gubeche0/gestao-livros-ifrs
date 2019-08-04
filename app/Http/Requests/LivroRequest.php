@@ -27,8 +27,7 @@ class LivroRequest extends FormRequest
             'isbn' => ['required', 'numeric'],
             'titulo' => ['required'],
             'volume' => ['required'],
-            'autor' => ['required'],
-            'foto' => ['required'],
+            'autor' => ['required']
         ];
     }
 }

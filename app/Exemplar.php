@@ -28,4 +28,23 @@ class Exemplar extends Model
         return ($this->emprestimos->count() >= 1) ? true : false;
     }
     
+    public function criar($codigo_banco){
+    	$somatorio=0;
+
+    
+        $divisao_unitaria = str_split($codigo_banco);
+        
+        for ($i=0; $i < 5; $i++) { 
+            $somatorio += $divisao_unitaria[$i];
+        }
+
+        $validacao = $somatorio % 9;
+        
+        $codigo_validacao = $codigo_banco.$validacao;
+        
+        
+        return $codigo_validacao;
+                
+        
+    }
 }

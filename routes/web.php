@@ -67,6 +67,15 @@ Route::group(['prefix' => 'emprestimo', 'middleware' => 'auth'], function () {
     Route::post('/devolver', 'EmprestimoController@registerDevolution')->name('emprestimo.registerDevolution');
 });
 
+Route::group(['prefix' => 'turma', 'middleware' => 'auth'], function () {
+    Route::get('/', 'TurmaController@index')->name('turma.index');
+    Route::get('/create', 'TurmaController@create')->name('turma.create');
+    Route::post('/create', 'TurmaController@store')->name('turma.store');
+    Route::get('/{turma}/editar', 'TurmaController@edit')->name('turma.edit');
+    Route::post('/{turma}/editar', 'TurmaController@update')->name('turma.update');
+    Route::get('/{turma}/deletar', 'TurmaController@destroy')->name('turma.delete');
+});
+
 Route::group(['prefix' => 'barcode', 'middleware' => 'auth'], function () {
     Route::get('/', 'BarcodeController@index')->name('barcode.index');
     Route::post('/', 'BarcodeController@store')->name('barcode.store');

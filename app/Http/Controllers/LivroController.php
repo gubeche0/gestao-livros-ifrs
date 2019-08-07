@@ -38,15 +38,17 @@ class LivroController extends Controller
      */
     public function store(LivroRequest $request)
     {
-        Livro::create([
+        $livro = new Livro([
             'isbn' => $request['isbn'], 
             'titulo' => $request['titulo'], 
             'volume' => $request['volume'], 
-            'autor' => $request['autor'], 
-            'urlFoto' => $request['foto']->getClientOriginalName(),
+            'autor' => $request['autor']
         ]);
-
-        Storage::disk('public')->putFileAs('fotoLivro' ,$request['foto'], $request['foto']->getClientOriginalName());
+        if($request->hasFile('foto')) {
+            $livro->urlFoto = $request['foto']->getClientOriginalName();
+            Storage::disk('public')->putFileAs('fotoLivro' ,$request['foto'], $request['foto']->getClientOriginalName());
+        }
+        $livro->save();
         
         return redirect()->route('livro.index')->
             with('success', ['Livro cadastrado com sucesso!']);
@@ -83,6 +85,10 @@ class LivroController extends Controller
     public function update(LivroRequest $request, Livro $livro)
     {
         $livro->fill($request->all());
+        if($request->hasFile('foto')) {
+            $livro->urlFoto = $request['foto']->getClientOriginalName();
+            Storage::disk('public')->putFileAs('fotoLivro' ,$request['foto'], $request['foto']->getClientOriginalName());
+        }
         $livro->save();
         return redirect()->route('livro.index')->
             with('success', ['Livro atualizado com sucesso!']);

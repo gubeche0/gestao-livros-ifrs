@@ -24,7 +24,8 @@
                         <th>Título</th>
                         <th>Volume</th>
                         <th>Autor</th>
-                        <th>Estoque</th>
+                        <th>Estoque total</th>
+                        <th>Estoque disponível</th>
                         <th>Ação</th>
                     </tr>
                 </thead>
@@ -35,7 +36,8 @@
                         <td>{{ $livro->titulo}}</td>
                         <td>{{ $livro->volume}}</td>
                         <td>{{ $livro->autor}}</td>
-                        <td>{{ $livro->exemplares->count() }}</td>
+                        <td>{{ $livro->estoque() }}</td>
+                        <td>{{ $livro->disponiveis()}}</td>
                         <td>
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                             <a class="text-dark" href='{{ route('livro.edit', ['livro' => $livro->id]) }}'><i class="fas fa-edit"

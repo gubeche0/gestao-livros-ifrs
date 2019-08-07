@@ -27,7 +27,7 @@ class AlunoRequest extends FormRequest
             'matricula' => ['required', 'numeric', 'unique:alunos'],
             'nome' => ['required'],
             'email' => ['required', 'email', 'unique:alunos'],
-            'curso' => ['required'],
+            'curso' => ['required', 'exists:cursos,id'],
         ];
     }
 }

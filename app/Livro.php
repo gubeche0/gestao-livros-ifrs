@@ -22,4 +22,12 @@ class Livro extends Model
     public function exemplares(){
         return $this->hasMany('App\Exemplar');
     }
+
+    public function estoque(){
+        return $this->exemplares()->count();
+    }
+
+    public function disponiveis(){
+        return $this->estoque() - $this->exemplares()->whereHas('emprestimos')->get()->count();
+    }
 }

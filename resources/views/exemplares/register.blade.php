@@ -46,11 +46,19 @@
         inputAttributes: {
           id: 'codeBar',
         },
+        showConfirmButton:true,
         showCancelButton: true,
-        cancelButtonText: 'Ok',
-        cancelButtonColor: '#3085d6',
-        showConfirmButton: false,
+        confirmButtonText:'Registrar',
+        cancelButtonText: 'Fechar',
+        cancelButtonColor: 'red',
+        preConfirm: function() {
+            return false;
+        },
         onBeforeOpen: function(){
+            $('.swal2-confirm').unbind().click(function() {
+                register($('#codeBar').val());
+                
+            })
             $('#codeBar').keydown(function (event) {
                 if (event.keyCode == 13) {
                     register($('#codeBar').val());

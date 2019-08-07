@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Livro;
+use App\Exemplar;
 use Illuminate\Http\Request;
 use App\Http\Requests\LivroRequest;
 use Illuminate\Support\Facades\Storage;
@@ -59,9 +60,14 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Livro $livro)
     {
-        //
+        $livroTitulo = $livro->titulo;
+        $exemplares = Exemplar::where('livro_id', $livro->id)
+        ->orderBy('status', 'desc')
+        ->withTrashed()->get();
+
+        return view('exemplares.index', compact('exemplares', 'livroTitulo'));
     }
 
     /**

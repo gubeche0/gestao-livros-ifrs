@@ -11,7 +11,6 @@ class Emprestimo extends Model
     use softDeletes;
     protected $fillable = ['exemplar_code', 'aluno_id'];
 
-
     protected $dates = ['deleted_at'];
 
     public function exemplar(){

@@ -30,14 +30,6 @@
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>
                         </div>
                     </li>
-                    
-                    <li class="nav-item dropdown {{ Route::is('exemplar*') ? 'active' : '' }}">
-                        <a class="nav-link dropdown-toggle" href="#" id="livros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Exemplares</a>
-                        <div class="dropdown-menu" aria-labelledby="livros">
-                            <a class="dropdown-item" href="{{ route('exemplar.index') }}"><i class="fas fa-list"></i> Listar</a>
-                            <a class="dropdown-item" href="{{ route('exemplar.register') }}"><i class="fas fa-plus"></i> Registrar</a>
-                        </div>
-                    </li>
 
                     <li class="nav-item dropdown {{ Route::is('emprestimo*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="emprestimos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Empréstimos</a>

@@ -26,7 +26,7 @@ class EmprestimoLoanRequest extends FormRequest
     public function rules()
     {
         return [
-            'exemplar' => ['bail', 'required', 'numeric', 'exists:exemplares,code', function($attr, $value, $fail){
+            'exemplar' => ['bail', 'required', 'string', 'exists:exemplares,code', function($attr, $value, $fail){
                 $exemplar = Exemplar::findOrFail($value);
                 if($exemplar->emprestado()){
                     $fail($attr . ' já emprestado!');

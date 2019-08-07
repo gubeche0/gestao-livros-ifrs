@@ -40,7 +40,7 @@ class Exemplar extends Model
 
         $validacao = $somatorio % 9;
         
-        $codigo_validacao = $codigo_banco.$validacao;
+        $codigo_validacao = $codigo_banco.'-'.$validacao;
         
         
         return $codigo_validacao;

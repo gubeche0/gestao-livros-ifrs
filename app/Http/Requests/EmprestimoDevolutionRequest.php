@@ -25,7 +25,7 @@ class EmprestimoDevolutionRequest extends FormRequest
     public function rules()
     {
         return [
-            'exemplar' => ['required', 'numeric', function($attr, $value, $fail){
+            'exemplar' => ['required', 'string', function($attr, $value, $fail){
                 $exemplar = Exemplar::findOrFail($value);
                 if(!$exemplar->emprestado()){
                     $fail($attr . ' não emprestado!');

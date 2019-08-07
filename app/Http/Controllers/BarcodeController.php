@@ -12,6 +12,26 @@ class BarcodeController extends Controller
     }
 
 
+    public function criar($codigo_banco){
+    	$somatorio=0;
+
+    
+        $divisao_unitaria = str_split($codigo_banco);
+        
+        for ($i=0; $i < 5; $i++) { 
+            $somatorio += $divisao_unitaria[$i];
+        }
+
+        $validacao = $somatorio % 9;
+        
+        $codigo_validacao = $codigo_banco.'-'.$validacao;
+        
+        
+        return $codigo_validacao;
+                
+        
+    }
+
     public function valida($codigo){
 
         $somatorio=0;    
@@ -23,7 +43,7 @@ class BarcodeController extends Controller
         }
         echo $somatorio % 9;
         echo $divisao_unitaria[5]; 
-        if($somatorio % 9 == $divisao_unitaria[5]){
+        if($somatorio % 9 == $divisao_unitaria[6]){
             return True;
         }
         else{
@@ -56,7 +76,7 @@ class BarcodeController extends Controller
         for ($x=0; $x < $quantidade; $x++) { 
             $exemplar = new Exemplar();
             ++$lastCode;
-            $exemplar->code = $exemplar->criar($lastCode); ;
+            $exemplar->code = $this->criar($lastCode); ;
             $exemplar->user_id = auth()->user()->id;
             $exemplar->save();
             $codes[] = $exemplar->code;

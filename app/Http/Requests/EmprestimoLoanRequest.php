@@ -34,6 +34,7 @@ class EmprestimoLoanRequest extends FormRequest
                 }
             }],
             'aluno' => ['required', 'exists:alunos,id'],
+            'turma' => ['required', 'exists:turmas,id']
         ];
     }
 }

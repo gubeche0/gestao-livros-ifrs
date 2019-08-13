@@ -21,10 +21,16 @@ class CreateTurmasTable extends Migration
             $table->year('ano')->useCurrent();
             
             $table->timestamps();
+            $table->softDeletes();
         });
 
         Schema::table('turmas', function (Blueprint $table) {
             $table->foreign('curso_id')->references('id')->on('cursos');
+        });
+
+        Schema::table('emprestimos', function (Blueprint $table) {
+            $table->bigInteger('turma_id')->unsigned();
+            $table->foreign('turma_id')->references('id')->on('turmas');
         });
     }
 

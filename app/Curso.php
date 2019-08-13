@@ -14,4 +14,8 @@ class Curso extends Model
     public function turmas(){
         return $this->hasMany('App\Turma');
     }
+
+    public function alunos(){
+        return $this->hasMany('App\Aluno');
+    }
 }

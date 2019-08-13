@@ -8,6 +8,7 @@ use App\Emprestimo;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoLoanRequest;
 use App\Http\Requests\EmprestimoDevolutionRequest;
+use App\Turma;
 
 class EmprestimoController extends Controller
 {
@@ -20,9 +21,10 @@ class EmprestimoController extends Controller
 
     
     public function loan()
-    {
+    { 
+        $turmas = Turma::where('active', true)->orderBy('curso_id')->orderBy('nome')->get();
         $alunos = Aluno::all();
-        return view('emprestimo.loan', compact('alunos'));
+        return view('emprestimo.loan', compact('alunos', 'turmas'));
     }
 
     
@@ -31,8 +33,8 @@ class EmprestimoController extends Controller
         // dd($request);
         Emprestimo::create([
             'aluno_id' => $request['aluno'], 
-            'exemplar_code' => $request['exemplar'], 
-            'email' => $request['email'], 
+            'exemplar_code' => $request['exemplar'],
+            'turma_id' => $request['turma']
         ]);
 
         return redirect()->route('emprestimo.loan')->

@@ -51,6 +51,18 @@
         </div>
 
         <div class="form-group row">
+            <label for="livro" class="col-sm-2 col-form-label">Turma:</label>
+            <div class="col-sm-10">
+                <select class="custom-select" name="turma" id="turma">
+                    @foreach ($turmas as $turma)
+                        <option value="{{ $turma->id }}">{{ $turma->nome }} - {{ $turma->ano }}</option>
+                    @endforeach
+                    
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="livro" class="col-sm-2 col-form-label">Aluno:</label>
             <div class="col-sm-10">
                 <select class="custom-select" name="aluno" id="aluno">

@@ -32,6 +32,7 @@
                         <td>{{ $exemplar->status }}</td>
                         <td>@if($exemplar->emprestado())Emprestado @else Disponivel @endif</td>
                         <td>
+
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                             <a class="text-dark" href='{{ route('exemplar.edit', ['exemplar' => $exemplar->code]) }}'><i class="fas fa-edit" aria-hidden="true"></i> Editar</a> |
                             <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>

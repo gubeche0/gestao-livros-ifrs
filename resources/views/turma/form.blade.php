@@ -39,7 +39,7 @@
 
             <div class="form-group row">
                 <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
-                <input name="cancelar" id="cancelar" class="btn btn-danger col ml-1" type="reset" value="Cancelar">
+                <a href=" {{route('turma.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
             </div>
 
             

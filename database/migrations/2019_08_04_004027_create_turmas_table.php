@@ -42,5 +42,6 @@ class CreateTurmasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('turmas');
+
     }
 }

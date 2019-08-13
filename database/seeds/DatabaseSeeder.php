@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             CursoSeeder::class,
             AlunoSeeder::class,
+            TurmaSeeder::class
         ]);
     }
 }

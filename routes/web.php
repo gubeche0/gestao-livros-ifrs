@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/home', 301);
 
 Auth::routes();
 Route::get('/logout', function(){

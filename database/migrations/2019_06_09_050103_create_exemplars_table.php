@@ -14,7 +14,7 @@ class CreateExemplarsTable extends Migration
     public function up()
     {
         Schema::create('exemplares', function (Blueprint $table) {
-            $table->bigInteger('code')->unsigned();
+            $table->char('code', 7);
             $table->bigInteger('livro_id')->unsigned()->nullable();
             $table->bigInteger('user_id')->unsigned();
             $table->string('status')->default('Utilizavel');

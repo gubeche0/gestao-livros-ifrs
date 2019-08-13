@@ -33,6 +33,7 @@
 
     $(document).ready(function(){ 
         $('#btn-registrar').click(function() {
+            alert('fjkd');
             showModalRegister();
         });
 

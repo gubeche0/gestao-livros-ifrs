@@ -14,11 +14,13 @@ class ExemplarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $exemplares = Exemplar::whereNotNull('livro_id')->get();
-        return view('exemplares.index', compact('exemplares'));
-    }
+    // public function index(Livro $livro)
+    // {
+    //     $livroTitulo = $livro->titulo;
+    //     $exemplares = Exemplar::where('livro_id', $livro->id)->withTrashed()->get();
+
+    //     return view('exemplares.index', compact('exemplares', 'livroTitulo'));
+    // }
 
     /**
      * Show the form for register a resource.

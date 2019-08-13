@@ -4,7 +4,7 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title text-center my-3">Gestão de Exemplares</h1>
+            <h1 class="panel-title text-center my-3">{{$livroTitulo}}</h1>
         </div>
         <div class="panel-body">
             @include('layouts.statusMessages')
@@ -16,12 +16,10 @@
                     </div>
                 </div>
             
-            <a href="{{ route('exemplar.register') }}">Registrar exemplar</a>
             <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th>Codigo De Barras</th>
-                        <th>Livro</th>
                         <th>Status</th>
                         <th>Situação</th>
                         <th>Ação</th>
@@ -31,7 +29,6 @@
                     @foreach($exemplares as $exemplar)
                     <tr>
                         <td>{{ $exemplar->code }}</td>
-                        <td>@if(isset($exemplar->livro)) {{ $exemplar->livro->titulo }} @endif</td>
                         <td>{{ $exemplar->status }}</td>
                         <td>@if($exemplar->emprestado())Emprestado @else Disponivel @endif</td>
                         <td>

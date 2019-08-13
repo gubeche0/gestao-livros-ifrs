@@ -15,7 +15,7 @@ class CreateEmprestimosTable extends Migration
     {
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('exemplar_code')->unsigned();
+            $table->char('exemplar_code',7);
             $table->bigInteger('aluno_id')->unsigned();
 
             $table->timestamps();

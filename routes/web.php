@@ -43,15 +43,21 @@ Route::group(['prefix' => 'cursos', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'livros', 'middleware' => 'auth'], function () {
     Route::get('/', 'LivroController@index')->name('livro.index');
+    
+    
     Route::get('/create', 'LivroController@create')->name('livro.create');
     Route::post('/create', 'LivroController@store')->name('livro.store');
+    
+    
     Route::get('/{livro}/editar', 'LivroController@edit')->name('livro.edit');
     Route::post('/{livro}/editar', 'LivroController@update')->name('livro.update');
     Route::get('/{livro}/deletar', 'LivroController@destroy')->name('livro.delete');
+    Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');    
+
 });
 
 Route::group(['prefix' => 'exemplares', 'middleware' => 'auth'], function () {
-    Route::get('/', 'ExemplarController@index')->name('exemplar.index');
+    // Route::get('/', 'ExemplarController@index')->name('exemplar.index');
     Route::get('/register', 'ExemplarController@register')->name('exemplar.register');
     // Route::post('/create', 'ExemplarController@store')->name('exemplar.store');
     Route::get('/{exemplar}/editar', 'ExemplarController@edit')->name('exemplar.edit');

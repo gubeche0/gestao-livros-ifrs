@@ -81,7 +81,7 @@
 
 @section('js')
 <script>
-    // $("#query").quicksearch('table tbody tr') 
+    $("#query").quicksearch('table tbody tr') 
     function excluir(url) {
         // var resposta = confirm("Deseja deletar a aluno?");
         swal({

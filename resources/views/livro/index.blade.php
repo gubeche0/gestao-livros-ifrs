@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     @foreach($livros as $livro)
-                    <tr>
+                    <tr id="livro{{ $livro->id }}">
                         <td>{{ $livro->isbn}}</td>
                         <td>
                             <a href="{{ route('livro.exemplar', $livro->id) }}">
@@ -40,7 +40,7 @@
                         </td>
                         <td>{{ $livro->volume}}</td>
                         <td>{{ $livro->autor}}</td>
-                        <td>{{ $livro->estoque() }}</td>
+                        <td class="estoque">{{ $livro->estoque() }}</td>
                         <td>{{ $livro->disponiveis()}}</td>
                         <td>
                             <a class="text-dark" data_livro="{{$livro->id}}" id="btn-registrar" href="#">
@@ -142,6 +142,8 @@
             $('#codeBar').val('');
             if (e.status) {
                 toastr.success('Registrado com sucesso!');
+                var estoque = $('#livro' + e.exemplar.livro.id + ' .estoque');
+                estoque.html((estoque.html() / 1) + 1)
             } else {
                 if (e.error) {
                     toastr.warning(e.error);

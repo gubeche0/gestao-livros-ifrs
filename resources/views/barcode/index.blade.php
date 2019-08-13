@@ -32,7 +32,7 @@
         $('#barcodes').html('');
         for (var x = 0; x < vetor.length; x++) {
      
-            $("#barcodes").prepend("<svg style='border: 1px solid black; padding:5px; margin: 2px;' id='barcode" + x +"'></svg>")
+            $("#barcodes").append("<svg style='border: 1px solid black; padding:5px; margin: 2px;' id='barcode" + x +"'></svg>")
             JsBarcode("#barcode" + x , vetor[x]);
             
         }

@@ -13,44 +13,28 @@ class BarcodeController extends Controller
 
 
     public function criar($codigo_banco){
-    	$somatorio=0;
-
-    
         $divisao_unitaria = str_split($codigo_banco);
         
-        for ($i=0; $i < 5; $i++) { 
-            $somatorio += $divisao_unitaria[$i];
-        }
-
-        $validacao = $somatorio % 9;
+        $soma = array_sum($divisao_unitaria);
+        $validacao = $soma % 9;
         
-        $codigo_validacao = $codigo_banco.'-'.$validacao;
-        
-        
-        return $codigo_validacao;
-                
-        
+        return $codigo_banco.'-'.$validacao;        
     }
 
     public function valida($codigo){
+        $codigo = explode('-', $codigo);
 
-        $somatorio=0;    
+        $divisao_unitaria = str_split($codigo[0]);
             
-        $divisao_unitaria = str_split($codigo);
-            
-        for ($i=0; $i < 5; $i++) { 
-            $somatorio += $divisao_unitaria[$i];
-        }
-        echo $somatorio % 9;
-        echo $divisao_unitaria[5]; 
-        if($somatorio % 9 == $divisao_unitaria[6]){
+        $soma = array_sum($divisao_unitaria);
+
+        if($soma % 9 == $divisao_unitaria[1]){
             return True;
         }
         else{
             return False; 
-        }
-               
-        }
+        }           
+    }
 
     public function store(Request $request) {
 
@@ -59,23 +43,15 @@ class BarcodeController extends Controller
         // TODO: Regra para criar um codigo de barras com validação
         $lastCode = Exemplar::orderBy('code', 'desc')->first();
             if($lastCode != null){
-                $lastCode = $lastCode->code;
-                $certo = null;
-                $certo = str_split($lastCode);
-                $lastCode= null;
-                for ($i=0; $i < 5; $i++) { 
-                    $lastCode .= $certo[$i];
-                }
-
+                $lastCode = explode('-', $lastCode->code)[0];
         } else {
-            
             $lastCode = 10000;
         }
 
         // TODO: Não criar exemplares para cada codigo gerado. Criar aqui apenas os codigos auto validados e na hora de registrar os livros criar os exemplares com os codigos
         for ($x=0; $x < $quantidade; $x++) { 
             $exemplar = new Exemplar();
-            ++$lastCode;
+            $lastCode++;
             $exemplar->code = $this->criar($lastCode); ;
             $exemplar->user_id = auth()->user()->id;
             $exemplar->save();

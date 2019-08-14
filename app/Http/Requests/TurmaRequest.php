@@ -25,7 +25,7 @@ class TurmaRequest extends FormRequest
     {
         return [
             'nome' => ['required'],
-            'curso' => ['required', 'exists:cursos,id']
+            'curso' => ['exists:cursos,id']
         ];
     }
 }

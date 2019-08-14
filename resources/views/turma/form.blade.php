@@ -18,7 +18,7 @@
             <div class="form-group row">
                 <label for="curso" class="col-sm-2 col-form-label">Curso:</label>
                 <div class="col-sm-10">
-                    <select class="custom-select @error('curso') is-invalid @enderror" name="curso" id="curso">
+                    <select class="custom-select @error('curso') is-invalid @enderror" name="curso" id="curso" @if(isset($turma)) disabled @endif>
                         {loop="$cursos"}
                         @foreach ($cursos as $curso)
                             <option value="{{ $curso->id }}" @if(isset($turma) && $turma->curso->id == $curso->id) selected @endif>{{ $curso->nome }}</option>

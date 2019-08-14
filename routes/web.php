@@ -78,6 +78,7 @@ Route::group(['prefix' => 'turma', 'middleware' => 'auth'], function () {
     Route::get('/{turma}/editar', 'TurmaController@edit')->name('turma.edit');
     Route::post('/{turma}/editar', 'TurmaController@update')->name('turma.update');
     Route::get('/{turma}/deletar', 'TurmaController@destroy')->name('turma.delete');
+    Route::get('/{turma}/restaurar', 'TurmaController@restore')->name('turma.restore');
 });
 
 Route::group(['prefix' => 'barcode', 'middleware' => 'auth'], function () {

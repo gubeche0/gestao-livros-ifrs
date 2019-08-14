@@ -32,14 +32,20 @@
                     <tr>
                         <td>{{ $turma->nome }}</td>
                         <td>{{ $turma->curso->nome }}</td>
-                        <td>{{ $turma->active ? 'Ativo' : 'Inativo' }}</td>
+                        <td class=@if($turma->trashed()) 'inativo' @else 'ativo' @endif>{{ $turma->trashed() ? 'Inativo' : 'Ativo' }}</td>
                         <td>{{ $turma->ano }}</td>
                         <td>
                             <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                             <a class="text-dark" href='{{ route('turma.edit', ['turma' => $turma->id]) }}'><i class="fas fa-edit"
                                     aria-hidden="true"></i> Editar</a> |
+                            @if($turma->trashed())
+                            <a class="text-dark" href="#" onclick="excluir('{{ route('turma.restore', ['livro' => $turma->id]) }}')"><i class="fas fa-trash-restore"
+                                aria-hidden="true"></i> Ativar</a>
+                            @else 
                             <a class="text-dark" href="#" onclick="excluir('{{ route('turma.delete', ['livro' => $turma->id]) }}')"><i class="fas fa-trash"
-                                    aria-hidden="true"></i> Excluir</a></td>
+                                aria-hidden="true"></i> Inativar</a>
+                            @endif
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -54,24 +60,41 @@
 
 @section('js')
     
-<script>
+    <script>
+        $().ready(function() {
+            $("#query").quicksearch('table tbody tr');
+        })
 
-        $("#query").quicksearch('table tbody tr')
         function excluir(url) {
             swal({
-                title: 'Deseja deletar a turma?',
+                title: 'Deseja inativar a turma?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, deletar!',
+                confirmButtonText: 'Sim, inativar!',
                 cancelButtonText: "Cancelar",
                 focusCancel: true
             }).then((result) => {
                 if (result.value) {
                     window.location.href = url;
                 }
-
+            })
+        }
+        function restaurar(url) {
+            swal({
+                title: 'Deseja reativar a turma?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, reativar!',
+                cancelButtonText: "Cancelar",
+                focusCancel: true
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = url;
+                }
             })
         }
     </script>

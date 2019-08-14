@@ -43,7 +43,7 @@
                         <td class="estoque">{{ $livro->estoque() }}</td>
                         <td class="estoque-disponivel">{{ $livro->disponiveis()}}</td>
                         <td>
-                            <a class="text-dark" data_livro="{{$livro->id}}" id="btn-registrar" href="#">
+                            <a class="text-dark btn-registrar" data_livro="{{$livro->id}}" id="" href="#">
                                 <i class="fas fa-plus" aria-hidden="true"></i> Registrar exemplar
                             </a> |
                             <a class="text-dark" href='{{ route('livro.edit', ['livro' => $livro->id]) }}'><i class="fas fa-edit"
@@ -87,7 +87,7 @@
         }
 
     $(document).ready(function(){ 
-        $('#btn-registrar').click(function() {
+        $('.btn-registrar').click(function() {
             showModalRegister($(this).attr('data_livro'));
             // console.log($(this).attr('data_livro'));
         });

@@ -22,7 +22,7 @@ class EmprestimoController extends Controller
     
     public function loan()
     { 
-        $turmas = Turma::where('active', true)->orderBy('curso_id')->orderBy('nome')->get();
+        $turmas = Turma::orderBy('curso_id')->orderBy('nome')->get();
         $alunos = Aluno::all();
         return view('emprestimo.loan', compact('alunos', 'turmas'));
     }

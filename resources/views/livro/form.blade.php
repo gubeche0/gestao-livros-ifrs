@@ -11,7 +11,7 @@
                 <label for="isbn" class="col-sm-2 col-form-label">ISBN:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="isbn" id="isbn" class="form-control" placeholder="ISBN" required value='@isset($livro){{ $livro->isbn }}@endif' @if(isset($livro)) readonly @else autofocus @endif>
+                    <input type="number" name="isbn" id="isbn" class="form-control" placeholder="ISBN" required value='@isset($livro){{ $livro->isbn }}@endif' @if(isset($livro)) readonly @else autofocus @endif>
                 </div>
             </div> 
             

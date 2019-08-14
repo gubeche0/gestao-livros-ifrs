@@ -16,7 +16,7 @@ class TurmaController extends Controller
      */
     public function index()
     {
-        $turmas = Turma::orderBy('ano', 'DESC')->orderBy('curso_id')->orderBy('nome')->get();
+        $turmas = Turma::orderBy('deleted_at', 'asc')->orderBy('ano', 'DESC')->orderBy('curso_id')->orderBy('nome')->withTrashed()->get();
         return view('turma.index', compact('turmas'));
     }
 
@@ -85,7 +85,7 @@ class TurmaController extends Controller
     public function update(TurmaRequest $request, Turma $turma)
     {
         $turma->nome = $request->input('nome');
-        $turma->curso_id = $request->input('curso');
+        // $turma->curso_id = $request->input('curso');
         $turma->save();
         return redirect()->route('turma.index')->
             with('success', ['Turma alterada com sucesso!']);
@@ -102,5 +102,13 @@ class TurmaController extends Controller
         $turma->delete();
         return redirect()->route('turma.index')->
             with('success', ['Turma deletada com sucesso!']);
+    }
+
+    public function restore($id)
+    {
+        $turma = Turma::onlyTrashed()->findOrFail($id);
+        $turma->restore();
+        return redirect()->route('turma.index')->
+            with('success', ['Turma restaurada com sucesso!']);
     }
 }

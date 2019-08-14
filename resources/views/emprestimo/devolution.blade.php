@@ -141,7 +141,7 @@ var livro = false;
                 console.log(e);
                 if (e.status) {
                     $("#exemplar-error").hide();
-                    $("#nomeLivro").val(e.exemplar.livro.nome);
+                    $("#nomeLivro").val(e.exemplar.livro.titulo);
                     $("#volumeLivro").val(e.exemplar.livro.volume);
                     $("#autorLivro").val(e.exemplar.livro.autor);
 

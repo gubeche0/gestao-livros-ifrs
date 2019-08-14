@@ -17,7 +17,6 @@ class CreateTurmasTable extends Migration
             $table->bigIncrements('id');
             $table->string('nome');
             $table->bigInteger('curso_id')->unsigned();
-            $table->boolean('active')->default(true);
             $table->year('ano')->useCurrent();
             
             $table->timestamps();

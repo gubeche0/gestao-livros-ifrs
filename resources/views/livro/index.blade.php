@@ -41,7 +41,7 @@
                         <td>{{ $livro->volume}}</td>
                         <td>{{ $livro->autor}}</td>
                         <td class="estoque">{{ $livro->estoque() }}</td>
-                        <td>{{ $livro->disponiveis()}}</td>
+                        <td class="estoque-disponivel">{{ $livro->disponiveis()}}</td>
                         <td>
                             <a class="text-dark" data_livro="{{$livro->id}}" id="btn-registrar" href="#">
                                 <i class="fas fa-plus" aria-hidden="true"></i> Registrar exemplar
@@ -144,6 +144,8 @@
                 toastr.success('Registrado com sucesso!');
                 var estoque = $('#livro' + e.exemplar.livro.id + ' .estoque');
                 estoque.html((estoque.html() / 1) + 1)
+                var estoqueDisponivel = $('#livro' + e.exemplar.livro.id + ' .estoque-disponivel');
+                estoqueDisponivel.html((estoqueDisponivel.html() / 1) + 1)
             } else {
                 if (e.error) {
                     toastr.warning(e.error);

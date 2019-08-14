@@ -33,7 +33,7 @@
                         <td>
                             @if($exemplar->emprestado())
                                 Emprestado 
-                            @elseif ($exemplar->deleted_at <> null)
+                            @elseif ($exemplar->trashed())
                                 <span style="color:red"> Deletado </span>
                             @else
                                 Disponivel
@@ -42,7 +42,7 @@
                         <td>
                             @if($exemplar->emprestado())
                                 
-                            @elseif ($exemplar->deleted_at <> null)
+                            @elseif ($exemplar->trashed())
                                 <a class="text-dark" href="#" onclick="restaurar('{{ route('exemplar.restore', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-undo" aria-hidden="true"></i> Restaurar</a></td>
                             @else
                                 <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>

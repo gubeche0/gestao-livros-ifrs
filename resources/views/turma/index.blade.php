@@ -39,7 +39,7 @@
                             <a class="text-dark" href='{{ route('turma.edit', ['turma' => $turma->id]) }}'><i class="fas fa-edit"
                                     aria-hidden="true"></i> Editar</a> |
                             @if($turma->trashed())
-                            <a class="text-dark" href="#" onclick="excluir('{{ route('turma.restore', ['livro' => $turma->id]) }}')"><i class="fas fa-trash-restore"
+                            <a class="text-dark" href="#" onclick="excluir('{{ route('turma.restore', ['livro' => $turma->id]) }}')"><i class="fas fa-undo"
                                 aria-hidden="true"></i> Ativar</a>
                             @else 
                             <a class="text-dark" href="#" onclick="excluir('{{ route('turma.delete', ['livro' => $turma->id]) }}')"><i class="fas fa-trash"

@@ -30,12 +30,23 @@
                     <tr>
                         <td>{{ $exemplar->code }}</td>
                         <td>{{ $exemplar->status }}</td>
-                        <td>@if($exemplar->emprestado())Emprestado @else Disponivel @endif</td>
                         <td>
-
-                            <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
-                            <a class="text-dark" href='{{ route('exemplar.edit', ['exemplar' => $exemplar->code]) }}'><i class="fas fa-edit" aria-hidden="true"></i> Editar</a> |
-                            <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                            @if($exemplar->emprestado())
+                                Emprestado 
+                            @elseif ($exemplar->deleted_at <> null)
+                                <span style="color:red"> Deletado </span>
+                            @else
+                                Disponivel
+                            @endif
+                        </td>
+                        <td>
+                            @if($exemplar->emprestado())
+                                
+                            @elseif ($exemplar->deleted_at <> null)
+                                <a class="text-dark" href="#" onclick="restaurar('{{ route('exemplar.restore', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-undo" aria-hidden="true"></i> Restaurar</a></td>
+                            @else
+                                <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>
+                            @endif
                         </tr>
                     @endforeach
                 </tbody>
@@ -60,6 +71,23 @@
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Sim, deletar!',
+                cancelButtonText: "Cancelar",
+                focusCancel: true
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = url;
+                }
+
+            })
+        }
+        function restaurar(url) {
+            swal({
+                title: 'Deseja restaurar o exemplar?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sim, restaurar!',
                 cancelButtonText: "Cancelar",
                 focusCancel: true
             }).then((result) => {

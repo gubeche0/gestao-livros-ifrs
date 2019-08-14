@@ -29,8 +29,7 @@ class ExemplarController extends Controller
      */
     public function register()
     {
-        $livros = Livro::all();
-        return view('exemplares.register', compact('livros'));
+        //
     }
 
     /**
@@ -63,9 +62,7 @@ class ExemplarController extends Controller
      */
     public function edit($id)
     {
-        $exemplar = Exemplar::whereNotNull('livro_id')->findOrFail($id);
-        $livros = Livro::all();
-        return view('exemplares.form', compact('livros', 'exemplar'));
+        //
     }
 
     /**
@@ -77,10 +74,7 @@ class ExemplarController extends Controller
      */
     public function update(ExemplarRequest $request, Exemplar $exemplar)
     {
-        $exemplar->livro()->associate($request->input('livro'));
-        $exemplar->save();
-        return redirect()->route('exemplar.index')->
-            with('success', ['Exemplar alterado com sucesso!']);
+        //
     }
 
     /**
@@ -91,8 +85,18 @@ class ExemplarController extends Controller
      */
     public function destroy(Exemplar $exemplar)
     {
+        $livro = $exemplar->livro_id;
         $exemplar->delete();
-        return redirect()->route('exemplar.index')->
+        return redirect()->route('livro.exemplar', [$livro])->
             with('success', ['Exemplar deletado com sucesso!']);
+    }
+
+    public function restore($exemplar)
+    {
+        $exemplar = Exemplar::onlyTrashed()->where('code', $exemplar)->first();
+        $livro = $exemplar->livro_id;
+        $exemplar->restore();
+        return redirect()->route('livro.exemplar', [$livro])->
+            with('success', ['Exemplar restaurado com sucesso!']);
     }
 }

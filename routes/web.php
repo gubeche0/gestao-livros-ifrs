@@ -51,16 +51,13 @@ Route::group(['prefix' => 'livros', 'middleware' => 'auth'], function () {
     Route::post('/{livro}/editar', 'LivroController@update')->name('livro.update');
     Route::get('/{livro}/deletar', 'LivroController@destroy')->name('livro.delete');
     Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');    
+    Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');    
 
 });
 
 Route::group(['prefix' => 'exemplares', 'middleware' => 'auth'], function () {
-    // Route::get('/', 'ExemplarController@index')->name('exemplar.index');
-    Route::get('/register', 'ExemplarController@register')->name('exemplar.register');
-    // Route::post('/create', 'ExemplarController@store')->name('exemplar.store');
-    Route::get('/{exemplar}/editar', 'ExemplarController@edit')->name('exemplar.edit');
-    Route::post('/{exemplar}/editar', 'ExemplarController@update')->name('exemplar.update');
     Route::get('/{exemplar}/deletar', 'ExemplarController@destroy')->name('exemplar.delete');
+    Route::get('/{exemplar}/restaurar', 'ExemplarController@restore')->name('exemplar.restore');
 });
 
 Route::group(['prefix' => 'emprestimo', 'middleware' => 'auth'], function () {

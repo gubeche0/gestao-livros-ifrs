@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
-
 @section('content')
-<div class="container">
+    <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1 class="panel-title text-center my-3">Gestão de Alunos</h1>
@@ -10,80 +9,104 @@
             <div class="panel-body">
                 @include('layouts.statusMessages')
                 
-                <form>
-    
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="query" name="query" placeholder="Pesquisar Alunos" value="@isset($query){{ $query }} @endif">
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
-                        </div>
-                    </div>
-                </form>
-    
-    
-    
-                {{-- <p class="float-right">
-                    <a class="text-right" href="#">Importar Alunos</a>
-                </p> --}}
-                <a href="{{ route('aluno.create') }}">Novo Aluno</a>
-                <table class="table table-striped table-bordered table-hover" id="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Matricula</th>
-                            <th>Nome</th>
-                            <th>Curso</th>
-                            <th>Email</th>
-                            <th>Ação</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        @foreach ($alunos as $aluno)
-                            
-                        
-                        <tr>
-                            <td>{{ $aluno->matricula }}</td>
-                            <td>{{ $aluno->nome }}</td>
-                            <td>{{ $aluno->curso->abreviacao }}</td>
-                            <td>{{ $aluno->email }}</td>
-                            <td>
-    
-                                <a class="text-dark" href='{{ route('aluno.edit', ["aluno" => $aluno->id]) }}'><i class="fas fa-edit"
-                                        aria-hidden="true"></i> Editar</a> |
-                                <a class="text-dark" href="#" onclick="excluir('{{ route('aluno.delete', ['aluno' => $aluno->id]) }}')"><i class="fas fa-trash"
-                                        aria-hidden="true"></i> Excluir</a></td>
-                        </tr>
-                        @endforeach 
-
-                    </tbody>
-                </table>
-                {{-- <nav>
-                    <ul class="pagination justify-content-end">
-                            <li class='page-item {if="$page == 1"}disabled{/if}'>
-                                <a class="page-link" href='/alunos?page={$page - 1}&query={$query}'>Anterior</a>
-                            </li>
-                        {loop="$pages"}
-                            <li class="page-item {if="$page == $value['text']"} active {/if}"><a class='page-link' href='{$value["href"]}'>{$value["text"]}</a></li>
-                        {/loop}
-                        <li class='page-item {if="count($pages) <= $page"}disabled{/if}'>
-                            <a class="page-link" href='/alunos?page={$page + 1}&query={$query}'>Proximo</a>
-                        </li>
-                        
-                    </ul>
-                </nav> --}}
-    
+                    <table id="datatable-alunos" class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Matrícula</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Curso</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>    
+                            @foreach ($alunos as $aluno)
+                                <tr>
+                                    <td>{{ $aluno->matricula }}</td>
+                                    <td>{{ $aluno->nome }}</td>
+                                    <td>{{ $aluno->curso->abreviacao }}</td>
+                                    <td>{{ $aluno->email }}</td>
+                                    <td>
+                                        <a class="text-dark" href='{{ route('aluno.edit', ["aluno" => $aluno->id]) }}'>
+                                            <i class="fas fa-edit" aria-hidden="true"></i>
+                                            Editar
+                                        </a> |
+                                        <a class="text-dark" href="#" onclick="excluir('{{ route('aluno.delete', ['aluno' => $aluno->id]) }}')">
+                                            <i class="fas fa-trash" aria-hidden="true"></i> 
+                                            Excluir
+                                        </a>
+                                    </td>
+                                </tr>   
+                            @endforeach
+                        </tbody>
+                    </table>
             </div>
         </div>
     </div>
-    
-
 @endsection
 
 @section('js')
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.2/css/uikit.min.css"> 
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.uikit.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#datatable-alunos').DataTable({
+            stateSave: true,
+            "pagingType": "numbers",
+            "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoPostFix": "",
+                "sInfoThousands": "",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sLengthMenu": "Resultados por página _MENU_",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+            }
+        });
+    });   
+</script>
+
+<style>
+    .dataTables_wrapper .dataTables_paginate .page-link {
+        color: white !important;
+        font-weight: bold;
+        border: 2px solid #005200!important;
+        background-color: #005200!important;
+        margin-bottom: 5px;
+    }
+    .dataTables_wrapper .dataTables_paginate .page-link:hover{
+        background-color: #008B00!important;
+    }
+    #datatable-alunos_filter{
+        display: inline;
+        float: right;
+    }
+</style>
+
 <script>
     $("#query").quicksearch('table tbody tr') 
     function excluir(url) {
-        // var resposta = confirm("Deseja deletar a aluno?");
         swal({
             title: 'Deseja deletar o aluno?',
             type: 'warning',

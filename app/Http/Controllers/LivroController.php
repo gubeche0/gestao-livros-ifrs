@@ -67,7 +67,7 @@ class LivroController extends Controller
         ->orderBy('status', 'desc')
         ->withTrashed()->get();
 
-        return view('exemplares.index', compact('exemplares', 'livroTitulo'));
+        return view('livro.info', compact('exemplares', 'livroTitulo'));
     }
 
     /**

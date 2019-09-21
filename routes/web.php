@@ -82,3 +82,7 @@ Route::group(['prefix' => 'barcode', 'middleware' => 'auth'], function () {
     Route::get('/', 'BarcodeController@index')->name('barcode.index');
     Route::post('/', 'BarcodeController@store')->name('barcode.store');
 });
+
+Route::group(['prefix' => 'relatorio', 'middleware' => 'auth'], function () {
+    Route::get('/', 'RelatorioController@index')->name('relatorio.index');
+});

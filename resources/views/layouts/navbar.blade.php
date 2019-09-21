@@ -35,6 +35,7 @@
                         <a class="nav-link dropdown-toggle" href="#" id="emprestimos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Empréstimos</a>
                         <div class="dropdown-menu" aria-labelledby="emprestimos">
                             <a class="dropdown-item" href="{{ route('emprestimo.index') }}"><i class="fas fa-list"></i> Listar</a>
+                            <a class="dropdown-item" href="{{ route('relatorio.index') }}"><i class="fas fa-file-contract"></i> Gerar Relatório</a>
                             <a class="dropdown-item" href="{{ route('emprestimo.loan') }}"><i class="fas fa-plus"></i> Registrar emprestimo</a>
                             <a class="dropdown-item" href="{{ route('emprestimo.devolution') }}"><i class="fas fa-minus"></i> Registrar devolução</a>
                         </div>

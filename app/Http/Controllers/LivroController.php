@@ -62,12 +62,11 @@ class LivroController extends Controller
      */
     public function show(Livro $livro)
     {
-        $livroTitulo = $livro->titulo;
         $exemplares = Exemplar::where('livro_id', $livro->id)
         ->orderBy('status', 'desc')
         ->withTrashed()->get();
 
-        return view('livro.info', compact('exemplares', 'livroTitulo'));
+        return view('livro.info', compact('exemplares', 'livro'));
     }
 
     /**

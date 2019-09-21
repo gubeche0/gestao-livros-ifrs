@@ -4,7 +4,7 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title text-center my-3">{{$livroTitulo}}</h1>
+            <h1 class="panel-title text-center my-3">{{$livro->titulo}}</h1>
         </div>
         <div class="panel-body">
             @include('layouts.statusMessages')

@@ -1,7 +1,7 @@
-<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark mb-4" style="background-color: #005200;">
+<nav class="navbar navbar-inverse navbar-expand-xl navbar-dark mb-4" style="background-color: #17882C;">
         <div class="container">
             <a class="navbar-brand" href="/">
-                <img src="{{ asset('img/if2.png') }}" alt="Logo do IFRS" width="30" class="d-inline-block align-top">
+                <img src="{{ asset('img/if2.png') }}" alt="Logo do IFRS" height="30" class="d-inline-block align-top">
                 {{ config('app.alias', 'Gestão Livros') }}
             </a>
 

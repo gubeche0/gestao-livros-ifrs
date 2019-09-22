@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Aluno;
+use App\Curso;
 use App\Exemplar;
 use App\Emprestimo;
 use Illuminate\Http\Request;
@@ -24,7 +25,8 @@ class EmprestimoController extends Controller
     { 
         $turmas = Turma::orderBy('curso_id')->orderBy('nome')->get();
         $alunos = Aluno::all();
-        return view('emprestimo.loan', compact('alunos', 'turmas'));
+        $cursos = Curso::with('alunos')->get();
+        return view('emprestimo.loan', compact('alunos', 'turmas', 'cursos'));
     }
 
     
@@ -36,9 +38,10 @@ class EmprestimoController extends Controller
             'exemplar_code' => $request['exemplar'],
             'turma_id' => $request['turma']
         ]);
+        $request->flash();
 
         return redirect()->route('emprestimo.loan')->
-            with('success', ['Emprestimo registrado com sucesso!']);
+            with('success', ['Emprestimo registrado com sucesso!'])->withInput();
     }
 
     

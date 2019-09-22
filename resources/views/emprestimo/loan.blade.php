@@ -53,9 +53,10 @@
         <div class="form-group row">
             <label for="livro" class="col-sm-2 col-form-label">Turma:</label>
             <div class="col-sm-10">
-                <select class="custom-select" name="turma" id="turma">
+                <select class="custom-select" name="turma" id="turma" required>
+                    <option disabled selected>Selecione uma turma...</option>
                     @foreach ($turmas as $turma)
-                        <option value="{{ $turma->id }}">{{ $turma->nome }} - {{ $turma->ano }}</option>
+                        <option value="{{ $turma->id }}" data-curso="{{ $turma->curso->id }}" @if($turma->id == old('turma')) selected @endif>{{ $turma->nome }} - {{ $turma->ano }}</option>
                     @endforeach
                     
                 </select>
@@ -65,11 +66,11 @@
         <div class="form-group row">
             <label for="livro" class="col-sm-2 col-form-label">Aluno:</label>
             <div class="col-sm-10">
-                <select class="custom-select" name="aluno" id="aluno">
+                <select class="custom-select" name="aluno" id="aluno" data-placeholder="Selecione um aluno">
 
-                    @foreach ($alunos as $aluno)
+                    {{-- @foreach ($alunos as $aluno)
                         <option value="{{ $aluno->id }}">{{ $aluno->nome }} - {{ $aluno->matricula }}</option>
-                    @endforeach
+                    @endforeach --}}
                     
                 </select>
             </div>
@@ -89,8 +90,9 @@
 @section('js')
 <script src="{{ asset('js/chosen.jquery.min.js')}}"></script>
 <script>
-
     var livro = false;
+    var cursos = <?php echo $cursos->toJson(); ?>;
+
     $(document).ready(function () {
         $("#aluno").chosen();
         $(window).keydown(function (event) {
@@ -103,10 +105,14 @@
             }
         });
 
+        $('#turma').change(function() {
+            atualizarAlunos();
+        });
+
         $("#exemplar").change(function () {
             consultarLivro();
-
         });
+        atualizarAlunos();
     });
 
     function consultarLivro(){
@@ -187,5 +193,26 @@
         
         return false;
     }
+
+    function atualizarAlunos()  {
+        var cursoId = $('#turma').find(':selected').data('curso');
+        var curso;
+        cursos.forEach(function(value, index) {
+            if(value.id == cursoId) {
+                curso = value;
+                return;
+            }
+        });
+
+        $('#aluno').html('');
+        curso.alunos.forEach(function(value, index) {
+            $('#aluno').append(
+                $('<option>', {value: value.id, text: value.nome + ' - ' + value.matricula})
+            );
+        });
+        $('#aluno').trigger('chosen:updated');
+
+    }
+
 </script>
 @endsection

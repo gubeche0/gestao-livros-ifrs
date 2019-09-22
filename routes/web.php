@@ -84,5 +84,5 @@ Route::group(['prefix' => 'barcode', 'middleware' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'relatorio', 'middleware' => 'auth'], function () {
-    Route::get('/', 'RelatorioController@index')->name('relatorio.index');
+    Route::get('/', 'RelatorioController@emprestimo')->name('relatorio.emprestimo');
 });

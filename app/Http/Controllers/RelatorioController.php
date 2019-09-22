@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Input;
 
 class RelatorioController extends Controller
 {
-    public function index()
+    public function emprestimo()
     {
         $emprestimos = Emprestimo::join('exemplares', 'exemplares.code', '=', 'emprestimos.exemplar_code')->select('exemplares.livro_id', 'emprestimos.*');
         if (Input::has('turmas')) {
@@ -35,6 +35,6 @@ class RelatorioController extends Controller
         $livros = Livro::all();
         $alunos = Aluno::all();
         Input::flash();
-        return view('relatorio.index', compact(['emprestimos', 'turmas', 'livros', 'alunos', 'emprestimosInativos']))->withInput([0]);
+        return view('relatorio.emprestimo', compact(['emprestimos', 'turmas', 'livros', 'alunos', 'emprestimosInativos']))->withInput([0]);
     }
 }

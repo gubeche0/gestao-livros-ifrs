@@ -68,10 +68,6 @@
             <div class="col-sm-10">
                 <select class="custom-select" name="aluno" id="aluno" data-placeholder="Selecione um aluno">
 
-                    {{-- @foreach ($alunos as $aluno)
-                        <option value="{{ $aluno->id }}">{{ $aluno->nome }} - {{ $aluno->matricula }}</option>
-                    @endforeach --}}
-                    
                 </select>
             </div>
         </div>
@@ -137,7 +133,6 @@
                     livro = true;
                     $("#exemplar").removeClass("is-invalid");
                     $("#exemplar").addClass("is-valid");
-                    $('#exemplar').focus();
                 }else{
                     $("#exemplar-error").html("Livro já emprestado!");
                     $("#exemplar-error").show();
@@ -166,30 +161,46 @@
         });
     }
 
+    function validar() {
+        var valido = true;
+        if ($('#turma').val()) {
+            $("#turma").removeClass("is-invalid");
+        } else {
+            $("#turma").addClass("is-invalid");
+            valido = false;
+        }
+
+        if (!livro) {
+            $('#exemplar').focus();
+            $("#exemplar").addClass("is-invalid");
+            valido = false;
+        } else {
+            $("#exemplar").removeClass("is-invalid");
+        }
+
+        return valido;
+    }
 
     function confirm(){
-        
-        if(livro) {
-            Swal({
-                title: 'Deseja registrar o emprestimo?',
-                // text: 'Não é possivel reverter isso',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Sim, registrar!',
-                cancelButtonText: "Cancelar",
-                focusCancel: false
-            }).then((result) => {
-                if (result.value) {
-                    $('#form').removeAttr('onsubmit').submit();
-                }
-
-            })
-            
-        } else {
-            $('#exemplar').focus();
+        if (!validar()) {
+            return false;
         }
+        
+        Swal({
+            title: 'Deseja registrar o emprestimo?',
+            // text: 'Não é possivel reverter isso',
+            type: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, registrar!',
+            cancelButtonText: "Cancelar",
+            focusCancel: false
+        }).then((result) => {
+            if (result.value) {
+                $('#form').removeAttr('onsubmit').submit();
+            }
+        })
         
         return false;
     }
@@ -197,6 +208,9 @@
     function atualizarAlunos()  {
         var cursoId = $('#turma').find(':selected').data('curso');
         var curso;
+        if (!cursoId) {
+            return;
+        }
         cursos.forEach(function(value, index) {
             if(value.id == cursoId) {
                 curso = value;

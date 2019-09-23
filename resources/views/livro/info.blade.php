@@ -2,6 +2,47 @@
 @section('content')
 
 <div class="container">
+        <div class="form-row" id="livro-row">
+            <div class="col">
+                <div class="form-group row">
+
+                    <label for="titulo" class="col-sm-2 col-form-label">Nome do livro:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" disabled value="{{ $livro->titulo }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                    <label for="nome" class="col-sm-2 col-form-label">Volume do livro:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" disabled value="{{ $livro->volume }}">
+                    </div>
+                </div>
+                <div class="form-group row">
+
+                    <label for="nome" class="col-sm-2 col-form-label">Autor do livro:</label>
+                    <div class="col-sm-10">
+
+                        <input type="text" class="form-control" disabled value="{{ $livro->autor }}">
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-sm-2 col-form-label">Total de livros:</label>
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{ $livro->estoque() }}" disabled>
+                    </div>
+                    <label class="col-sm-2 col-form-label">Total disponiveis:</label>
+                    <div class="col">
+                        <input type="text" class="form-control" value="{{ $livro->disponiveis()}}" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                <img id="fotoLivro" src="/storage/fotoLivro/{{ $livro->urlFoto }}" class="img-thumbnail" style="@if(!$livro->urlFoto)display: none; @endif">
+            </div>
+        </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h1 class="panel-title text-center my-3">{{$livro->titulo}}</h1>

@@ -11,19 +11,19 @@
 .dataTables_wrapper .dataTables_paginate .pagination .page-item .page-link {
     color: white;
     font-weight: bold;
-    border: 2px solid #005200;
-    background-color: #005200;
+    border: 2px solid #17882C;
+    background-color: #17882C;
     margin-bottom: 5px;
 }
 .dataTables_wrapper .dataTables_paginate .pagination .page-item .page-link:hover{
-    background-color: #008B00;
+    background-color: #007B00;
+    border-color: #007B00;
 }
 #datatable-alunos_filter{
     display: inline;
-    float: right;
 }
 
 .dataTables_wrapper .dataTables_paginate .pagination .page-item.active .page-link{
-    background-color: red !important;
-    border-color: red;
+    background-color: #005200;
+    border-color: #005200;
 }

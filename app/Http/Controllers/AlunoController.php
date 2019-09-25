@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Aluno;
 use App\Curso;
+use App\Emprestimo;
 use Illuminate\Http\Request;
 use App\Http\Requests\AlunoRequest;
 
@@ -37,10 +38,13 @@ class AlunoController extends Controller
 
     public function show(Aluno $aluno)
     {
-        dd($aluno);
-        return view('aluno.info');
+        $emprestimos = Emprestimo::where('aluno_id', $aluno->id)
+        ->withTrashed()
+        ->orderBy('deleted_at')
+        ->orderBy('exemplar_code')
+        ->get();
+        return view('aluno.info', compact('aluno', 'emprestimos'));
     }
-
     
     public function edit(Aluno $aluno)
     {

@@ -8,38 +8,37 @@
             </div>
             <div class="panel-body">
                 @include('layouts.statusMessages')
-                
-                    <table id="datatable-alunos" class="table align-items-center table-flush">
-                        <thead class="thead-light">
+                <table id="datatable-alunos" class="table align-items-center table-flush">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Matrícula</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Curso</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>    
+                        @foreach ($alunos as $aluno)
                             <tr>
-                                <th scope="col">Matrícula</th>
-                                <th scope="col">Nome</th>
-                                <th scope="col">Curso</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody>    
-                            @foreach ($alunos as $aluno)
-                                <tr>
-                                    <td>{{ $aluno->matricula }}</td>
-                                    <td><a href=" {{route('aluno.show', ["aluno" => $aluno->id])}} "> {{ $aluno->nome }} </a></td>
-                                    <td>{{ $aluno->curso->abreviacao }}</td>
-                                    <td>{{ $aluno->email }}</td>
-                                    <td>
-                                        <a class="text-dark" href='{{ route('aluno.edit', ["aluno" => $aluno->id]) }}'>
-                                            <i class="fas fa-edit" aria-hidden="true"></i>
-                                            Editar
-                                        </a> |
-                                        <a class="text-dark" href="#" onclick="excluir('{{ route('aluno.delete', ['aluno' => $aluno->id]) }}')">
-                                            <i class="fas fa-trash" aria-hidden="true"></i> 
-                                            Excluir
-                                        </a>
-                                    </td>
-                                </tr>   
-                            @endforeach
-                        </tbody>
-                    </table>
+                                <td>{{ $aluno->matricula }}</td>
+                                <td><a href=" {{route('aluno.show', ["aluno" => $aluno->id])}} "> {{ $aluno->nome }} </a></td>
+                                <td>{{ $aluno->curso->abreviacao }}</td>
+                                <td>{{ $aluno->email }}</td>
+                                <td>
+                                    <a class="text-dark" href='{{ route('aluno.edit', ["aluno" => $aluno->id]) }}'>
+                                        <i class="fas fa-edit" aria-hidden="true"></i>
+                                        Editar
+                                    </a> |
+                                    <a class="text-dark" href="#" onclick="excluir('{{ route('aluno.delete', ['aluno' => $aluno->id]) }}')">
+                                        <i class="fas fa-trash" aria-hidden="true"></i> 
+                                        Excluir
+                                    </a>
+                                </td>
+                            </tr>   
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

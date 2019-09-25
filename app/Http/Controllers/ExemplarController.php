@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Emprestimo;
 use App\Livro;
 use App\Exemplar;
 use Illuminate\Http\Request;
@@ -51,7 +52,11 @@ class ExemplarController extends Controller
      */
     public function show($id)
     {
-        //
+        $emprestimos = Emprestimo::where('exemplar_code', $id)
+        ->orderBy('deleted_at')
+        ->withTrashed()
+        ->get();
+        return view('exemplares.info', compact('emprestimos', 'id'));
     }
 
     /**

@@ -3,34 +3,7 @@
 
 <div class="container">
     <div class="panel-heading">
-        <h1 class="panel-title text-center my-3">{{$livro->titulo}}</h1>
-    </div>
-    <div class="form-row" id="livro-row">
-        <div class="col">
-            <table class="table">
-                <tr>
-                    <th colspan="2">Nome do Livro</th>
-                    <td colspan="2">{{$livro->titulo}}</td>
-                </tr>                  
-                <tr>
-                    <th colspan="2">Volume do Livro</th>
-                    <td colspan="2">{{$livro->volume}}</td>
-                </tr>                  
-                <tr>
-                    <th colspan="2">Autor do Livro</th>
-                    <td colspan="2">{{$livro->autor}}</td>
-                </tr>                  
-                <tr>
-                    <th >Livros em Estoque</th>
-                    <td>{{$livro->estoque() }}</td>
-                    <th>Livros disponíveis</th>
-                    <td>{{$livro->disponiveis()}}</td>
-                </tr>                
-            </table>
-        </div>
-        <div class="col-2">
-            <img id="fotoLivro" src="/storage/fotoLivro/{{ $livro->urlFoto }}" class="img-thumbnail" style="@if(!$livro->urlFoto)display: none; @endif">
-        </div>
+        <h1 class="panel-title text-center my-3">{{$id}}</h1>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
@@ -39,34 +12,29 @@
             <table id="datatable" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th>Codigo De Barras</th>
+                        <th>Código de Barras</th>
+                        <th>Título do Livro</th>
+                        <th>Nome do Aluno</th>
+                        <th>Matrícula</th>
+                        <th>Turma</th>
                         <th>Situação</th>
-                        <th>Situação</th>
-                        <th>Ação</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($exemplares as $exemplar)
-                    <tr>
-                        <td><a href=" {{route('exemplar.historico', $exemplar->code)}} ">{{ $exemplar->code }}</a></td>
-                        <td>{{ $exemplar->status }}</td>
-                        <td>
-                            @if($exemplar->emprestado())
-                                Emprestado 
-                            @elseif ($exemplar->trashed())
-                                <span style="color:red"> Deletado </span>
-                            @else
-                                Disponivel
-                            @endif
-                        </td>
-                        <td>
-                            @if($exemplar->emprestado())
-                                
-                            @elseif ($exemplar->trashed())
-                                <a class="text-dark" href="#" onclick="restaurar('{{ route('exemplar.restore', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-undo" aria-hidden="true"></i> Restaurar</a></td>
-                            @else
-                                <a class="text-dark" href="#" onclick="excluir('{{ route('exemplar.delete', ['exemplar' => $exemplar->code]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a></td>
-                            @endif
+                    @foreach($emprestimos as $emprestimo)
+                        <tr>
+                            <td>{{ $emprestimo->exemplar_code }}</td>
+                            <td>teste</td>
+                            <td>{{ $emprestimo->aluno->nome }}</td>
+                            <td>{{ $emprestimo->aluno->matricula }}</td>
+                            <td>{{ $emprestimo->turma->nome }}</td>
+                            <td>
+                                @if($emprestimo->deleted_at == null)
+                                    <span style="color:green">Emprestado</span> 
+                                @else
+                                    Devolvido
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

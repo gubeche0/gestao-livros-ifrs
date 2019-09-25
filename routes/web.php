@@ -48,11 +48,11 @@ Route::group(['prefix' => 'livros', 'middleware' => 'auth'], function () {
     Route::post('/{livro}/editar', 'LivroController@update')->name('livro.update');
     Route::get('/{livro}/deletar', 'LivroController@destroy')->name('livro.delete');
     Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');    
-    Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');    
-
+    Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');
 });
 
 Route::group(['prefix' => 'exemplares', 'middleware' => 'auth'], function () {
+    Route::get('/{exemplar}', 'ExemplarController@show')->name('exemplar.historico');
     Route::get('/{exemplar}/deletar', 'ExemplarController@destroy')->name('exemplar.delete');
     Route::get('/{exemplar}/restaurar', 'ExemplarController@restore')->name('exemplar.restore');
 });

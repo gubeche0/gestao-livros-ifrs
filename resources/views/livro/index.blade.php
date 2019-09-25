@@ -7,7 +7,7 @@
             </div>
             <div class="panel-body">
                 @include('layouts.statusMessages')
-                {{-- <table class="table table-striped table-bordered table-hover"> --}}
+
                 <table id="datatable" class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>

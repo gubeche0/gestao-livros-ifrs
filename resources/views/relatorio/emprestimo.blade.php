@@ -37,6 +37,14 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="col-sm">
+                                    <label for="">Curso:</label>
+                                    <select class="chosen-select" name="cursos[]" id="filtro-cursos" multiple data-placeholder="Selecione os cursos">
+                                        @foreach ($cursos as $curso)
+                                            <option value="{{ $curso->id }}" @if(in_array($curso->id, (array) old('curso'))) selected  @endif>{{ $curso->nome }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                             <div class="row mt-3 mb-3">
                                     <div class="custom-control custom-checkbox">
@@ -105,6 +113,7 @@
         $("#filtro-turmas").chosen();
         $("#filtro-livros").chosen();
         $("#filtro-alunos").chosen();
+        $("#filtro-cursos").chosen();
 
         $("input[type='reset'], button[type='reset']").click(function(e){
             e.preventDefault();

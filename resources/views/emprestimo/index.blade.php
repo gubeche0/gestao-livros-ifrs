@@ -21,8 +21,8 @@
                     
                     @foreach ($emprestimos as $emprestimo)
                     <tr>
-                        <td>{{ $emprestimo->aluno->nome }}</td>
-                        <td>{{ $emprestimo->exemplar->livro->titulo }}</td>
+                        <td><a href=" {{route('aluno.show', ["aluno" => $emprestimo->aluno->id])}} ">{{ $emprestimo->aluno->nome }}</a></td>
+                        <td><a href="{{ route('livro.exemplar', $emprestimo->exemplar->livro->id) }}">{{ $emprestimo->exemplar->livro->titulo }}</a></td>
                         <td>{{ $emprestimo->exemplar->code }}</td>
                         <td>{{ date('d/m/Y', strtotime($emprestimo->created_at)) }}</td>
                     @endforeach

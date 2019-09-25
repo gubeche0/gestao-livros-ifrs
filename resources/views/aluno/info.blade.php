@@ -40,17 +40,21 @@
                     </tr>
                 </thead>
                 <tbody>    
-                    @foreach ($emprestimos as $emprestimo)
+                    @forelse ($emprestimos as $emprestimo)
                         <tr>
                             <td>{{ $emprestimo->exemplar_code}}</td>
-                            <td>{{ $emprestimo->exemplar->livro->titulo }}</td>
+                            <td><a href=" {{route('livro.exemplar', $emprestimo->exemplar->livro->id)}} ">{{ $emprestimo->exemplar->livro->titulo }}</a></td>
                             @if ($emprestimo->deleted_at <> null)
                                 <td style="color:red">Devolvido</td>
                             @else
                                 <td style="color:green">Emprestado</td>                                
                             @endif
                         </tr>   
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="3" style="text-align:center">Aluno não possui nenhum empréstimo</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

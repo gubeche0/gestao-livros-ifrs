@@ -24,7 +24,7 @@
                     @foreach($emprestimos as $emprestimo)
                         <tr>
                             <td>{{ $emprestimo->exemplar_code }}</td>
-                            <td>teste</td>
+                            <td>{{ $exemplar->livro->titulo }}</td>
                             <td>{{ $emprestimo->aluno->nome }}</td>
                             <td>{{ $emprestimo->aluno->matricula }}</td>
                             <td>{{ $emprestimo->turma->nome }}</td>

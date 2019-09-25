@@ -56,7 +56,8 @@ class ExemplarController extends Controller
         ->orderBy('deleted_at')
         ->withTrashed()
         ->get();
-        return view('exemplares.info', compact('emprestimos', 'id'));
+        $exemplar = Exemplar::find($id);
+        return view('exemplares.info', compact('emprestimos', 'id', 'exemplar'));
     }
 
     /**

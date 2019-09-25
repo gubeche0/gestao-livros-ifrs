@@ -23,7 +23,7 @@
                             @foreach ($alunos as $aluno)
                                 <tr>
                                     <td>{{ $aluno->matricula }}</td>
-                                    <td>{{ $aluno->nome }}</td>
+                                    <td><a href=" {{route('aluno.show', ["aluno" => $aluno->id])}} "> {{ $aluno->nome }} </a></td>
                                     <td>{{ $aluno->curso->abreviacao }}</td>
                                     <td>{{ $aluno->email }}</td>
                                     <td>

@@ -25,6 +25,7 @@ Route::group(['prefix' => 'alunos', 'middleware' => 'auth'], function () {
     Route::get('/', 'AlunoController@index')->name('aluno.index');
     Route::get('/create', 'AlunoController@create')->name('aluno.create');
     Route::post('/create', 'AlunoController@store')->name('aluno.store');
+    Route::get('/{aluno}', 'AlunoController@show')->name('aluno.show');
     Route::get('/{aluno}/editar', 'AlunoController@edit')->name('aluno.edit');
     Route::post('/{aluno}/editar', 'AlunoController@update')->name('aluno.update');
     Route::get('/{aluno}/deletar', 'AlunoController@destroy')->name('aluno.delete');
@@ -41,12 +42,8 @@ Route::group(['prefix' => 'cursos', 'middleware' => 'auth'], function () {
 
 Route::group(['prefix' => 'livros', 'middleware' => 'auth'], function () {
     Route::get('/', 'LivroController@index')->name('livro.index');
-    
-    
     Route::get('/create', 'LivroController@create')->name('livro.create');
     Route::post('/create', 'LivroController@store')->name('livro.store');
-    
-    
     Route::get('/{livro}/editar', 'LivroController@edit')->name('livro.edit');
     Route::post('/{livro}/editar', 'LivroController@update')->name('livro.update');
     Route::get('/{livro}/deletar', 'LivroController@destroy')->name('livro.delete');

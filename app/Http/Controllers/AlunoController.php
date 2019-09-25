@@ -37,7 +37,8 @@ class AlunoController extends Controller
 
     public function show(Aluno $aluno)
     {
-        //
+        dd($aluno);
+        return view('aluno.info');
     }
 
     

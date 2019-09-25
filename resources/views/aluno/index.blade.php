@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         <div class="panel panel-default">
@@ -8,7 +7,8 @@
             </div>
             <div class="panel-body">
                 @include('layouts.statusMessages')
-                <table id="datatable-alunos" class="table align-items-center table-flush">
+                
+                <table id="datatable" class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>
                             <th scope="col">Matrícula</th>
@@ -54,7 +54,7 @@
 
 <script>
     $(document).ready(function() {
-        $('#datatable-alunos').DataTable({
+        $('#datatable').DataTable({
             stateSave: true,
             "pagingType": "numbers",
             "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],

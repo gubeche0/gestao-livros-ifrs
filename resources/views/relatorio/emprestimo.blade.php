@@ -14,6 +14,14 @@
                         <form>
                             <div class="row">
                                 <div class="col-sm">
+                                    <label for="">Curso:</label>
+                                    <select class="chosen-select" name="cursos[]" id="filtro-cursos" multiple data-placeholder="Selecione os cursos">
+                                        @foreach ($cursos as $curso)
+                                            <option value="{{ $curso->id }}" @if(in_array($curso->id, (array) old('cursos'))) selected @endif>{{ $curso->nome }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm">
                                     <label for="">Turma:</label>
                                     <select class="chosen-select" name="turmas[]" id="filtro-turmas" multiple data-placeholder="Selecione as turmas">
                                         @foreach ($turmas as $turma)
@@ -102,6 +110,7 @@
 <script src="{{ asset('js/chosen.jquery.min.js')}}"></script>
 <script>
     $().ready(function() {
+        $("#filtro-cursos").chosen();
         $("#filtro-turmas").chosen();
         $("#filtro-livros").chosen();
         $("#filtro-alunos").chosen();

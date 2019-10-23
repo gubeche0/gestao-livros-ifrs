@@ -139,6 +139,7 @@
                     $("#exemplar").removeClass("is-valid");
                     $("#exemplar").addClass("is-invalid");
                     livro = false;
+                    $('#exemplar').focus();
                 }
                 
                 if (e.exemplar.livro.urlFoto) {

@@ -30,6 +30,14 @@
                                     </select>
                                 </div>
                                 <div class="col-sm">
+                                    <label for="">Ano de vigência das turmas:</label>
+                                    <select class="chosen-select" name="anos[]" id="filtro-anos" multiple data-placeholder="Selecione as turmas">
+                                        @foreach ($anos as $ano)
+                                            <option value="{{ $ano->ano }}" @if(in_array($ano->ano, (array) old('anos'))) selected @endif>{{ $ano->ano }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-sm">
                                     <label for="">Aluno:</label>
                                     <select class="chosen-select" name="alunos[]" id="filtro-alunos" multiple data-placeholder="Selecione os alunos">
                                         @foreach ($alunos as $aluno)
@@ -112,6 +120,7 @@
     $().ready(function() {
         $("#filtro-cursos").chosen();
         $("#filtro-turmas").chosen();
+        $("#filtro-anos").chosen();
         $("#filtro-livros").chosen();
         $("#filtro-alunos").chosen();
 

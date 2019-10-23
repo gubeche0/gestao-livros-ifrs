@@ -8,6 +8,7 @@ use App\Turma;
 use App\Livro;
 use App\Aluno;
 use App\Curso;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
 
@@ -22,6 +23,11 @@ class RelatorioController extends Controller
 
         if (Input::has('turmas')) {
             $emprestimos = $emprestimos->whereIn('turma_id', Input::get('turmas', []));
+        }
+
+        if (Input::has('anos')) {
+            $emprestimos = $emprestimos->join('turmas', 'emprestimos.turma_id', '=', 'turmas.id');
+            $emprestimos = $emprestimos->whereIn('turmas.ano', Input::get('anos', []));
         }
 
         if (Input::has('alunos')) {
@@ -40,7 +46,8 @@ class RelatorioController extends Controller
         $livros = Livro::all();
         $alunos = Aluno::all();
         $cursos = Curso::all();
+        $anos = DB::table('turmas')->select('ano')->distinct()->orderBy('ano', 'desc')->get();
         Input::flash();
-        return view('relatorio.emprestimo', compact(['emprestimos', 'cursos', 'turmas', 'livros', 'alunos', 'emprestimosInativos']))->withInput([0]);
+        return view('relatorio.emprestimo', compact(['emprestimos', 'cursos', 'turmas', 'anos', 'livros', 'alunos', 'emprestimosInativos']))->withInput([0]);
     }
 }

@@ -18,7 +18,7 @@ class RelatorioController extends Controller
     {
         $emprestimos = Emprestimo::join('exemplares', 'exemplares.code', '=', 'emprestimos.exemplar_code')->join('alunos', 'alunos.id', '=', 'emprestimos.aluno_id')->select('exemplares.livro_id', 'emprestimos.*');
         if (Input::has('cursos')) {
-            $emprestimos = $emprestimos->whereIn('curso_id', Input::get('cursos', []));
+            $emprestimos = $emprestimos->whereIn('alunos.curso_id', Input::get('cursos', []));
         }
 
         if (Input::has('turmas')) {

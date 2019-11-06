@@ -3,7 +3,7 @@
 
 <div class="container">
     <div class="panel-heading">
-        <h1 class="panel-title text-center my-3">{{$id}}</h1>
+        <h1 class="panel-title text-center my-3"><i>{{$id}}</i> | {{$exemplar->livro->titulo}}</h1>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">

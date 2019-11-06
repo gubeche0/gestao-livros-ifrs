@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Aluno;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class AlunoRequest extends FormRequest
 {
@@ -15,19 +18,28 @@ class AlunoRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *  
      * @return array
      */
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
-            'matricula' => ['required', 'numeric', 'unique:alunos'],
-            'nome' => ['required'],
-            'email' => ['required', 'email', 'unique:alunos'],
-            'curso' => ['required', 'exists:cursos,id'],
-        ];
+        $aluno = Aluno::where('email', $request->email)->first();
+        if($aluno == null){
+            return [
+                'matricula' => ['required', 'numeric', 'unique:alunos'],
+                'nome' => ['required'],
+                'email' => ['required', 'email', 'unique:alunos'],
+                'curso' => ['required', 'exists:cursos,id'],
+            ];
+        }else{
+            return [
+                'matricula' => ['required', 'numeric', Rule::unique((new Aluno)->getTable())->ignore($aluno->id)],
+                'nome' => ['required'],
+                'email' => ['required', 'email', Rule::unique((new Aluno)->getTable())->ignore($aluno->id)],
+                'curso' => ['required', 'exists:cursos,id'],
+            ];
+        }
     }
 }

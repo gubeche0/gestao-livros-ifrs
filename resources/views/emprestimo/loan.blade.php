@@ -5,6 +5,7 @@
     @include('layouts.statusMessages')
     <form method="post" id="form" onsubmit="return confirm()">
         @csrf
+        <input type="hidden" id="forceSave" name="forceSave" value="false">
         <div class="form-row" id="livro-row">
             <div class="col">
                 <div class="form-group row">
@@ -12,7 +13,7 @@
                     <label for="nome" class="col-sm-2 col-form-label">Codigo de barras:</label>
                     <div class="col-sm-10">
                         <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras"
-                             value="" autofocus>
+                             value="{{ old('exemplar')}}" autofocus>
                         <label id="exemplar-error" class="is-invalid text-danger" for="exemplar" style="display: none;">Este campo é requerido.</label>
                     </div>
                 </div>
@@ -109,6 +110,13 @@
             consultarLivro();
         });
         atualizarAlunos();
+        if($('#exemplar').val() != '') {
+            consultarLivro();
+        }
+        @if(old('aluno') != '')
+            $('#aluno').val({{ old('aluno')}});
+            $('#aluno').trigger('chosen:updated');
+        @endif
     });
 
     function consultarLivro(){
@@ -206,6 +214,25 @@
         return false;
     }
 
+    function alertAlunoHasLivro() {
+        Swal({
+            title: 'Aluno já possui este livro!',
+            text: 'Deseja continuar o emprestimo?',
+            type: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, continuar!',
+            cancelButtonText: "Cancelar",
+            focusCancel: false
+        }).then((result) => {
+            if (result.value) {
+                $('#forceSave').val(true);
+                $('#form').removeAttr('onsubmit').submit();
+            }
+        })
+    }
+
     function atualizarAlunos()  {
         var cursoId = $('#turma').find(':selected').data('curso');
         var curso;
@@ -230,4 +257,10 @@
     }
 
 </script>
+
+    @if(session('alunoHasLivro') == 'true')
+    <script>
+        alertAlunoHasLivro();
+    </script>
+    @endif
 @endsection

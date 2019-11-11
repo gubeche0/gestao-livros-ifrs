@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoLoanRequest;
 use App\Http\Requests\EmprestimoDevolutionRequest;
 use App\Turma;
+use App\Livro;
 
 class EmprestimoController extends Controller
 {
@@ -32,7 +33,16 @@ class EmprestimoController extends Controller
     
     public function registerLoan(EmprestimoLoanRequest $request)
     {
-        // dd($request);
+        $exemplar = Exemplar::findOrFail($request['exemplar'])
+            ->livro->exemplares()
+            ->join('emprestimos', 'exemplar_code', 'code')
+            ->where('emprestimos.aluno_id', '=', $request['aluno'])
+            ->get();
+        
+        if ($exemplar->count() >= 1 && $request->input('forceSave') == 'false') {
+            $request->flash();
+            return redirect()->route('emprestimo.loan')->with('alunoHasLivro', true)->withInput();
+        }
         Emprestimo::create([
             'aluno_id' => $request['aluno'], 
             'exemplar_code' => $request['exemplar'],
@@ -41,7 +51,7 @@ class EmprestimoController extends Controller
         $request->flash();
 
         return redirect()->route('emprestimo.loan')->
-            with('success', ['Emprestimo registrado com sucesso!'])->withInput();
+            with('success', ['Emprestimo registrado com sucesso!'])->withInput(['turma' => $request->input('turma')]);
     }
 
     

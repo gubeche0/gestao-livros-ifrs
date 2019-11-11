@@ -37,7 +37,7 @@
                             <select class="custom-select @error('curso') is-invalid @enderror" name="curso" id="curso">
                                 {loop="$cursos"}
                                 @foreach ($cursos as $curso)
-                                    <option value="{{ $curso->id }}" @if(isset($aluno) && $aluno->curso->id == $curso->id) selected @endif>{{ $curso->nome }}</option>
+                                    <option value="{{ $curso->id }}" @if((isset($aluno) && $aluno->curso->id == $curso->id) || $curso->id == old('curso')) selected @endif>{{ $curso->nome }}</option>
                                 @endforeach
                                 {/loop}
                             </select>

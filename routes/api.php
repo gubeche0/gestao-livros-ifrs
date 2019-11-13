@@ -26,3 +26,7 @@ Route::group(['prefix' => 'exemplar'], function () {
     Route::post('/{exemplar}/editar', 'Api\ExemplarController@update')->name('api.exemplar.update');
 });
 
+Route::group(['prefix' => 'livro'], function () {
+    Route::get('/{exemplar}', 'Api\LivroController@show')->name('api.livro.show');
+});
+

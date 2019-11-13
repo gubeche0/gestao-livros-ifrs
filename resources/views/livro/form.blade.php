@@ -58,10 +58,6 @@
                 <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
                 <a href=" {{route('livro.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
             </div>
-
-            
-
-
         </form>
 
 </div>
@@ -74,4 +70,10 @@
 <script type="text/javascript" src="{{ asset('js/localization/messages_pt_BR.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/validacao.js') }}"></script>
 <script src="{{ asset('js/chosen.jquery.min.js') }}"></script>
+
+<script>
+    $('#foto').change(function() {
+        $(this).next('.custom-file-label').text($(this).val().split('\\').pop());
+    });
+</script>
 @endsection

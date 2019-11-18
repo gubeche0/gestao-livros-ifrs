@@ -84,7 +84,7 @@
         });
     });   
 
-    $("#query").quicksearch('table tbody tr') 
+    // $("#query").quicksearch('table tbody tr') 
     function excluir(url) {
         swal({
             title: 'Deseja deletar o aluno?',

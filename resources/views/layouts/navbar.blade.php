@@ -12,7 +12,7 @@
 
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    
+                    @if(Auth::user()->isAdmin())
                     <li class="nav-item dropdown {{ Route::is('aluno*') ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="alunos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Alunos</a>
                         <div class="dropdown-menu" aria-labelledby="alunos">
@@ -20,8 +20,9 @@
                             <a class="dropdown-item" href="{{ route('aluno.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
                         </div>
                     </li>
-                   
+                   @endif
 
+                   @if(Auth::user()->isAdmin())
                     <li class="nav-item dropdown {{ Route::is(['livro*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="livros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Livros</a>
                         <div class="dropdown-menu" aria-labelledby="livros">
@@ -29,7 +30,9 @@
                             <a class="dropdown-item" href="{{ route('livro.create') }}"><i class="fas fa-plus"></i> Adicionar</a>
                         </div>
                     </li>
+                    @endif
 
+                    @if(Auth::user()->isAdmin())
                     <li class="nav-item dropdown {{ Route::is(['emprestimo*', 'relatorio.emprestimo']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="emprestimos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Empréstimos</a>
                         <div class="dropdown-menu" aria-labelledby="emprestimos">
@@ -39,9 +42,9 @@
                             <a class="dropdown-item" href="{{ route('emprestimo.devolution') }}"><i class="fas fa-minus"></i> Registrar devolução</a>
                         </div>
                     </li>
-                    <li class="nav-item">
+                    @endif
 
-                    
+                    @if(Auth::user()->isAdmin())
                     <li class="nav-item dropdown {{ Route::is(['curso*', 'turma*', 'barcode*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="outros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Configurações</a>
                         <div class="dropdown-menu" aria-labelledby="outros">
@@ -52,6 +55,7 @@
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>
                         </div>
                     </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Sair</a>
                     </li>

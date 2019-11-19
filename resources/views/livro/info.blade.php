@@ -6,34 +6,26 @@
         <h1 class="panel-title text-center my-3">{{$livro->titulo}}</h1>
     </div>
     <div class="form-row" id="livro-row">
-        <div class="col">
-            <table class="table">
-                <tr>
-                    <th colspan="2">Nome do Livro</th>
-                    <td colspan="2">{{$livro->titulo}}</td>
-                </tr>                  
-                <tr>
-                    <th colspan="2">Volume do Livro</th>
-                    <td colspan="2">{{$livro->volume}}</td>
-                </tr>                  
-                <tr>
-                    <th colspan="2">Autor do Livro</th>
-                    <td colspan="2">{{$livro->autor}}</td>
-                </tr>                  
-                <tr>
-                    <th >Livros em Estoque</th>
-                    <td>{{$livro->estoque() }}</td>
-                    <th>Livros disponíveis</th>
-                    <td>{{$livro->disponiveis()}}</td>
-                </tr>                
-            </table>
-        </div>
-        <div class="col-2">
-            <img id="fotoLivro" src="/storage/fotoLivro/{{ $livro->urlFoto }}" class="img-thumbnail" style="@if(!$livro->urlFoto)display: none; @endif">
+            <div class="col-3">
+                    <img id="fotoLivro" src="/storage/fotoLivro/{{ $livro->urlFoto }}" class="img-thumbnail" style="@if(!$livro->urlFoto)display: none; @endif">
+                </div>
+        <div class="col-6">
+                <span style="font-size:14pt"><b>Nome do Livro</b>: {{$livro->titulo}}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Volume do Livro</b>: {{$livro->volume}}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Autor do Livro</b>: {{$livro->autor}}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Livros em estoque</b>: {{$livro->estoque() }}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Livros disponíveis</b>: {{$livro->disponiveis()}}</span>
         </div>
     </div>
     <div class="panel panel-default">
         <div class="panel-body">
+            <div class="text-right btn-registrar" data_livro="{{$livro->id}}" id="" href="#">
+                <button type="button" class="btn btn-light">Registrar exemplar</button>
+            </a></div>
             @include('layouts.statusMessages')
             
             <table id="datatable" class="table align-items-center table-flush">
@@ -153,6 +145,14 @@
 
         })
     }
+
+    $(document).ready(function(){ 
+        $('.btn-registrar').click(function() {
+            showModalRegisterBook($(this).attr('data_livro'));
+        });
+
+        toastr.options.timeOut = 2000;
+    });
 </script>
 
     <style>

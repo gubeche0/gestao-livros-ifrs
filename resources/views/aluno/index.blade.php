@@ -3,11 +3,11 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title text-center my-3">Gestão de Alunos</h1>
+                <h1 class="panel-title text-center my-3">Alunos</h1>
             </div>
             <div class="panel-body">
+                <div class="text-right"><a href="{{route('aluno.create')}}"><button type="button" class="btn btn-light">Adicionar alunos</button></a></div>
                 @include('layouts.statusMessages')
-                
                 <table id="datatable" class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>
@@ -84,7 +84,6 @@
         });
     });   
 
-    // $("#query").quicksearch('table tbody tr') 
     function excluir(url) {
         swal({
             title: 'Deseja deletar o aluno?',

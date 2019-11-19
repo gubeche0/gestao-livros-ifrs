@@ -3,9 +3,10 @@
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h1 class="panel-title text-center my-3">Gestão de Livros</h1>
+                <h1 class="panel-title text-center my-3">Livros</h1>
             </div>
             <div class="panel-body">
+                <div class="text-right"><a href="{{route('livro.create')}}"><button type="button" class="btn btn-light">Adicionar livros</button></a></div>
                 @include('layouts.statusMessages')
 
                 <table id="datatable" class="table align-items-center table-flush">

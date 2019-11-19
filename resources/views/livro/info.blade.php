@@ -24,7 +24,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <div class="text-right btn-registrar" data_livro="{{$livro->id}}" id="" href="#">
-                <button type="button" class="btn btn-light">Registrar exemplar</button>
+                <button type="button" class="btn btn-link">Registrar exemplar</button>
             </a></div>
             @include('layouts.statusMessages')
             

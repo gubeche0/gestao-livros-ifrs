@@ -6,7 +6,7 @@
                 <h1 class="panel-title text-center my-3">Alunos</h1>
             </div>
             <div class="panel-body">
-                <div class="text-right"><a href="{{route('aluno.create')}}"><button type="button" class="btn btn-light">Adicionar alunos</button></a></div>
+                <div class="text-right"><a href="{{route('aluno.create')}}"><button type="button" class="btn btn-link">Adicionar alunos</button></a></div>
                 @include('layouts.statusMessages')
                 <table id="datatable" class="table align-items-center table-flush">
                     <thead class="thead-light">

@@ -41,10 +41,6 @@
                 <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
                 <a href=" {{route('turma.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
             </div>
-
-            
-
-
         </form>
 
 </div>

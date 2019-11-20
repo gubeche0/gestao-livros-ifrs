@@ -6,7 +6,7 @@
                 <h1 class="panel-title text-center my-3">Livros</h1>
             </div>
             <div class="panel-body">
-                <div class="text-right"><a href="{{route('livro.create')}}"><button type="button" class="btn btn-link">Adicionar livros</button></a></div>
+                <div class="text-right"><a href="{{route('livro.create')}}"><button type="button" class="btn btn-link">Adicionar Livros</button></a></div>
                 @include('layouts.statusMessages')
 
                 <table id="datatable" class="table align-items-center table-flush">

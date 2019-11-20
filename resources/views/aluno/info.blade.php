@@ -13,7 +13,7 @@
                   <br>
                 <span style="font-size:14pt"><b>Nº de Matrícula</b>: {{$aluno->matricula}}</span>
                   <br>
-                <span style="font-size:14pt"><b>Curso do Aluno</b>: {{$aluno->curso->abreviacao}}</span>
+                <span style="font-size:14pt"><b>Curso do Aluno</b>: {{$aluno->curso->nome}}</span>
         </div>
     </div>
     <div class="panel-heading">

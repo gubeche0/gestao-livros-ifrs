@@ -6,78 +6,53 @@
     <form method="post" id="form" onsubmit="return confirm()">
         @csrf
         <input type="hidden" id="forceSave" name="forceSave" value="false">
-        <div class="form-row" id="livro-row">
-            <div class="col">
+    
+        <div class="form-row" id="emprestimo-row">
+            <div class="col-8">
                 <div class="form-group row">
-
-                    <label for="nome" class="col-sm-2 col-form-label">Codigo de barras:</label>
-                    <div class="col-sm-10">
+                    <label for="nome" class="col-sm-3 col-form-label">Codigo de barras:</label>
+                    <div class="col-sm-9">
                         <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras"
-                             value="{{ old('exemplar')}}" autofocus>
+                                value="{{ old('exemplar')}}" autofocus>
                         <label id="exemplar-error" class="is-invalid text-danger" for="exemplar" style="display: none;">Este campo é requerido.</label>
                     </div>
                 </div>
-
                 <div class="form-group row">
-
-                    <label for="titulo" class="col-sm-2 col-form-label">Nome do livro:</label>
-                    <div class="col-sm-10">
-
-                        <input type="text" name="nomeLivro" id="nomeLivro" class="form-control" placeholder="Nome do Livro"
-                            disabled value="">
+                    <label for="livro" class="col-sm-3 col-form-label">Turma:</label>
+                    <div class="col-sm-9">
+                        <select class="custom-select" name="turma" id="turma" required>
+                            <option disabled selected>Selecione uma turma...</option>
+                            @foreach ($turmas as $turma)
+                                <option value="{{ $turma->id }}" data-curso="{{ $turma->curso->id }}" @if($turma->id == old('turma')) selected @endif>{{ $turma->nome }} - {{ $turma->ano }}</option>
+                            @endforeach
+                            
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
-
-                    <label for="nome" class="col-sm-2 col-form-label">Volume do livro:</label>
-                    <div class="col-sm-10">
-
-                        <input type="text" name="volumeLivro" id="volumeLivro" class="form-control" placeholder="Volume do Livro"
-                            disabled value="">
+                    <label for="livro" class="col-sm-3 col-form-label">Aluno:</label>
+                    <div class="col-sm-9">
+                        <select class="custom-select" name="aluno" id="aluno" data-placeholder="Selecione um aluno">
+        
+                        </select>
                     </div>
                 </div>
                 <div class="form-group row">
-
-                    <label for="nome" class="col-sm-2 col-form-label">Autor do livro:</label>
-                    <div class="col-sm-10">
-
-                        <input type="text" name="autorLivro" id="autorLivro" class="form-control" placeholder="Autor do Livro"
-                            disabled>
-                    </div>
+                    <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
+                    <a href=" {{route('emprestimo.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
                 </div>
             </div>
-            <div class="col-2">
-                <img id="fotoLivro" src="" class="img-thumbnail" style="display: none">
+            <div style="width:25px">
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="livro" class="col-sm-2 col-form-label">Turma:</label>
-            <div class="col-sm-10">
-                <select class="custom-select" name="turma" id="turma" required>
-                    <option disabled selected>Selecione uma turma...</option>
-                    @foreach ($turmas as $turma)
-                        <option value="{{ $turma->id }}" data-curso="{{ $turma->curso->id }}" @if($turma->id == old('turma')) selected @endif>{{ $turma->nome }} - {{ $turma->ano }}</option>
-                    @endforeach
-                    
-                </select>
+            <div id="borda" class="col-3" style="display: none; border: 1px solid gray; padding:10px; text-align:center; border-radius:14px">
+                <img id="fotoLivro" src="" class="img-thumbnail" style="display: none; width:180px;">
+                    <br>
+                <b name="nomeLivro" id="nomeLivro"></b>
+                    <br>
+                <b name="volumeLivro" id="volumeLivro"></b>
+                    <br>
+                <b name="autorLivro" id="autorLivro"></b>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <label for="livro" class="col-sm-2 col-form-label">Aluno:</label>
-            <div class="col-sm-10">
-                <select class="custom-select" name="aluno" id="aluno" data-placeholder="Selecione um aluno">
-
-                </select>
-            </div>
-        </div>
-
-        <div class="form-group row">
-            <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
-            <a href=" {{route('emprestimo.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
-        </div>
-
     </form>
 
 </div>
@@ -132,10 +107,11 @@
             console.log(e);
             if (e.status) {
                 $("#exemplar-error").hide();
-                $("#nomeLivro").val(e.exemplar.livro.titulo);
-                $("#volumeLivro").val(e.exemplar.livro.volume);
-                $("#autorLivro").val(e.exemplar.livro.autor);
+                $("#nomeLivro").text("Nome do livro: "+e.exemplar.livro.titulo);
+                $("#volumeLivro").text("Volume do livro: "+e.exemplar.livro.volume);
+                $("#autorLivro").text("Autor do livro: "+e.exemplar.livro.autor);
                 $("#fotoLivro").val(e.exemplar.livro.urlFoto);
+                $("#borda").show();
                 
                 if(e.emprestado == false){
                     livro = true;
@@ -162,10 +138,11 @@
                 $("#exemplar-error").show();
                 $("#exemplar").removeClass("is-valid");
                 $("#exemplar").addClass("is-invalid");
-                $("#nomeLivro").val("");
-                $("#volumeLivro").val("");
-                $("#autorLivro").val("");
+                $("#nomeLivro").text("");
+                $("#volumeLivro").text("");
+                $("#autorLivro").text("");
                 $("#fotoLivro").hide().attr('src', "");
+                $("#borda").hide();
             }
         });
     }
@@ -218,7 +195,7 @@
         Swal({
             title: 'Aluno já possui este livro!',
             text: 'Deseja continuar o emprestimo?',
-            type: 'error',
+            type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',

@@ -7,6 +7,7 @@ use App\Exemplar;
 use Illuminate\Http\Request;
 use App\Http\Requests\LivroRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\LivroUpdateRequest;
 
 class LivroController extends Controller
 {
@@ -87,7 +88,7 @@ class LivroController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(LivroRequest $request, Livro $livro)
+    public function update(LivroUpdateRequest $request, Livro $livro)
     {
         $livro->fill($request->all());
         if($request->hasFile('foto')) {

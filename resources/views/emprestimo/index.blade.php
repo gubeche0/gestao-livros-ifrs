@@ -15,8 +15,8 @@
         </style>
         <div class="panel-body">
             <div class="text-right">
-                <a href="{{route('emprestimo.loan')}}"><button type="button" class="registrar btn btn-link btn-sm">Registrar empréstimo</button></a>
-                <a href="{{route('emprestimo.devolution')}}"><button type="button" class="devolver btn btn-link btn-sm">Registrar devolução</button></a>
+                <a href="{{route('emprestimo.loan')}}"><button type="button" class="registrar btn btn-link">Registrar Empréstimo</button></a>
+                <a href="{{route('emprestimo.devolution')}}"><button type="button" class="devolver btn btn-link">Registrar Devolução</button></a>
             </div>
             @include('layouts.statusMessages')
             <table id="datatable" class="table align-items-center table-flush">

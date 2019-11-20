@@ -96,7 +96,7 @@
                         <td>{{ $emprestimo->exemplar->code }}</td>
                         @if($emprestimosInativos)
                             <td>
-                                @if($emprestimo->exemplar->emprestado())
+                                @if(!$emprestimo->trashed())
                                     Emprestado 
                                 @else
                                     Devolvido

@@ -1,25 +1,16 @@
 @extends('layouts.app')
-
 @section('content')
-    
 <div class="container">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h1 class="panel-title text-center my-3">Cursos</h1>
-            </div>
-            <div class="panel-body">
-                    @include('layouts.statusMessages')
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" id="query" name="query" placeholder="Pesquisar Curso">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
-                        </div>
-                    </div>
-                <a href="{{ route('curso.create') }}">Novo Curso</a>
-                <table class="table table-striped table-bordered table-hover">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h1 class="panel-title text-center my-3">Cursos</h1>
+        </div>
+        <div class="panel-body">
+            <div class="text-right"><a href="{{route('curso.create')}}"><button type="button" class="btn btn-link">Adicionar Cursos</button></a></div>
+                @include('layouts.statusMessages')
+                <table id="datatable" class="table align-items-center table-flush">
                     <thead class="thead-light">
                         <tr>
-                            <th>#ID</th>
                             <th>Nome</th>
                             <th>Abreviacao</th>
                             <th>Ação</th>
@@ -27,14 +18,10 @@
                     </thead>
                     <tbody>
                         @foreach ($cursos as $curso)
-                            
-                       
                         <tr>
-                            <td>#{{ $curso->id }}</td>
                             <td>{{ $curso->nome}}</td>
                             <td>{{ $curso->abreviacao }}</td>
                             <td>
-                                <!-- <a class="text-dark" href='#'><i class="fas fa-info" aria-hidden="true"></i> Info</a> | -->
                                 <a class="text-dark" href='{{ route('curso.edit', ['curso' => $curso->id]) }}'><i class="fas fa-edit" aria-hidden="true"></i> Editar</a> |
                                 <a class="text-dark" href="#" onclick="excluir('{{ route('curso.delete', ['curso' => $curso->id]) }}')"><i class="fas fa-trash" aria-hidden="true"></i> Excluir</a>
                             </td>
@@ -42,18 +29,52 @@
                         @endforeach
                     </tbody>
                 </table>
-                
             </div>
         </div>
-    
     </div>
 @endsection
 
 @section('js')
     
-<script>
-        $("#query").quicksearch('table tbody tr')
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.uikit.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            stateSave: true,
+            "pagingType": "numbers",
+            "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoPostFix": "",
+                "sInfoThousands": "",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sLengthMenu": "Resultados por página _MENU_",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+            }
+        });
+    });   
+
+    $("#query").quicksearch('table tbody tr')
         function excluir(url) {
             swal({
                 title: 'Deseja deletar o Curso?',

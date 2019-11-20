@@ -6,9 +6,9 @@
         <h1 class="panel-title text-center my-3">{{$livro->titulo}}</h1>
     </div>
     <div class="form-row" id="livro-row">
-            <div class="col-3">
-                    <img id="fotoLivro" src="/storage/fotoLivro/{{ $livro->urlFoto }}" class="img-thumbnail" style="@if(!$livro->urlFoto)display: none; @endif">
-                </div>
+        <div class="col-3">
+            <img id="fotoLivro" src="/storage/fotoLivro/{{ $livro->urlFoto }}" class="img-thumbnail" style="@if(!$livro->urlFoto)display: none; @endif">
+        </div>
         <div class="col-6">
                 <span style="font-size:14pt"><b>Nome do Livro</b>: {{$livro->titulo}}</span>
                   <br>

@@ -1,23 +1,14 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title text-center my-3">Gestão de Turmas</h1>
+            <h1 class="panel-title text-center my-3">Turmas</h1>
         </div>
         <div class="panel-body">
+            <div class="text-right"><a href="{{route('turma.create')}}"><button type="button" class="btn btn-link">Adicionar Turma</button></a></div>
             @include('layouts.statusMessages')
-
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" id="query" name="query" placeholder="Pesquisar Categoria">
-                <div class="input-group-append">
-                    <button type="button" class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
-                </div>
-            </div>
-
-            <a href="{{ route('turma.create')}}">Nova Turma</a>
-            <table class="table table-striped table-bordered table-hover">
+            <table id="datatable" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
                         <th>Descrição</th>
@@ -60,7 +51,44 @@
 
 @section('js')
     
-    <script>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.uikit.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            stateSave: true,
+            "pagingType": "numbers",
+            "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],
+            "language": {
+                "sEmptyTable": "Nenhum registro encontrado",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoPostFix": "",
+                "sInfoThousands": "",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sLengthMenu": "Resultados por página _MENU_",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Nenhum registro encontrado",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+            }
+        });
+    });   
+
         $().ready(function() {
             $("#query").quicksearch('table tbody tr');
         })

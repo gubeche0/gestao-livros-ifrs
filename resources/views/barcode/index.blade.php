@@ -42,7 +42,7 @@
 
         telaImpressao.document.write(conteudo);
         telaImpressao.window.print();
-        telaImpressao.window.close();
+        // telaImpressao.window.close();
 
     }
 

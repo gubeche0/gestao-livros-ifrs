@@ -25,10 +25,14 @@
                     @endif
 
                     @if(Auth::user()->isAdmin())
-                    <li class="nav-item dropdown {{ Route::is(['emprestimo*', 'relatorio.emprestimo']) ? 'active' : '' }}">
+                    <li class="nav-item dropdown {{ Route::is(['emprestimo*']) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('emprestimo.index') }}"></i> Empréstimos</a>
-                        {{-- <div class="dropdown-menu" aria-labelledby="emprestimos">
-                        </div> --}}
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->isAdmin())
+                    <li class="nav-item dropdown {{ Route::is(['relatorio.emprestimo']) ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('relatorio.emprestimo') }}"></i>Relatório</a>
                     </li>
                     @endif
 
@@ -36,12 +40,10 @@
                     <li class="nav-item dropdown {{ Route::is(['curso*', 'turma*', 'barcode*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="outros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Configurações</a>
                         <div class="dropdown-menu" aria-labelledby="outros">
-                            <!-- <a class="dropdown-item" href="#">Configurações</a>
-                            <div class="dropdown-divider"></div> -->
                             <a class="dropdown-item" href="{{ route('curso.index') }}">Cursos</a>
                             <a class="dropdown-item" href="{{ route('turma.index') }}">Turmas</a>
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>
-                            <a class="dropdown-item" href="{{ route('relatorio.emprestimo') }}"><i class="fas fa-file-contract"></i> Gerar Relatório</a>
+                            {{-- <a class="dropdown-item" href="{{ route('relatorio.emprestimo') }}"><i class="fas fa-file-contract"></i> Gerar Relatório</a> --}}
                         </div>
                     </li>
                     @endif

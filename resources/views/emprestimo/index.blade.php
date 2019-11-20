@@ -3,27 +3,37 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title text-center my-3">Gestão de Emprestimos</h1>
+            <h1 class="panel-title text-center my-3">Empréstimos</h1>
         </div>
+        <style>
+            .devolver:hover{
+                color:red;
+            }
+            .registrar:hover{
+                color:green;
+            }
+        </style>
         <div class="panel-body">
+            <div class="text-right">
+                <a href="{{route('emprestimo.loan')}}"><button type="button" class="registrar btn btn-link btn-sm">Registrar empréstimo</button></a>
+                <a href="{{route('emprestimo.devolution')}}"><button type="button" class="devolver btn btn-link btn-sm">Registrar devolução</button></a>
+            </div>
             @include('layouts.statusMessages')
-
             <table id="datatable" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
                         <th>Aluno</th>
                         <th>Livro</th>
                         <th>Codigo</th>
-                        <th>Data Emprestimo</th>
+                        <th>Data Empréstimo</th>
                     </tr>
                 </thead>
-                <tbody>
-                    
+                <tbody> 
                     @foreach ($emprestimos as $emprestimo)
                     <tr>
                         <td><a href=" {{route('aluno.show', ["aluno" => $emprestimo->aluno->id])}} ">{{ $emprestimo->aluno->nome }}</a></td>
                         <td><a href="{{ route('livro.exemplar', $emprestimo->exemplar->livro->id) }}">{{ $emprestimo->exemplar->livro->titulo }}</a></td>
-                        <td>{{ $emprestimo->exemplar->code }}</td>
+                        <td><a href=" {{route('exemplar.historico', $emprestimo->exemplar->code)}} ">{{ $emprestimo->exemplar->code }}</a></td>
                         <td>{{ date('d/m/Y', strtotime($emprestimo->created_at)) }}</td>
                     @endforeach
                 </tbody>

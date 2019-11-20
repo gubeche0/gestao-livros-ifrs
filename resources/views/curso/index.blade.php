@@ -9,14 +9,12 @@
             </div>
             <div class="panel-body">
                     @include('layouts.statusMessages')
-
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" id="query" name="query" placeholder="Pesquisar Curso">
                         <div class="input-group-append">
                             <button type="button" class="btn btn-primary" type="button" id="button-addon2">Pesquisar</button>
                         </div>
                     </div>
-
                 <a href="{{ route('curso.create') }}">Novo Curso</a>
                 <table class="table table-striped table-bordered table-hover">
                     <thead class="thead-light">

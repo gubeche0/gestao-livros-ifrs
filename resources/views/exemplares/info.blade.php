@@ -12,7 +12,6 @@
             <table id="datatable" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
-                        <th>Código de Barras</th>
                         <th>Título do Livro</th>
                         <th>Nome do Aluno</th>
                         <th>Matrícula</th>
@@ -23,9 +22,8 @@
                 <tbody>
                     @foreach($emprestimos as $emprestimo)
                         <tr>
-                            <td>{{ $emprestimo->exemplar_code }}</td>
-                            <td>{{ $exemplar->livro->titulo }}</td>
-                            <td>{{ $emprestimo->aluno->nome }}</td>
+                            <td><a href="{{ route('livro.exemplar', $exemplar->livro->id) }}">{{ $exemplar->livro->titulo}}</a></td>
+                            <td><a href=" {{route('aluno.show', ["aluno" => $emprestimo->aluno->id])}} "> {{ $emprestimo->aluno->nome }} </a></td>
                             <td>{{ $emprestimo->aluno->matricula }}</td>
                             <td>{{ $emprestimo->turma->nome }}</td>
                             <td>

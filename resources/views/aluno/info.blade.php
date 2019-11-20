@@ -7,22 +7,13 @@
     </div>
     <div class="form-row" id="aluno-row">
         <div class="col">
-            <table class="table">
-                <tr>
-                    <th colspan="2">Nome do Aluno</th>
-                    <td colspan="2">{{$aluno->nome}}</td>
-                </tr>                  
-                <tr>
-                    <th colspan="2">Email do Aluno</th>
-                    <td colspan="2">{{$aluno->email}}</td>
-                </tr>                  
-                <tr>
-                    <th>Nº de Matrícula</th>
-                    <td>{{$aluno->matricula}}</td>
-                    <th>Curso do Aluno</th>
-                    <td>{{$aluno->curso->abreviacao}}</td>
-                </tr>                  
-            </table>
+                <span style="font-size:14pt"><b>Nome do Aluno</b>: {{$aluno->nome}}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Email do Aluno</b>: {{$aluno->email}}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Nº de Matrícula</b>: {{$aluno->matricula}}</span>
+                  <br>
+                <span style="font-size:14pt"><b>Curso do Aluno</b>: {{$aluno->curso->abreviacao}}</span>
         </div>
     </div>
     <div class="panel-heading">
@@ -31,7 +22,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             @include('layouts.statusMessages')
-            <table id="datatable-alunos" class="table align-items-center table-flush">
+            <table id="datatable" class="table align-items-center table-flush">
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">Código do Livro</th>
@@ -40,9 +31,9 @@
                     </tr>
                 </thead>
                 <tbody>    
-                    @forelse ($emprestimos as $emprestimo)
+                    @foreach ($emprestimos as $emprestimo)
                         <tr>
-                            <td>{{ $emprestimo->exemplar_code}}</td>
+                            <td><a href=" {{route('exemplar.historico', $emprestimo->exemplar_code)}} ">{{ $emprestimo->exemplar_code}}</td>
                             <td><a href=" {{route('livro.exemplar', $emprestimo->exemplar->livro->id)}} ">{{ $emprestimo->exemplar->livro->titulo }}</a></td>
                             @if ($emprestimo->deleted_at <> null)
                                 <td style="color:red">Devolvido</td>
@@ -50,11 +41,7 @@
                                 <td style="color:green">Emprestado</td>                                
                             @endif
                         </tr>   
-                    @empty
-                        <tr>
-                            <td colspan="3" style="text-align:center">Aluno não possui nenhum empréstimo</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -62,9 +49,47 @@
 </div> 
 @endsection
 
+
 @section('js')
+<script src="https://cdn.jsdelivr.net/jsbarcode/3.6.0/JsBarcode.all.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.uikit.min.js"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script>
-        $("#query").quicksearch('table tbody tr')
+
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            stateSave: true,
+            "pagingType": "numbers",
+            "lengthMenu": [ [10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"] ],
+            "language": {
+                "sEmptyTable": "Aluno não possui nehum empréstimo",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+                "sInfoPostFix": "",
+                "sInfoThousands": "",
+                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sLengthMenu": "Resultados por página _MENU_",
+                "sLoadingRecords": "Carregando...",
+                "sProcessing": "Processando...",
+                "sZeroRecords": "Aluno não possui nehum empréstimo",
+                "sSearch": "Pesquisar",
+                "oPaginate": {
+                "sNext": "Próximo",
+                "sPrevious": "Anterior",
+                "sFirst": "Primeiro",
+                "sLast": "Último"
+            },
+            "oAria": {
+                "sSortAscending": ": Ordenar colunas de forma ascendente",
+                "sSortDescending": ": Ordenar colunas de forma descendente"
+            }
+            }
+        });
+    });   
+
+    $("#query").quicksearch('table tbody tr')
         function excluir(url) {
             swal({
                 title: 'Deseja deletar o exemplar?',

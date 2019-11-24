@@ -43,7 +43,8 @@
                             <a class="dropdown-item" href="{{ route('curso.index') }}">Cursos</a>
                             <a class="dropdown-item" href="{{ route('turma.index') }}">Turmas</a>
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>
-                            {{-- <a class="dropdown-item" href="{{ route('relatorio.emprestimo') }}"><i class="fas fa-file-contract"></i> Gerar Relatório</a> --}}
+                            <hr>
+                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
                         </div>
                     </li>
                     @endif

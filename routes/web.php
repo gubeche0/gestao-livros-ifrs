@@ -84,3 +84,9 @@ Route::group(['prefix' => 'barcode', 'middleware' => ['auth', 'coord']], functio
 Route::group(['prefix' => 'relatorio', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'RelatorioController@emprestimo')->name('relatorio.emprestimo');
 });
+
+Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function () {
+    Route::get('/', 'PerfilController@index')->name('profile.index');
+    Route::post('/update', 'PerfilController@update')->name('profile.update');
+    Route::post('/password', 'PerfilController@password')->name('profile.password');
+});

@@ -2,6 +2,9 @@
 @section('content')
 
 <div class="container">
+    <div class="panel-heading">
+        <h1 class="panel-title text-center my-3">Registrar empréstimo</h1>
+    </div>
     @include('layouts.statusMessages')
     <form method="post" id="form" onsubmit="return confirm()">
         @csrf

@@ -15,7 +15,7 @@ class Prof
      */
     public function handle($request, Closure $next)
     {
-      if(auth()->user()->tipo == 0){
+      if(auth()->user()->tipo == 4){
         return $next($request);
       }
         return redirect('home');

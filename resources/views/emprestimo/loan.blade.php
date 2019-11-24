@@ -42,21 +42,19 @@
                     <a href=" {{route('emprestimo.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
                 </div>
             </div>
-            <div style="width:25px">
+            <div style="width:25px"></div>
+            <div id="borda" class="col-3" style="display: none; border: 1px solid gray; padding:10px; border-radius:14px">
+                <img id="fotoLivro" src="" class="img-thumbnail rounded mx-auto d-block" style="display: none; width:180px;">
+                    <br>
+                <span name="nomeLivro" id="nomeLivro"></span>
+                    <br>
+                <span name="volumeLivro" id="volumeLivro"></span>
+                    <br>
+                <span name="autorLivro" id="autorLivro"></span>
             </div>
-            <div id="borda" class="col-3" style="display: none; border: 1px solid gray; padding:10px; text-align:center; border-radius:14px">
-                <img id="fotoLivro" src="" class="img-thumbnail" style="display: none; width:180px;">
-                    <br>
-                <b name="nomeLivro" id="nomeLivro"></b>
-                    <br>
-                <b name="volumeLivro" id="volumeLivro"></b>
-                    <br>
-                <b name="autorLivro" id="autorLivro"></b>
-            </div>
+        </div>
     </form>
-
 </div>
-
 @endsection
 
 @section('js')
@@ -107,9 +105,9 @@
             console.log(e);
             if (e.status) {
                 $("#exemplar-error").hide();
-                $("#nomeLivro").text("Nome do livro: "+e.exemplar.livro.titulo);
-                $("#volumeLivro").text("Volume do livro: "+e.exemplar.livro.volume);
-                $("#autorLivro").text("Autor do livro: "+e.exemplar.livro.autor);
+                $("#nomeLivro").html("<b>Nome do livro: </b>"+e.exemplar.livro.titulo);
+                $("#volumeLivro").html("<b>Volume do livro: </b>"+e.exemplar.livro.volume);
+                $("#autorLivro").html("<b>Autor do livro: </b>"+e.exemplar.livro.autor);
                 $("#fotoLivro").val(e.exemplar.livro.urlFoto);
                 $("#borda").show();
                 

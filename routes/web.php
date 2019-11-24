@@ -19,9 +19,10 @@ Route::get('/logout', function(){
     return redirect('/');
 });
 
-Route::get('/home', 'HomeController@index');
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/homeCoord', 'HomeCoordController@index')->name('home');
 
-Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'AlunoController@index')->name('aluno.index');
     Route::get('/create', 'AlunoController@create')->name('aluno.create');
     Route::post('/create', 'AlunoController@store')->name('aluno.store');
@@ -31,7 +32,7 @@ Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'admin']], function
     Route::get('/{aluno}/deletar', 'AlunoController@destroy')->name('aluno.delete');
 });
 
-Route::group(['prefix' => 'cursos', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'cursos', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'CursoController@index')->name('curso.index');
     Route::get('/create', 'CursoController@create')->name('curso.create');
     Route::post('/create', 'CursoController@store')->name('curso.store');
@@ -40,7 +41,7 @@ Route::group(['prefix' => 'cursos', 'middleware' => ['auth', 'admin']], function
     Route::get('/{curso}/deletar', 'CursoController@destroy')->name('curso.delete');
 });
 
-Route::group(['prefix' => 'livros', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'livros', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'LivroController@index')->name('livro.index');
     Route::get('/create', 'LivroController@create')->name('livro.create');
     Route::post('/create', 'LivroController@store')->name('livro.store');
@@ -51,13 +52,13 @@ Route::group(['prefix' => 'livros', 'middleware' => ['auth', 'admin']], function
     Route::get('/{livro}', 'LivroController@show')->name('livro.exemplar');
 });
 
-Route::group(['prefix' => 'exemplares', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'exemplares', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/{exemplar}', 'ExemplarController@show')->name('exemplar.historico');
     Route::get('/{exemplar}/deletar', 'ExemplarController@destroy')->name('exemplar.delete');
     Route::get('/{exemplar}/restaurar', 'ExemplarController@restore')->name('exemplar.restore');
 });
 
-Route::group(['prefix' => 'emprestimo', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'emprestimo', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'EmprestimoController@index')->name('emprestimo.index');
     Route::get('/registrar', 'EmprestimoController@loan')->name('emprestimo.loan');
     Route::post('/registrar', 'EmprestimoController@registerLoan')->name('emprestimo.registerLoan');
@@ -65,7 +66,7 @@ Route::group(['prefix' => 'emprestimo', 'middleware' => ['auth', 'admin']], func
     Route::post('/devolver', 'EmprestimoController@registerDevolution')->name('emprestimo.registerDevolution');
 });
 
-Route::group(['prefix' => 'turma', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'turma', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'TurmaController@index')->name('turma.index');
     Route::get('/create', 'TurmaController@create')->name('turma.create');
     Route::post('/create', 'TurmaController@store')->name('turma.store');
@@ -75,11 +76,11 @@ Route::group(['prefix' => 'turma', 'middleware' => ['auth', 'admin']], function 
     Route::get('/{turma}/restaurar', 'TurmaController@restore')->name('turma.restore');
 });
 
-Route::group(['prefix' => 'barcode', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'barcode', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'BarcodeController@index')->name('barcode.index');
     Route::post('/', 'BarcodeController@store')->name('barcode.store');
 });
 
-Route::group(['prefix' => 'relatorio', 'middleware' => ['auth', 'admin']], function () {
+Route::group(['prefix' => 'relatorio', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'RelatorioController@emprestimo')->name('relatorio.emprestimo');
 });

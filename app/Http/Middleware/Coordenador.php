@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class Admin
+class Coordenador
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-      if(auth()->user()->tipo == 2){
-        return $next($request);
-      }
-        return redirect('home');
+        if(auth()->user()->tipo == 3){
+            return $next($request);
+          }
+            return redirect('home');
     }
 }

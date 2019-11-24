@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        if(auth()->user()->tipo == 1){
+            return view ('homeCoord');
+        }
+        dd('oi');
         return view('home');
     }
 }

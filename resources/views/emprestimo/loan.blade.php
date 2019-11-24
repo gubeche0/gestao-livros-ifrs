@@ -10,7 +10,7 @@
         <div class="form-row" id="emprestimo-row">
             <div class="col-8">
                 <div class="form-group row">
-                    <label for="nome" class="col-sm-3 col-form-label">Codigo de barras:</label>
+                    <label for="nome" class="col-sm-3 col-form-label">Código de barras:</label>
                     <div class="col-sm-9">
                         <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras"
                                 value="{{ old('exemplar')}}" autofocus>
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div style="width:25px"></div>
-            <div id="borda" class="col-3" style="display: none; border: 1px solid gray; padding:10px; border-radius:14px">
+            <div id="borda" class="col-3" style="display: none; border: 1px solid #A9A9A9; padding:10px; border-radius:14px">
                 <img id="fotoLivro" src="" class="img-thumbnail rounded mx-auto d-block" style="display: none; width:180px;">
                     <br>
                 <span name="nomeLivro" id="nomeLivro"></span>

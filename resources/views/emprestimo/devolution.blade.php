@@ -1,104 +1,61 @@
 @extends('layouts.app')
 @section('content')
-
 <div class="container">
-        @include('layouts.statusMessages')
-        <form method="post" id="form" onsubmit="return confirm()">
-            @csrf
-            <div class="form-row" id="livro-row">
-                <div class="col">
-                    <div class="form-group row">
-    
-                        <label for="nome" class="col-sm-2 col-form-label">Codigo de barras:</label>
-                        <div class="col-sm-10">
-    
-                            <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras"
-                                value="" autofocus>
-                            <label id="exemplar-error" class="is-invalid text-danger" for="exemplar" style="display: none;">Este
-                                campo é requerido.</label>
-                        </div>
+    @include('layouts.statusMessages')
+    <form method="post" id="form" onsubmit="return confirm()">
+        @csrf
+        <input type="hidden" id="idEmprestimo" name="idEmprestimo">
+        <input type="hidden" id="idExemplar" name="idExemplar">
+        
+        <div class="form-row" id="livro-row">
+            <div class="col-12">
+                <div class="form-group row">
+                    <label for="nome" class="col-sm-2 col-form-label">Código de barras:</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras"
+                            value="" autofocus>
+                        <label id="exemplar-error" class="is-invalid text-danger" for="exemplar" style="display: none;">Este
+                            campo é requerido.</label>
                     </div>
-                    <input type="hidden" id="idEmprestimo" name="idEmprestimo">
-                    <input type="hidden" id="idExemplar" name="idExemplar">
-    
-                    <div class="form-group row">
-    
-                        <label for="nome" class="col-sm-2 col-form-label">Nome do livro:</label>
-                        <div class="col-sm-10">
-    
-                            <input type="text" name="nomeLivro" id="nomeLivro" class="form-control" placeholder="Nome do Livro"
-                                disabled value="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-    
-                        <label for="nome" class="col-sm-2 col-form-label">Volume do livro:</label>
-                        <div class="col-sm-10">
-    
-                            <input type="text" name="volumeLivro" id="volumeLivro" class="form-control" placeholder="Volume do Livro"
-                                disabled value="">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-    
-                        <label for="nome" class="col-sm-2 col-form-label">Autor do livro:</label>
-                        <div class="col-sm-10">
-    
-                            <input type="text" name="autorLivro" id="autorLivro" class="form-control" placeholder="Autor do Livro"
-                                disabled>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-    
-                        <label for="nome" class="col-sm-2 col-form-label">Status do livro:</label>
-                        <div class="col-sm-10">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="statusLivro" name="statusLivro" checked>
-                                <label class="custom-control-label" for="statusLivro">Utilizavel</label>
-                            </div>
-                            
+                </div>
+                <div class="form-group row">
+                    <label for="nome" class="col-sm-2 col-form-label">Status do livro:</label>
+                    <div class="col-sm-10">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="statusLivro" name="statusLivro" checked>
+                            <label class="custom-control-label" for="statusLivro">Utilizavel</label>
                         </div>
                     </div>
                 </div>
-                <div class="col-2">
-    
-                    <img id="fotoLivro" src="" class="img-thumbnail" style="display: none"> 
+                <div class="col-12 d-flex justify-content-center" style="margin-bottom:10px">
+                    <div id="borda1" class="col-10 " style="display:none; border: 1px solid #A9A9A9; padding:10px; border-radius:14px; ">
+                        <div class="row">
+                                <div class="col-4">
+                                    <img id="fotoLivro" src="" class="img-thumbnail rounded mx-auto d-block" style="display: none; width:180px;">
+                                </div>
+                                <div class="col-8">
+                                    <b><h5 class="text-center">Livro</h5></b>
+                                    <span name="nomeLivro" id="nomeLivro"></span>
+                                        <br>
+                                    <span name="volumeLivro" id="volumeLivro"></span>
+                                        <br>
+                                    <span name="autorLivro" id="autorLivro"></span>
+                                        <br>
+                                        <hr>
+                                    <b><h5 class="text-center">Aluno</h5></b>
+                                    <span name="aluno" id="aluno"></span>
+                                        <br>
+                                    <span name="matricula" id="matricula"></span>
+                                        <br>
+                                    <span name="data" id="data"></span>
+                                </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
-    
-            <h2 class="text-center my-4">Aluno</h2>
-            <div class="form-group row">
-    
-                <label for="nome" class="col-sm-2 col-form-label">Nome do Aluno:</label>
-                <div class="col-sm-10">
-    
-                    <input type="text" name="aluno" id="aluno" class="form-control" placeholder="Nome do Aluno" disabled>
-                </div>
-            </div>
-            <div class="form-group row">
-    
-                <label for="nome" class="col-sm-2 col-form-label">Matricula do Aluno:</label>
-                <div class="col-sm-10">
-    
-                    <input type="text" name="matricula" id="matricula" class="form-control" placeholder="Matricula do Aluno"
-                        disabled>
-                </div>
-            </div>
-    
-            <div class="form-group row">
-    
-                <label for="nome" class="col-sm-2 col-form-label">Data do emprestimo:</label>
-                <div class="col-sm-10">
-    
-                    <input type="date" name="data" id="data" class="form-control" disabled>
-                </div>
-            </div>
-    
-            <div class="form-group row">
-                <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
-                <a href=" {{route('emprestimo.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
-            </div>
-    
+                <div class="form-group row">
+                    <input name="salvar" id="salvar" class="btn btn-primary col" type="submit" value="Salvar">
+                    <a href=" {{route('emprestimo.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
+                </div>    
         </form>
     
     </div>
@@ -140,17 +97,18 @@ var livro = false;
             }).done(function (e) {
                 console.log(e);
                 if (e.status) {
+                    $("#borda1").show();
                     $("#exemplar-error").hide();
-                    $("#nomeLivro").val(e.exemplar.livro.titulo);
-                    $("#volumeLivro").val(e.exemplar.livro.volume);
-                    $("#autorLivro").val(e.exemplar.livro.autor);
-
+                    $("#nomeLivro").html("<b>Nome do livro: </b>"+e.exemplar.livro.titulo);
+                    $("#volumeLivro").html("<b>Volume do livro: </b>"+e.exemplar.livro.volume);
+                    $("#autorLivro").html("<b>Autor do livro: </b>"+e.exemplar.livro.autor);
 
                     if (e.emprestado) {
                         livro = true;
-                        $("#aluno").val(e.exemplar.emprestimos[0].aluno.nome);
-                        $("#matricula").val(e.exemplar.emprestimos[0].aluno.matricula);
-                        $("#data").val(e.exemplar.emprestimos[0].created_at.split(" ")[0]);
+
+                        $("#aluno").html("<b>Nome do aluno: </b>"+e.exemplar.emprestimos[0].aluno.nome);
+                        $("#matricula").html("<b>Nº de matrícula: </b>"+e.exemplar.emprestimos[0].aluno.matricula);
+                        $("#data").html("<b>Data de empréstimo: </b>"+e.exemplar.emprestimos[0].created_at.split(" ")[0]);
                         $("#exemplar").removeClass("is-invalid");
                         $("#exemplar").addClass("is-valid");
                         $("#idEmprestimo").val(e.exemplar.emprestimos[0].id);
@@ -164,9 +122,9 @@ var livro = false;
                         $("#idEmprestimo").val('');
                         $("#idExemplar").val('');
 
-                        $("#aluno").val("");
-                        $("#matricula").val("");
-                        $("#data").val("");
+                        $("#aluno").html("");
+                        $("#matricula").html("");
+                        $("#data").html("");
                         livro = false;
                     }
 
@@ -185,14 +143,15 @@ var livro = false;
                     $("#idEmprestimo").val('');
                     $("#idExemplar").val('');
 
-                    $("#nomeLivro").val("");
-                    $("#volumeLivro").val("");
-                    $("#autorLivro").val("");
+                    $("#nomeLivro").html("");
+                    $("#volumeLivro").html("");
+                    $("#autorLivro").html("");
                     $("#fotoLivro").hide().attr('src', "");
+                    $("#borda").hide();
 
-                    $("#aluno").val("");
-                    $("#matricula").val("");
-                    $("#data").val("");
+                    $("#aluno").html("");
+                    $("#matricula").html("");
+                    $("#data").html("");
                 }
             });
     }

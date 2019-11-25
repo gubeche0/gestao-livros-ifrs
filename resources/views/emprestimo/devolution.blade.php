@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-center" style="margin-bottom:10px">
-                    <div id="borda1" class="col-12 " style="display:none; border: 1px solid #A9A9A9; padding:10px; border-radius:14px; ">
+                    <div id="borda1" class="col-10 " style="display:none; border: 1px solid #A9A9A9; padding:10px; border-radius:14px; ">
                         <div class="row">
                                 <div class="col-4">
                                     <img id="fotoLivro" src="" class="img-thumbnail rounded mx-auto d-block" style="display: none; width:180px;">

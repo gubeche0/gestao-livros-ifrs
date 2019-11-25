@@ -26,17 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         if(auth()->user()->login == 1){
-
-            $user = User::find(auth()->user()->id);
-            $user->update([
-                'login' => 0,
-            ]);
-
-            Session::flash('message_warning_password', 'Essa é a primeira vez que você se loga, edite sua senha aqui.');
-            
-
-
-            return redirect()->route('profile.index');
+            Session::flash('message_warning_password', 'Você está usando a senha criada pelo sistema, edite sua senha aqui.');
+            return redirect()->route('profile.senha');
         }
         if(auth()->user()->tipo == 1){
             return view ('homeCoord');

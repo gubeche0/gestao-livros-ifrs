@@ -20,7 +20,7 @@ Route::get('/logout', function(){
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/homeCoord', 'HomeCoordController@index')->name('home');
+Route::get('/homeCoord')->name('homeCoord');
 
 Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'AlunoController@index')->name('aluno.index');
@@ -89,4 +89,6 @@ Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function () {
     Route::get('/', 'PerfilController@index')->name('profile.index');
     Route::post('/update', 'PerfilController@update')->name('profile.update');
     Route::post('/password', 'PerfilController@password')->name('profile.password');
+    Route::post('/senhaNova', 'PerfilController@senhaNova')->name('profile.senhaNova');
+    Route::get('/senha', 'PerfilController@senha')->name('profile.senha');
 });

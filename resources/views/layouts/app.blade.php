@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<html style="margin: 0;
-height: 100%;
-" lang="pt-br">
+<html lang="pt-br">
 <head>
     <meta charset="utf-8">
     
@@ -23,7 +21,7 @@ height: 100%;
 
 </head>
 
-<body style="height: 80%;">
+<body>
     @include('layouts.navbar')
 
     @yield('content')

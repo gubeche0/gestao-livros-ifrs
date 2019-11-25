@@ -50,14 +50,10 @@
                         <hr class="my-4" />
                         <form method="post" action="{{ route('profile.password') }}" autocomplete="off">
                             @csrf
-
                             <h6 class="heading-small text-muted mb-4">{{ __('Senha') }}</h6>
                             <center>
                                 @if (Session::has('message_success_senha'))
                                     <div class="alert alert-success" style="width:50%">{{ Session::get('message_success_senha') }}</div>
-                                @endif
-                                @if (Session::has('message_warning_password'))
-                                    <div class="alert alert-warning" style="width:50%">{{ Session::get('message_warning_password') }}</div>
                                 @endif
                                 @if (Session::has('message_danger_senha'))
                                     <div class="alert alert-danger" style="width:50%">{{ Session::get('message_danger_senha') }}</div>

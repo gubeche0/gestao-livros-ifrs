@@ -202,24 +202,6 @@
         });
 
         $('#btn-imprimir').click(function() {
-            $('#filters-list-print').html('');
-            var filtros = ['#filtro-cursos', '#filtro-turmas', '#filtro-anos', '#filtro-alunos', '#filtro-livros'];
-            filtros.forEach(function(filtro) {
-                if ($(filtro).val().length > 0) {
-                var list = $('<ul>');
-                $(filtro + ' option:selected').each(function(i, element) {                    
-                    list.append(
-                        $('<li>').text($(element).text())
-                    );
-                });
-                $('#filters-list-print').append(
-                    $('<div>', {class: 'col-sm'}).append(
-                        list
-                    )
-                )
-            }
-            });
-            
             window.print();
         });
     });

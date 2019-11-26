@@ -13,6 +13,9 @@
                                 @if (Session::has('message_success_senha'))
                                     <div class="alert alert-success" style="width:60%">{{ Session::get('message_success_senha') }}</div>
                                 @endif
+                                @if (Session::has('message_warning_password'))
+                                    <div class="alert alert-warning" style="">{{ Session::get('message_warning_password') }}</div>
+                                @endif
                             </center>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">

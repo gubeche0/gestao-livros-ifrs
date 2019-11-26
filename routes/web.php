@@ -17,7 +17,7 @@ Auth::routes();
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
-});
+})->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/homeCoord')->name('homeCoord');
@@ -102,4 +102,14 @@ Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function () {
     Route::post('/password', 'PerfilController@password')->name('profile.password');
     Route::post('/senhaNova', 'PerfilController@senhaNova')->name('profile.senhaNova');
     Route::get('/senha', 'PerfilController@senha')->name('profile.senha');
+});
+
+Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], function () {
+    Route::get('/', 'RequisicaoLivroController@index')->name('requisicaoLivro.index');
+    Route::get('/create', 'RequisicaoLivroController@create')->name('requisicaoLivro.create');
+    Route::post('/create', 'RequisicaoLivroController@store')->name('requisicaoLivro.store');
+    Route::get('/{livro}/editar', 'RequisicaoLivroController@edit')->name('requisicaoLivro.edit');
+    Route::post('/{livro}/editar', 'RequisicaoLivroController@update')->name('requisicaoLivro.update');
+    Route::get('/{livro}/deletar', 'RequisicaoLivroController@destroy')->name('requisicaoLivro.delete');
+    Route::get('/{livro}', 'RequisicaoLivroController@show')->name('requisicaoLivro.exemplar');    
 });

@@ -15,43 +15,57 @@
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="">Curso:</label>
-                                    <select class="chosen-select" name="cursos[]" id="filtro-cursos" multiple data-placeholder="Selecione os cursos">
-                                        @foreach ($cursos as $curso)
+                                    <div>
+                                        <select class="chosen-select form-control" name="cursos[]" id="filtro-cursos" multiple data-placeholder="Selecione os cursos">
+                                            @foreach ($cursos as $curso)
                                             <option value="{{ $curso->id }}" @if(in_array($curso->id, (array) old('cursos'))) selected @endif>{{ $curso->nome }}</option>
-                                        @endforeach
-                                    </select>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm">
                                     <label for="">Turma:</label>
-                                    <select class="chosen-select" name="turmas[]" id="filtro-turmas" multiple data-placeholder="Selecione as turmas">
-                                        @foreach ($turmas as $turma)
+                                    <div>
+
+                                        <select class="chosen-select" name="turmas[]" id="filtro-turmas" multiple data-placeholder="Selecione as turmas">
+                                            @foreach ($turmas as $turma)
                                             <option value="{{ $turma->id }}" @if(in_array($turma->id, (array) old('turmas'))) selected @endif>{{ $turma->nome }} - {{ $turma->ano }}</option>
-                                        @endforeach
-                                    </select>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm">
                                     <label for="">Ano de vigência das turmas:</label>
-                                    <select class="chosen-select" name="anos[]" id="filtro-anos" multiple data-placeholder="Selecione as turmas">
-                                        @foreach ($anos as $ano)
+                                    <div>
+
+                                        <select class="chosen-select" name="anos[]" id="filtro-anos" multiple data-placeholder="Selecione as turmas">
+                                            @foreach ($anos as $ano)
                                             <option value="{{ $ano->ano }}" @if(in_array($ano->ano, (array) old('anos'))) selected @endif>{{ $ano->ano }}</option>
-                                        @endforeach
-                                    </select>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm">
                                     <label for="">Aluno:</label>
-                                    <select class="chosen-select" name="alunos[]" id="filtro-alunos" multiple data-placeholder="Selecione os alunos">
-                                        @foreach ($alunos as $aluno)
+                                    <div>
+
+                                        <select class="chosen-select" name="alunos[]" id="filtro-alunos" multiple data-placeholder="Selecione os alunos">
+                                            @foreach ($alunos as $aluno)
                                             <option value="{{ $aluno->id }}" @if(in_array($aluno->id, (array) old('alunos'))) selected @endif>{{ $aluno->nome }} - {{ $aluno->matricula }}</option>
-                                        @endforeach
-                                    </select>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                                 <div class="col-sm">
                                     <label for="">Livro:</label>
-                                    <select class="chosen-select" name="livros[]" id="filtro-livros" multiple data-placeholder="Selecione os livros">
-                                        @foreach ($livros as $livro)
+                                    <div>
+
+                                        <select class="chosen-select" name="livros[]" id="filtro-livros" multiple data-placeholder="Selecione os livros">
+                                            @foreach ($livros as $livro)
                                             <option value="{{ $livro->id }}" @if(in_array($livro->id, (array) old('livros'))) selected @endif>{{ $livro->titulo }}</option>
-                                        @endforeach
-                                    </select>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mt-3 mb-3">

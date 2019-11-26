@@ -10,6 +10,12 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const COORDENADORIA = 1;
+    const ADMINISTRADOR = 2;
+    const COORDENADOR= 3;
+    const PROFESSOR= 4;
+    const CAE = 5;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,6 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isTipo(...$tipos) {
+        if (in_array($this->tipo, $tipos)) {
+            return true;
+        }
+        return false;
+    }
+
 
     public function isCoord() {
         return ($this->tipo == 1) ? true : false;

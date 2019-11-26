@@ -25,14 +25,15 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
-        if(auth()->user()->tipo == 1){
-            return view ('homeCoord');
+        switch (auth()->user()->tipo) {
+            case 1:
+                return view ('homeCoord');
+            case 2:
+                return view ('homeAdmin');
+            default:
+                dd('home ainda não criada');
+                return view('home');
         }
-        if(auth()->user()->tipo == 2){
-            return view ('homeAdmin');
-        }
-        dd('home ainda não criada');
-        return view('home');
+
     }
 }

@@ -11,7 +11,7 @@
             <div class="mb-2">
                 <div class="" id="pesquisaAvancada" style="clear:both;">
                     <div class="card card-body">
-                        <form>
+                        <form id="form_pesquisa">
                             <div class="row">
                                 <div class="col-sm">
                                     <label for="">Curso:</label>
@@ -55,19 +55,90 @@
                                 </div>
                             </div>
                             <div class="row mt-3 mb-3">
+                                <div class="col-md-12">
                                     <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="mostrarEmprestimoAtivo" name="emprestimosInativos" value="1" @if(old('emprestimosInativos') == 1) checked @endif>
-                                            <label class="custom-control-label" for="mostrarEmprestimoAtivo">Listar emprestimos inativos</label>
-                                          </div>
+                                        <input type="checkbox" class="custom-control-input" id="mostrarEmprestimoAtivo" name="emprestimosInativos" value="1" @if(old('emprestimosInativos') == 1) checked @endif>
+                                        <label class="custom-control-label" for="mostrarEmprestimoAtivo">Listar emprestimos inativos</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row mt-2">
-                                <div>
-                                    <input name="" id="" class="btn btn-danger" type="reset" value="Limpar">
+                                <div class="col-md-12">
                                     <input name="" id="" class="btn btn-primary" type="submit" value="Pesquisar">
+                                    <input name="" id="" class="btn btn-danger" type="reset" value="Limpar">
+                                    <button id="btn-imprimir" class="btn btn-primary" style="float: right; display: inline-block" type="button">Imprimir</button>
+
+                                </div>
+                                <div class="">
                                 </div>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+            <div id="filter-print">
+                <h2>Filtros</h2>
+                <div class="row" id="filters-list-print">
+                        @if(count((array) old('cursos')) > 0)
+                        <div class="col-sm">
+                            <ul>
+                                @foreach ($cursos as $curso)
+                                    @if(in_array($curso->id, (array) old('cursos')))
+                                        <li>{{ $curso->nome }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(count((array) old('turmas')) > 0)
+                        <div class="col-sm">
+                            <ul>
+                                @foreach ($turmas as $turma)
+                                    @if(in_array($turma->id, (array) old('turmas')))
+                                        <li>{{ $turma->nome }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(count((array) old('anos')) > 0)
+                        <div class="col-sm">
+                            <ul>
+                                @foreach ($anos as $ano)
+                                    @if(in_array($ano->ano, (array) old('anos')))
+                                        <li>{{ $ano->ano }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(count((array) old('alunos')) > 0)
+                        <div class="col-sm">
+                            <ul>
+                                @foreach ($alunos as $aluno)
+                                    @if(in_array($aluno->id, (array) old('alunos')))
+                                        <li>{{ $aluno->nome }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    @if(count((array) old('livros')) > 0)
+                        <div class="col-sm">
+                            <ul>
+                                @foreach ($livros as $livro)
+                                    @if(in_array($livro->id, (array) old('livros')))
+                                        <li>{{ $livro->titulo }}</li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                 </div>
             </div>
             <table class="table table-striped table-bordered table-hover" id="table">
@@ -126,10 +197,35 @@
 
         $("input[type='reset'], button[type='reset']").click(function(e){
             e.preventDefault();
-
             $('.chosen-select').val('').trigger('chosen:updated');
+            $('#form_pesquisa').submit();
+        });
+
+        $('#btn-imprimir').click(function() {
+            window.print();
         });
     });
         
     </script>
+@endsection
+
+@section('css')
+<style>
+
+#filter-print {
+    display: none;
+}
+
+@media print {
+    #pesquisaAvancada {
+        display: none;
+    }
+
+    #filter-print {
+        display: block;
+    }
+}
+
+</style>
+
 @endsection

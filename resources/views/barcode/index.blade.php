@@ -4,7 +4,7 @@
         
 <div class="container">
     @include('layouts.statusMessages')
-    <form method="post">
+    <form method="post" id="form">
         @csrf
          
         <div class="form-group row">
@@ -22,7 +22,7 @@
     </form>
     
 </div>
-<div style="display: none;" id="barcodes"></div>
+<div id="barcodes"></div>
 @endsection
 
 @section('js')
@@ -32,18 +32,19 @@
         $('#barcodes').html('');
         for (var x = 0; x < vetor.length; x++) {
      
-            $("#barcodes").append("<svg style='border: 1px solid black; padding:5px; margin: 2px;' id='barcode" + x +"'></svg>")
-            JsBarcode("#barcode" + x , vetor[x]);
+            $("#barcodes").append("<svg style='border: 1px solid black; padding:5px; margin: 4px;' id='barcode" + x +"'></svg>")
+            JsBarcode("#barcode" + x , vetor[x], {
+                width: 2
+            });
             
         }
+        window.print();
+        // var conteudo = $("#barcodes").html();
+        // var telaImpressao = window.open('about:blank');
 
-        var conteudo = $("#barcodes").html();
-        var telaImpressao = window.open('about:blank');
-
-        telaImpressao.document.write(conteudo);
-        telaImpressao.window.print();
+        // telaImpressao.document.write(conteudo);
+        // telaImpressao.window.print();
         // telaImpressao.window.close();
-
     }
 
     @if(isset($codes))
@@ -53,4 +54,25 @@
     @endif
 
 </script>
+@endsection
+
+@section('css')
+
+<style>
+
+    #barcodes {
+        display: none;
+    }
+
+    @media print {
+        #barcodes {
+            display: block;
+        }
+
+        #form {
+            display: none;
+        }
+    }
+
+</style>
 @endsection

@@ -12,34 +12,37 @@
 
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    @if(Auth::user()->isAdmin())
+                    @if(Auth::user()->isCoord() || Auth::user()->isAdmin() )
                     <li class="nav-item dropdown {{ Route::is('aluno*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('aluno.index') }}"></i> Alunos</a>
                     </li>
                    @endif
 
-                   @if(Auth::user()->isAdmin())
+                   @if(Auth::user()->isCoord() || Auth::user()->isAdmin() )
                     <li class="nav-item dropdown {{ Route::is(['livro*']) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('livro.index') }}"></i> Livros</a>
                         </li>
                     @endif
 
-                    @if(Auth::user()->isAdmin())
+                    @if(Auth::user()->isCoord() || Auth::user()->isAdmin() )
                     <li class="nav-item dropdown {{ Route::is(['emprestimo*']) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('emprestimo.index') }}"></i> Empréstimos</a>
                     </li>
                     @endif
 
-                    @if(Auth::user()->isAdmin())
+                    @if(Auth::user()->isCoord() || Auth::user()->isAdmin() )
                     <li class="nav-item dropdown {{ Route::is(['relatorio.emprestimo']) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('relatorio.emprestimo') }}"></i>Relatório</a>
                     </li>
                     @endif
 
-                    @if(Auth::user()->isAdmin())
+                    @if(Auth::user()->isCoord() || Auth::user()->isAdmin() )
                     <li class="nav-item dropdown {{ Route::is(['curso*', 'turma*', 'barcode*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="outros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Configurações</a>
                         <div class="dropdown-menu" aria-labelledby="outros">
+                            @if ( Auth::user()->isAdmin() )
+                                <a class="dropdown-item" href="{{ route('user.index') }}"></i>Cadastrar Usuários</a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('curso.index') }}">Cursos</a>
                             <a class="dropdown-item" href="{{ route('turma.index') }}">Turmas</a>
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>

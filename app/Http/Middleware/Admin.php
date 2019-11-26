@@ -15,9 +15,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-      if(auth()->user()->tipo == 2){
-        return $next($request);
+        if(auth()->user()->tipo == 2){
+          return $next($request);
+        }
+          return redirect('home');
       }
-        return redirect('home');
-    }
 }

@@ -32,6 +32,16 @@ Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'coord']], function
     Route::get('/{aluno}/deletar', 'AlunoController@destroy')->name('aluno.delete');
 });
 
+Route::group(['prefix' => 'users', 'middleware' => ['auth', 'admin']], function () {
+    Route::get('/', 'UserController@index')->name('user.index');
+    Route::get('/create', 'UserController@create')->name('user.create');
+    Route::post('/create', 'UserController@store')->name('user.store');
+    Route::get('/{user}', 'UserController@show')->name('user.show');
+    Route::get('/{user}/editar', 'UserController@edit')->name('user.edit');
+    Route::post('/{user}/editar', 'UserController@update')->name('user.update');
+    Route::get('/{user}/deletar', 'UserController@destroy')->name('user.delete');
+});
+
 Route::group(['prefix' => 'cursos', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'CursoController@index')->name('curso.index');
     Route::get('/create', 'CursoController@create')->name('curso.create');

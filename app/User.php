@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'login'
+        'name', 'email', 'password', 'login', 'tipo'
     ];
 
     /**
@@ -37,7 +37,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function isAdmin() {
+    public function isCoord() {
         return ($this->tipo == 1) ? true : false;
+    }
+    
+    public function isAdmin() {
+        return ($this->tipo == 2) ? true : false;
     }
 }

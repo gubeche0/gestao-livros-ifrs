@@ -33,45 +33,32 @@ class UserController extends Controller
         ]);
 
         Mail::to($request['email'])->send(new PasswordMail($password, $request['email']));                 
-        dd($password);
 
         return redirect()->route('user.create')->
             with('success', ['Usuário cadastrado com sucesso!'])->withInput();
     }
-
-    public function show(Aluno $aluno)
-    {
-        $emprestimos = Emprestimo::where('aluno_id', $aluno->id)
-        ->withTrashed()
-        ->orderBy('deleted_at')
-        ->orderBy('exemplar_code')
-        ->get();
-        return view('aluno.info', compact('aluno', 'emprestimos'));
-    }
     
-    public function edit(Aluno $aluno)
+    public function edit(User $user)
     {
-
-        $cursos = Curso::all();
-        return view('aluno.form', compact(['aluno', 'cursos']));
+        return view('user.form', compact(['user']));
     }
 
     
-    public function update(AlunoRequest $request, Aluno $aluno)
+    public function update(Request $request, User $user)
     {
-        $aluno->nome = $request->input('nome');
-        $aluno->email = $request->input('email');
-        $aluno->curso_id = $request->input('curso');
-        $aluno->save();
-        return redirect()->route('aluno.index')->
-            with('success', ['Aluno(a) alterado(a) com sucesso!']);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->tipo = $request->input('tipo');
+        $user->save();
+        return redirect()->route('user.index')->
+            with('success', ['Usuário alterado com sucesso!']);
     }
 
     
-    public function destroy(Aluno $aluno)
+    public function destroy(User $user)
     {
-        $aluno->delete();
-        return redirect()->route('aluno.index')->
-            with('success', ['Aluno(a) deletado(a) com sucesso!']);
+        $user->delete();
+        return redirect()->route('user.index')->
+            with('success', ['Usuário deletado com sucesso!']);
     }
 }

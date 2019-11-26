@@ -37,11 +37,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="text-dark" href='{{-- route('user.edit', ["user" => $user->id]) --}}'>
+                                    <a class="text-dark" href='{{ route('user.edit', ["user" => $user->id]) }}'>
                                         <i class="fas fa-edit" aria-hidden="true"></i>
                                         Editar
                                     </a> |
-                                    <a class="text-dark" href="#" onclick="excluir('{{-- route('user.delete', ['user' => $user->id]) --}}')">
+                                    <a class="text-dark" href="#" onclick="excluir('{{ route('user.delete', ['user' => $user->id]) }}')">
                                         <i class="fas fa-trash" aria-hidden="true"></i> 
                                         Excluir
                                     </a>
@@ -97,7 +97,7 @@
 
     function excluir(url) {
         swal({
-            title: 'Deseja deletar o user?',
+            title: 'Deseja deletar o usuário?',
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',

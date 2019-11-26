@@ -28,6 +28,7 @@
                             <option value="2" @if((isset($user) && $user->tipo == 2) || 2 == old('tipo')) selected @endif>Administrador</option>
                             <option value="3" @if((isset($user) && $user->tipo == 3) || 3 == old('tipo')) selected @endif>Coordenador</option>
                             <option value="4" @if((isset($user) && $user->tipo == 4) || 4 == old('tipo')) selected @endif>Professor</option>
+                            <option value="5" @if((isset($user) && $user->tipo == 5) || 5 == old('tipo')) selected @endif>CAI</option>
                         </select>
                     </div>
                 </div>

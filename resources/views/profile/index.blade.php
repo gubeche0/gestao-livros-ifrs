@@ -4,7 +4,6 @@
         <div class="panel-heading">
             <h1 class="panel-title text-center my-3">Editar Perfil</h1>
         </div>
-        @include('layouts.statusMessages')
         <div class="col-xl-12 order-xl-1">
                 <div class="card">
                     <div class="card-body">
@@ -15,9 +14,6 @@
                             <center>
                                 @if (Session::has('message_success_perfil'))
                                     <div class="alert alert-success" style="width:50%">{{ Session::get('message_success_perfil') }}</div>
-                                @endif
-                                @if (Session::has('message_danger_perfil'))
-                                    <div class="alert alert-danger" style="width:50%">{{ Session::get('message_danger_perfil') }}</div>
                                 @endif
                             </center>
                             <div class="pl-lg-4">
@@ -54,9 +50,6 @@
                             <center>
                                 @if (Session::has('message_success_senha'))
                                     <div class="alert alert-success" style="width:50%">{{ Session::get('message_success_senha') }}</div>
-                                @endif
-                                @if (Session::has('message_danger_senha'))
-                                    <div class="alert alert-danger" style="width:50%">{{ Session::get('message_danger_senha') }}</div>
                                 @endif
                             </center>
                             <div class="pl-lg-4">

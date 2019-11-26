@@ -4,7 +4,6 @@
         <div class="panel-heading">
             <h1 class="panel-title text-center my-3">Mude sua senha</h1>
         </div>
-        @include('layouts.statusMessages')
         <div class="col-xl-12 order-xl-1">
                 <div class="card">
                     <div class="card-body">
@@ -13,9 +12,6 @@
                             <center>
                                 @if (Session::has('message_success_senha'))
                                     <div class="alert alert-success" style="width:60%">{{ Session::get('message_success_senha') }}</div>
-                                @endif
-                                @if (Session::has('message_warning_password'))
-                                    <div class="alert alert-warning" style="width:60%">{{ Session::get('message_warning_password') }}</div>
                                 @endif
                             </center>
                             <div class="pl-lg-4">

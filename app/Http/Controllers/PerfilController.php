@@ -6,6 +6,9 @@ use Session;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
+use App\Http\Requests\SenhaRequest;
 
 class PerfilController extends Controller
 {
@@ -14,7 +17,7 @@ class PerfilController extends Controller
         return view('profile.index');
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         auth()->user()->update($request->all());
 
@@ -22,7 +25,7 @@ class PerfilController extends Controller
         return back();
     }
 
-    public function password(Request $request)
+    public function password(PasswordRequest $request)
     {
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
@@ -38,7 +41,7 @@ class PerfilController extends Controller
         return view('profile.senha');
     }
 
-    public function senhaNova(Request $request)
+    public function senhaNova(SenhaRequest $request)
     {
         auth()->user()->update([
             'password' => Hash::make($request->get('password')),

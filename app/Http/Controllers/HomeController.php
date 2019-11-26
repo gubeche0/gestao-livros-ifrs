@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         if(auth()->user()->login == 1){
-            Session::flash('message_warning_password', 'Você está usando a senha criada pelo sistema, edite sua senha aqui.');
+            Session::flash('message_warning_password', 'Você está usando a senha criada pelo sistema, mude sua senha aqui.');
             return redirect()->route('profile.senha');
         }
         if(auth()->user()->tipo == 1){

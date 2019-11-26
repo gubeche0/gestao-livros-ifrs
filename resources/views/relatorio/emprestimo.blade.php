@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1 class="panel-title text-center my-3">Relatório de emprestimos</h1>
+            <h1 class="panel-title text-center my-3">Relatório de empréstimos</h1>
         </div>
         <div class="panel-body">
             @include('layouts.statusMessages')

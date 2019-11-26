@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Mail\PasswordMail;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -13,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::whereNotIn('id', [auth()->user()->id])->get();
         return view('user.index', compact('users'));
     }
 
@@ -22,7 +23,7 @@ class UserController extends Controller
         return view('user.form');
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         DB::beginTransaction();
         try {
@@ -53,7 +54,7 @@ class UserController extends Controller
     }
 
     
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $user->name = $request->input('name');
         $user->email = $request->input('email');

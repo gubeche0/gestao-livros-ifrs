@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Mail\PasswordMail;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
@@ -23,17 +24,25 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $password = rand();
-        User::create([
-            'name' => $request['name'], 
-            'email' => $request['email'],
-            'password' => Hash::make($password),
-            'tipo' => $request['tipo'],
-            'login' => 1,
-        ]);
+        DB::beginTransaction();
+        try {
+            $password = bin2hex(random_bytes(4));
+            User::create([
+                'name' => $request['name'], 
+                'email' => $request['email'],
+                'password' => Hash::make($password),
+                'tipo' => $request['tipo'],
+                'login' => 1,
+            ]);
 
-        Mail::to($request['email'])->send(new PasswordMail($password, $request['email']));                 
-
+            Mail::to($request['email'])->send(new PasswordMail($password, $request['email']));     
+            DB::commit();            
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->route('user.create')->
+                with('erros', ['Não foi possivel criar o usúario!'])->withInput();
+        }
+        
         return redirect()->route('user.create')->
             with('success', ['Usuário cadastrado com sucesso!'])->withInput();
     }

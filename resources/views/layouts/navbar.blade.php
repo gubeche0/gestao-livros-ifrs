@@ -18,7 +18,7 @@
                     </li>
                    @endif
 
-                   @if(AAuth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR) )
+                   @if(Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR) )
                     <li class="nav-item dropdown {{ Route::is(['livro*']) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('livro.index') }}"></i> Livros</a>
                         </li>

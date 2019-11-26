@@ -21,6 +21,7 @@ Route::get('/logout', function(){
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/homeCoord')->name('homeCoord');
+Route::get('/homeAdmin')->name('homeAdmin');
 
 Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'AlunoController@index')->name('aluno.index');

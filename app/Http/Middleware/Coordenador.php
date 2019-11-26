@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 
 class Coordenador
 {
@@ -18,6 +19,7 @@ class Coordenador
         if(auth()->user()->tipo == 3){
             return $next($request);
           }
-            return redirect('home');
+          Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');
+          return redirect('home');
     }
 }

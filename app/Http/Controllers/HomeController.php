@@ -32,7 +32,10 @@ class HomeController extends Controller
         if(auth()->user()->tipo == 1){
             return view ('homeCoord');
         }
-        dd('oi');
+        if(auth()->user()->tipo == 2){
+            return view ('homeAdmin');
+        }
+        dd('home ainda não criada');
         return view('home');
     }
 }

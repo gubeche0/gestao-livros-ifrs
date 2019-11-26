@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 
 class Admin
 {
@@ -18,6 +19,7 @@ class Admin
         if(auth()->user()->tipo == 2){
           return $next($request);
         }
+          Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');
           return redirect('home');
       }
 }

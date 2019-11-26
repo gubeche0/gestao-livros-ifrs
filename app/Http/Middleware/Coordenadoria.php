@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Session;
 
 class Coordenadoria
 {
@@ -22,6 +23,7 @@ class Coordenadoria
                 return $next($request);
             }
           }
-            return redirect()->route('home');
+          Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');
+          return redirect('home');
     }
 }

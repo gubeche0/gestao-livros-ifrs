@@ -31,7 +31,7 @@ class AlunoController extends Controller
             'email' => $request['email'], 
             'curso_id' => $request['curso'],
         ]);
-        $request->$request->flashOnly('curso');
+        $request->flashOnly('curso');
 
         return redirect()->route('aluno.create')->
             with('success', ['Aluno(a) cadastrado(a) com sucesso!'])->withInput();

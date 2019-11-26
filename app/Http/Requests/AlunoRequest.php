@@ -25,7 +25,7 @@ class AlunoRequest extends FormRequest
      */
     public function rules(Request $request)
     {
-        $aluno = Aluno::where('email', $request->email)->first();
+        $aluno = Aluno::find($request->get('id'));
         if($aluno == null){
             return [
                 'matricula' => ['required', 'numeric', 'unique:alunos'],

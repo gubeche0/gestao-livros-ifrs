@@ -7,6 +7,8 @@
             @include('layouts.statusMessages')
             <form method="post" id="form">
                 @csrf
+
+                <input type="hidden" name="id" value='@isset($user){{ $user->id }}@endif'>
                 <div class="form-group row">
                     <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
                     <div class="col-sm-10">

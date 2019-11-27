@@ -49,11 +49,11 @@
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>
                             @endif
                             @if ( Auth::user()->isTipo(App\User::COORDENADOR, App\User::ADMINISTRADOR) )
-                            <a class="dropdown-item" href="{{ route('area.index') }}">Áreas de conhecimento</a>
-                            <a class="dropdown-item" href="{{ route('assunto.index') }}">Assuntos</a>
+                                <a class="dropdown-item" href="{{ route('area.index') }}">Áreas de conhecimento</a>
+                                <a class="dropdown-item" href="{{ route('assunto.index') }}">Assuntos</a>
                             @endif
-                            <hr>
-                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
+                            {{-- <hr> --}}
+                            <a style="border-top:1px solid #e9e9e9" class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
                         </div>
                     </li>
                     @endif

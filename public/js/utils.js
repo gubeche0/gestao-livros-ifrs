@@ -5,7 +5,7 @@ function showModalRegisterBook(livro){
     html: $('<div>').append(
         $('<div>', {id: 'livroInfoPopup'}),
         $('<input>', {class: 'swal2-input', type: 'text', id: 'codeBar', autofocus: 'autofocus', placeholder: 'Codigo do exemplar'}).css('margin-bottom', 0),
-        $('<a>', {href:'barcode', target: '_blank', text: 'Gerar codigos'}).css('float', 'left')
+        $('<a>', {href:'/barcode', target: '_blank', text: 'Gerar codigos'}).css('float', 'left')
     ),
     showConfirmButton:true,
     showCancelButton: true,

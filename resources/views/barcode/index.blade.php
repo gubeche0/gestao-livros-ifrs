@@ -3,6 +3,9 @@
 @section('content')
         
 <div class="container">
+        <div class="panel-heading">
+                <h1 class="panel-title text-center my-3">Gerar códigos de barra</h1>
+            </div>
     @include('layouts.statusMessages')
     <form method="post" id="form">
         @csrf
@@ -36,7 +39,6 @@
             JsBarcode("#barcode" + x , vetor[x], {
                 width: 2
             });
-            
         }
         window.print();
         // var conteudo = $("#barcodes").html();

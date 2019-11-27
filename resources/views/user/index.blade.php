@@ -35,6 +35,9 @@
                                     @if ($user->tipo == 4)
                                         Professor
                                     @endif
+                                    @if ($user->tipo == 5)
+                                        CAE
+                                    @endif
                                 </td>
                                 <td>
                                     <a class="text-dark" href='{{ route('user.edit', ["user" => $user->id]) }}'>

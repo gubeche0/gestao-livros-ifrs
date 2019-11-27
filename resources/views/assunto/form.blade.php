@@ -3,6 +3,9 @@
 @section('content')
         
 <div class="container">
+        <div class="panel-heading">
+                <h1 class="panel-title text-center my-3">Cadastro de Assuntos</h1>
+            </div>
         @include('layouts.statusMessages')
         <form method="post" id="form">
                 @csrf
@@ -20,11 +23,9 @@
                     <a href=" {{route('assunto.index')}} " class="btn btn-danger col ml-1" > Cancelar </a>
                 </div>
             </form>
-   
 </div>
 
 @endsection
-
 @section('js')
 <script type="text/javascript" src="{{ asset('js/jquery.validate.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/additional-methods.min.js') }}"></script>

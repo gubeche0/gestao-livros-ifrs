@@ -4,6 +4,9 @@
 @section('content')
         
     <div class="container">
+        <div class="panel-heading">
+            <h1 class="panel-title text-center my-3">Cadastro de Usuários</h1>
+        </div>
             @include('layouts.statusMessages')
             <form method="post" id="form">
                 @csrf
@@ -30,7 +33,7 @@
                             <option value="2" @if((isset($user) && $user->tipo == 2) || 2 == old('tipo')) selected @endif>Administrador</option>
                             <option value="3" @if((isset($user) && $user->tipo == 3) || 3 == old('tipo')) selected @endif>Coordenador</option>
                             <option value="4" @if((isset($user) && $user->tipo == 4) || 4 == old('tipo')) selected @endif>Professor</option>
-                            <option value="5" @if((isset($user) && $user->tipo == 5) || 5 == old('tipo')) selected @endif>CAI</option>
+                            <option value="5" @if((isset($user) && $user->tipo == 5) || 5 == old('tipo')) selected @endif>CAE</option>
                         </select>
                     </div>
                 </div>

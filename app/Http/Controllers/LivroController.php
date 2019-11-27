@@ -52,7 +52,7 @@ class LivroController extends Controller
         }
         $livro->save();
         
-        return redirect()->route('livro.index')->
+        return redirect()->route('livro.create')->
             with('success', ['Livro cadastrado com sucesso!']);
     }
     /**

@@ -39,11 +39,9 @@
                     <label for="curso" class="col-sm-2 col-form-label">Curso:</label>
                     <div class="col-sm-10">
                         <select class="custom-select @error('curso') is-invalid @enderror" name="curso" id="curso">
-                            {loop="$cursos"}
                             @foreach ($cursos as $curso)
                                 <option value="{{ $curso->id }}" @if((isset($aluno) && $aluno->curso->id == $curso->id) || $curso->id == old('curso')) selected @endif>{{ $curso->nome }}</option>
                             @endforeach
-                            {/loop}
                         </select>
                     </div>
                 </div>

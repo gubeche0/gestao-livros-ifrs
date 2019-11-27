@@ -104,7 +104,7 @@ Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function () {
     Route::get('/senha', 'PerfilController@senha')->name('profile.senha');
 });
 
-Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], function () { // adicionar permissoes
     Route::get('/', 'RequisicaoLivroController@index')->name('requisicaoLivro.index');
     Route::get('/create', 'RequisicaoLivroController@create')->name('requisicaoLivro.create');
     Route::post('/create', 'RequisicaoLivroController@store')->name('requisicaoLivro.store');
@@ -115,7 +115,7 @@ Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], functio
 });
 
 
-Route::group(['prefix' => 'assuntos', 'middleware' => ['auth', 'coordCurso']], function () { // colocar validar se tem acesso a isso de alguma forma
+Route::group(['prefix' => 'assuntos', 'middleware' => ['auth', 'coordCurso']], function () {
     Route::get('/', 'AssuntoController@index')->name('assunto.index');
     Route::get('/create', 'AssuntoController@create')->name('assunto.create');
     Route::post('/create', 'AssuntoController@store')->name('assunto.store');
@@ -124,7 +124,7 @@ Route::group(['prefix' => 'assuntos', 'middleware' => ['auth', 'coordCurso']], f
     Route::get('/{assunto}/deletar', 'AssuntoController@destroy')->name('assunto.delete');
 });
 
-Route::group(['prefix' => 'areas', 'middleware' => ['auth', 'coordCurso']], function () { // colocar validar se tem acesso a isso de alguma forma
+Route::group(['prefix' => 'areas', 'middleware' => ['auth', 'coordCurso']], function () {
     Route::get('/', 'AreaController@index')->name('area.index');
     Route::get('/create', 'AreaController@create')->name('area.create');
     Route::post('/create', 'AreaController@store')->name('area.store');

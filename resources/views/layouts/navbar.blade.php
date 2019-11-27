@@ -12,6 +12,12 @@
 
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    @if(Auth::user()->isTipo(App\User::COORDENADOR, App\User::ADMINISTRADOR, App\User::PROFESSOR))
+                    <li class="nav-item dropdown {{ Route::is('requisicaoLivro.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('requisicaoLivro.create') }}"></i> Requisitar Livro</a>
+                    </li>
+                    @endif
+
                     @if(Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR))
                     <li class="nav-item dropdown {{ Route::is('aluno*') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('aluno.index') }}"></i> Alunos</a>
@@ -36,7 +42,7 @@
                     </li>
                     @endif
 
-                    @if(Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR, App\User::COORDENADOR) )
+                    @if(Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR, App\User::COORDENADOR, App\User::PROFESSOR) )
                     <li class="nav-item dropdown {{ Route::is(['curso*', 'turma*', 'barcode*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="outros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Configurações</a>
                         <div class="dropdown-menu" aria-labelledby="outros">
@@ -52,8 +58,10 @@
                                 <a class="dropdown-item" href="{{ route('area.index') }}">Áreas de conhecimento</a>
                                 <a class="dropdown-item" href="{{ route('assunto.index') }}">Assuntos</a>
                             @endif
-                            {{-- <hr> --}}
-                            <a style="border-top:1px solid #e9e9e9" class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
+                            @if(!Auth::user()->isTipo(App\User::PROFESSOR) )
+                            <hr>
+                            @endif
+                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
                         </div>
                     </li>
                     @endif

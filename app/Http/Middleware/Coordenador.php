@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Closure;
 use Session;
 
@@ -16,7 +17,7 @@ class Coordenador
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->user()->tipo == 3){
+        if(auth()->user()->isTipo(User::COORDENADOR, User::ADMINISTRADOR)){
             return $next($request);
           }
           Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');

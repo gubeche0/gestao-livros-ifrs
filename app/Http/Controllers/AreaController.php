@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Assunto;
-use App\Http\Requests\AssuntoRequest;
+use App\Area;
+use App\Http\Requests\AreaRequest;
 use Illuminate\Http\Request;
-use App\User;
-use Illuminate\Support\Facades\Auth;
 
-class AssuntoController extends Controller
+class AreaController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,8 @@ class AssuntoController extends Controller
      */
     public function index()
     {
-        $assuntos = Assunto::all();
-        return view('assunto.index', compact('assuntos'));
+        $areas = Area::all();
+        return view('area.index', compact('areas'));
     }
 
     /**
@@ -29,8 +26,7 @@ class AssuntoController extends Controller
      */
     public function create()
     {
-        return view('assunto.form');
-        
+        return view('area.form');
     }
 
     /**
@@ -39,13 +35,13 @@ class AssuntoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AssuntoRequest $request)
+    public function store(AreaRequest $request)
     {
-        $assunto = new Assunto();
-        $assunto->nome = $request->input('nome');
-        $assunto->save();
-        return redirect()->route('assunto.index')->
-            with('success', ['Assunto cadastrado com sucesso!']);
+        $area = new Area();
+        $area->nome = $request->input('nome');
+        $area->save();
+        return redirect()->route('area.index')->
+            with('success', ['Área cadastrado com sucesso!']);
     }
 
     /**
@@ -65,9 +61,9 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Assunto $assunto)
+    public function edit(Area $area)
     {
-        return view('assunto.form', compact('assunto'));
+        return view('area.form', compact('area'));
     }
 
     /**
@@ -77,12 +73,12 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AssuntoRequest $request, Assunto $assunto)
+    public function update(AreaRequest $request, Area $area)
     {
-        $assunto->nome = $request->input('nome');
-        $assunto->save();
-        return redirect()->route('assunto.index')->
-            with('success', ['Assunto alterado com sucesso!']);
+        $area->nome = $request->input('nome');
+        $area->save();
+        return redirect()->route('area.index')->
+            with('success', ['Área alterado com sucesso!']);
     }
 
     /**
@@ -91,10 +87,10 @@ class AssuntoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Assunto $assunto)
+    public function destroy(Area $area)
     {
-        $assunto->delete();
-        return redirect()->route('assunto.index')->
-            with('success', ['Assunto deletado com sucesso!']);
+        $area->delete();
+        return redirect()->route('area.index')->
+            with('success', ['Área deletado com sucesso!']);
     }
 }

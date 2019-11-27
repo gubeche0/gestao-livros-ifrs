@@ -115,11 +115,20 @@ Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], functio
 });
 
 
-Route::group(['prefix' => 'assuntos', 'middleware' => ['auth']], function () { // colocar validar se tem acesso a isso de alguma forma
+Route::group(['prefix' => 'assuntos', 'middleware' => ['auth', 'coordCurso']], function () { // colocar validar se tem acesso a isso de alguma forma
     Route::get('/', 'AssuntoController@index')->name('assunto.index');
     Route::get('/create', 'AssuntoController@create')->name('assunto.create');
     Route::post('/create', 'AssuntoController@store')->name('assunto.store');
     Route::get('/{assunto}/editar', 'AssuntoController@edit')->name('assunto.edit');
     Route::post('/{assunto}/editar', 'AssuntoController@update')->name('assunto.update');
     Route::get('/{assunto}/deletar', 'AssuntoController@destroy')->name('assunto.delete');
+});
+
+Route::group(['prefix' => 'areas', 'middleware' => ['auth', 'coordCurso']], function () { // colocar validar se tem acesso a isso de alguma forma
+    Route::get('/', 'AreaController@index')->name('area.index');
+    Route::get('/create', 'AreaController@create')->name('area.create');
+    Route::post('/create', 'AreaController@store')->name('area.store');
+    Route::get('/{area}/editar', 'AreaController@edit')->name('area.edit');
+    Route::post('/{area}/editar', 'AreaController@update')->name('area.update');
+    Route::get('/{area}/deletar', 'AreaController@destroy')->name('area.delete');
 });

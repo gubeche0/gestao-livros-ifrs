@@ -30,18 +30,25 @@
                     <a href=" {{route('livro.index')}} " class="btn" style="color:white; background-color:#17882C">Listagem de Livros</a>
                 </div>
             </div>
-            <div class="col-6 d-flex align-items-center" style="margin-top:15px;">
+            <div class="col-4 d-flex align-items-center" style="margin-top:15px;">
                 <div class="card-body text-center" style="border: 1px solid #A9A9A9; border-radius:14px">
                     <i class="fas fa-users fa-8x mb-4"></i>
                     <h5 class="card-title">Usuários</h5>
                     <a href=" {{route('user.index')}} " class="btn" style="color:white; background-color:#17882C">Listagem de Usuários</a>
                 </div>
             </div>
-            <div class="col-6 d-flex align-items-center" style="margin-top:15px;">
+            <div class="col-4 d-flex align-items-center" style="margin-top:15px;">
                 <div class="card-body text-center" style="border: 1px solid #A9A9A9; border-radius:14px">
-                    <i class="fas fa-user-graduate fa-8x mb-4"></i>
+                    <i class="fas fa-list fa-8x mb-4"></i>
                     <h5 class="card-title">Requisição de livros</h5>
                     <a href=" {{route('requisicaoLivro.index')}} " class="btn" style="color:white; background-color:#17882C">Listagem de Requisições</a>
+                </div>
+            </div>
+            <div class="col-4 d-flex align-items-center">
+                <div class="card-body text-center" style="border: 1px solid #A9A9A9; border-radius:14px">
+                    <i class="fas fa-file-alt fa-8x mb-4"></i>
+                    <h5 class="card-title">Relatório</h5>
+                    <a href=" {{route('livro.index')}} " class="btn" style="color:white; background-color:#17882C">Relatório de empréstimos</a>
                 </div>
             </div>
         </div>

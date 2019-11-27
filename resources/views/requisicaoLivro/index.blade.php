@@ -6,7 +6,7 @@
             <h1 class="panel-title text-center my-3">Requisições de livros</h1>
         </div>
         <div class="panel-body">
-            <div class="text-right"><a href="{{route('requisicaoLivro.create')}}"><button type="button" class="btn btn-link">Nova Requisição</button></a></div>
+            <div class="text-right"><a href="{{route('requisicaoLivro.create')}}"><button type="button" class="btn btn-link">Adicionar Requisição</button></a></div>
             @include('layouts.statusMessages')
 
             <div class="mb-2">

@@ -15,8 +15,7 @@ class ProfessorController extends Controller
     public function index()
     {
         $users = User::whereNotIn('id', [auth()->user()->id])
-        ->where('tipo', 3)
-        ->orWhere('tipo', 4)
+        ->where('tipo', 4)
         ->get();
         return view('professor.index', compact('users'));
     }

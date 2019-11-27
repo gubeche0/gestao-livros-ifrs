@@ -34,19 +34,18 @@
             </div>
 
             <div class="form-group row">
-                <label for="curso" class="col-sm-2 col-form-label">Área de conhecimento:</label>
+                <label for="area" class="col-sm-2 col-form-label">Área de conhecimento:</label>
                 <div class="col-sm-10">
                     <select class="custom-select @error('area') is-invalid @enderror" name="area" id="area">
                         @foreach ($areas as $area)
                             <option value="{{ $area->id }}" @if((isset($livro) && $livro->area->id == $area->id) || $area->id == old('area')) selected @endif>{{ $area->nome }}</option>
                         @endforeach
-                        
                     </select>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="curso" class="col-sm-2 col-form-label">Assunto:</label>
+                <label for="assunto" class="col-sm-2 col-form-label">Assunto:</label>
                 <div class="col-sm-10">
                     <select class="custom-select @error('assunto') is-invalid @enderror" name="assunto" id="assunto">
                         @foreach ($assuntos as $assunto)

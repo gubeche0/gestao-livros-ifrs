@@ -30,6 +30,10 @@ class HomeController extends Controller
                 return view ('homeCoord');
             case 2:
                 return view ('homeAdmin');
+            case 3:
+                return view ('homecoordCurso');
+            case 4:
+                return view ('homeProf');
             default:
                 dd('home ainda não criada');
                 return view('home');

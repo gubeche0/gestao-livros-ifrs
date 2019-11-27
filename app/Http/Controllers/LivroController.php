@@ -112,4 +112,10 @@ class LivroController extends Controller
         return redirect()->route('livro.index')->
             with('success', ['Livro deletado com sucesso!']);
     }
+
+    public function prof()
+    {
+        $livros = Livro::all();
+        return view('listlivro.index', compact('livros'));
+    }
 }

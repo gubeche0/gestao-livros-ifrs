@@ -22,6 +22,8 @@ Route::get('/logout', function(){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/homeCoord')->name('homeCoord');
 Route::get('/homeAdmin')->name('homeAdmin');
+Route::get('/homecoordCurso')->name('homecoordCurso');
+Route::get('/homeProf')->name('homeProf');
 
 Route::group(['prefix' => 'alunos', 'middleware' => ['auth', 'coord']], function () {
     Route::get('/', 'AlunoController@index')->name('aluno.index');
@@ -104,15 +106,62 @@ Route::group(['prefix' => 'perfil', 'middleware' => ['auth']], function () {
     Route::get('/senha', 'PerfilController@senha')->name('profile.senha');
 });
 
-Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], function () { // adicionar permissoes
+Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth', 'prof']], function () { // adicionar permissoes
     Route::get('/', 'RequisicaoLivroController@index')->name('requisicaoLivro.index');
     Route::get('/create', 'RequisicaoLivroController@create')->name('requisicaoLivro.create');
     Route::post('/create', 'RequisicaoLivroController@store')->name('requisicaoLivro.store');
     Route::get('/{livro}/editar', 'RequisicaoLivroController@edit')->name('requisicaoLivro.edit');
     Route::post('/{livro}/editar', 'RequisicaoLivroController@update')->name('requisicaoLivro.update');
     Route::get('/{livro}/deletar', 'RequisicaoLivroController@destroy')->name('requisicaoLivro.delete');
-    Route::get('/{livro}', 'RequisicaoLivroController@show')->name('requisicaoLivro.exemplar');    
+    Route::get('/{livro}', 'RequisicaoLivroController@show')->name('requisicaoLivro.exemplar');
 });
+
+Route::group(['prefix' => 'list/livros', 'middleware' => ['auth', 'prof']], function () { // adicionar permissoes
+    Route::get('/', 'LivroController@prof')->name('listlivro.index');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::group(['prefix' => 'professores', 'middleware' => ['auth', 'coordCurso']], function () {
+    Route::get('/', 'ProfessorController@index')->name('professor.index');
+    Route::get('/create', 'ProfessorController@create')->name('professor.create');
+    Route::post('/create', 'ProfessorController@store')->name('professor.store');
+
+    Route::get('/{user}/editar', 'ProfessorController@edit')->name('professor.edit');
+    Route::post('/{user}/editar', 'ProfessorController@update')->name('professor.update');
+    Route::get('/{user}/deletar', 'ProfessorController@destroy')->name('professor.delete');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Route::group(['prefix' => 'assuntos', 'middleware' => ['auth', 'coordCurso']], function () {

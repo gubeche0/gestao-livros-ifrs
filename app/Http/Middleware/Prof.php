@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
+use App\User;
 
 class Prof
 {
@@ -16,7 +17,7 @@ class Prof
      */
     public function handle($request, Closure $next)
     {
-      if(auth()->user()->tipo == 4){
+      if(auth()->user()->isTipo(User::PROFESSOR, User::COORDENADOR, User::ADMINISTRADOR )){
         return $next($request);
       }
       Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');

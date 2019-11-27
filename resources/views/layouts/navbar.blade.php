@@ -14,7 +14,13 @@
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     @if(Auth::user()->isTipo(App\User::COORDENADOR, App\User::ADMINISTRADOR, App\User::PROFESSOR))
                     <li class="nav-item dropdown {{ Route::is('requisicaoLivro.*') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('requisicaoLivro.create') }}"></i> Requisitar Livro</a>
+                        <a class="nav-link" href="{{ route('requisicaoLivro.index') }}"></i> Requisitar Livro</a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->isTipo(App\User::COORDENADOR, App\User::PROFESSOR))
+                    <li class="nav-item dropdown {{ Route::is('listlivro.*') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('listlivro.index') }}"></i>Livros</a>
                     </li>
                     @endif
 
@@ -58,10 +64,10 @@
                                 <a class="dropdown-item" href="{{ route('area.index') }}">Áreas de conhecimento</a>
                                 <a class="dropdown-item" href="{{ route('assunto.index') }}">Assuntos</a>
                             @endif
-                            @if(!Auth::user()->isTipo(App\User::PROFESSOR) )
-                            <hr>
+                            @if ( Auth::user()->isTipo(App\User::COORDENADOR) )
+                                <a class="dropdown-item" href="{{ route('professor.index') }}">Cadastrar professores</a>
                             @endif
-                            <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
+                            <a @if(!Auth::user()->isTipo(App\User::PROFESSOR)) style="border-top:1px solid #e9e9e9" @endif class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
                         </div>
                     </li>
                     @endif

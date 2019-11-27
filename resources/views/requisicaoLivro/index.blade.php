@@ -17,7 +17,7 @@
                                 <div class="col-sm">
                                     <label for="">Livro:</label>
                                     <div>
-                                        <input placeholder="pesquisar" type="text" name="livro" id="filtro-livro" class="form-control" value='@if(old('livro') != null){{ old('livro') }}@endif'>
+                                        <input placeholder="Pesquisar" type="text" name="livro" id="filtro-livro" class="form-control" value='@if(old('livro') != null){{ old('livro') }}@endif'>
                                     </div>
                                 </div>
                                 <div class="col-sm">

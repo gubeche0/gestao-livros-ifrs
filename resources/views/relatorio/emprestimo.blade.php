@@ -13,7 +13,7 @@
                     <div class="card card-body">
                         <form id="form_pesquisa">
                             <div class="row">
-                                <div class="col-sm">
+                                <div class="col-4">
                                     <label for="">Curso:</label>
                                     <div>
                                         <select class="chosen-select form-control" name="cursos[]" id="filtro-cursos" multiple data-placeholder="Selecione os cursos">
@@ -23,10 +23,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-4">
                                     <label for="">Turma:</label>
                                     <div>
-
                                         <select class="chosen-select" name="turmas[]" id="filtro-turmas" multiple data-placeholder="Selecione as turmas">
                                             @foreach ($turmas as $turma)
                                             <option value="{{ $turma->id }}" @if(in_array($turma->id, (array) old('turmas'))) selected @endif>{{ $turma->nome }} - {{ $turma->ano }}</option>
@@ -34,10 +33,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-4">
                                     <label for="">Ano de vigência das turmas:</label>
                                     <div>
-
                                         <select class="chosen-select" name="anos[]" id="filtro-anos" multiple data-placeholder="Selecione as turmas">
                                             @foreach ($anos as $ano)
                                             <option value="{{ $ano->ano }}" @if(in_array($ano->ano, (array) old('anos'))) selected @endif>{{ $ano->ano }}</option>
@@ -45,10 +43,9 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-4">
                                     <label for="">Aluno:</label>
                                     <div>
-
                                         <select class="chosen-select" name="alunos[]" id="filtro-alunos" multiple data-placeholder="Selecione os alunos">
                                             @foreach ($alunos as $aluno)
                                             <option value="{{ $aluno->id }}" @if(in_array($aluno->id, (array) old('alunos'))) selected @endif>{{ $aluno->nome }} - {{ $aluno->matricula }}</option>
@@ -56,7 +53,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm">
+                                <div class="col-4">
                                     <label for="">Livro:</label>
                                     <div>
 
@@ -94,7 +91,7 @@
                 <h2>Filtros</h2>
                 <div class="row" id="filters-list-print">
                         @if(count((array) old('cursos')) > 0)
-                        <div class="col-sm">
+                        <div class="col-sm-2">
                             <ul>
                                 @foreach ($cursos as $curso)
                                     @if(in_array($curso->id, (array) old('cursos')))
@@ -106,7 +103,7 @@
                     @endif
 
                     @if(count((array) old('turmas')) > 0)
-                        <div class="col-sm">
+                        <div class="col-sm-2">
                             <ul>
                                 @foreach ($turmas as $turma)
                                     @if(in_array($turma->id, (array) old('turmas')))
@@ -118,7 +115,7 @@
                     @endif
 
                     @if(count((array) old('anos')) > 0)
-                        <div class="col-sm">
+                        <div class="col-sm-2">
                             <ul>
                                 @foreach ($anos as $ano)
                                     @if(in_array($ano->ano, (array) old('anos')))
@@ -130,7 +127,7 @@
                     @endif
 
                     @if(count((array) old('alunos')) > 0)
-                        <div class="col-sm">
+                        <div class="col-sm-2">
                             <ul>
                                 @foreach ($alunos as $aluno)
                                     @if(in_array($aluno->id, (array) old('alunos')))
@@ -142,7 +139,7 @@
                     @endif
 
                     @if(count((array) old('livros')) > 0)
-                        <div class="col-sm">
+                        <div class="col-sm-2">
                             <ul>
                                 @foreach ($livros as $livro)
                                     @if(in_array($livro->id, (array) old('livros')))

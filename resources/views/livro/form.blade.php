@@ -14,7 +14,7 @@
                 <label for="isbn" class="col-sm-2 col-form-label">ISBN:</label>
                 <div class="col-sm-10">
 
-                    <input type="number" name="isbn" id="isbn" value="{{ old('isbn') }}" class="form-control" placeholder="ISBN" required value='@isset($livro){{ $livro->isbn }}@endif' @if(isset($livro)) readonly @else autofocus @endif>
+                    <input type="number" name="isbn" id="isbn" class="form-control" placeholder="ISBN" required value='@isset($livro){{ $livro->isbn }}@endif' @if(isset($livro)) readonly @else autofocus @endif>
                 </div>
             </div> 
             
@@ -23,7 +23,7 @@
                 <label for="titulo" class="col-sm-2 col-form-label">Título:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="titulo" id="titulo" value="{{ old('titulo') }}" class="form-control" placeholder="Título" required value='@isset($livro){{ $livro->titulo }}@endif' @if(!isset($livro)) autofocus @endif>
+                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título" required value='@isset($livro){{ $livro->titulo }}@endif' @if(!isset($livro)) autofocus @endif>
                 </div>
             </div> 
 
@@ -32,7 +32,7 @@
                 <label for="volume" class="col-sm-2 col-form-label">Volume:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="volume" id="volume" value="{{ old('volume') }}" class="form-control" placeholder="Volume" required value='@isset($livro){{ $livro->volume }}@endif'>
+                    <input type="text" name="volume" id="volume" class="form-control" placeholder="Volume" required value='@isset($livro){{ $livro->volume }}@endif'>
                 </div>
             </div> 
 
@@ -41,7 +41,7 @@
                 <label for="autor" class="col-sm-2 col-form-label">Autor:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="autor" id="autor" value="{{ old('autor') }}" class="form-control" placeholder="Autor" required value='@isset($livro){{ $livro->autor }}@endif'>
+                    <input type="text" name="autor" id="autor" class="form-control" placeholder="Autor" required value='@isset($livro){{ $livro->autor }}@endif'>
                 </div>
             </div>
 

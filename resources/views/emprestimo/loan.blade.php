@@ -15,8 +15,7 @@
                 <div class="form-group row">
                     <label for="nome" class="col-sm-3 col-form-label">Código de barras:</label>
                     <div class="col-sm-9">
-                        <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras"
-                                value="{{ old('exemplar')}}" autofocus>
+                        <input type="text" name="exemplar" id="exemplar" class="form-control" placeholder="Codigo de barras" value="{{ old('exemplar')}}" autofocus>
                         <label id="exemplar-error" class="is-invalid text-danger" for="exemplar" style="display: none;">Este campo é requerido.</label>
                     </div>
                 </div>

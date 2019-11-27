@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Session;
+use App\User;
 
 class Coordenadoria
 {
@@ -16,13 +17,9 @@ class Coordenadoria
      */
     public function handle($request, Closure $next)
     {
-        if(auth()->user()->tipo == 1){ //coordenadoria
-            return $next($request);
-          }else{
-            if(auth()->user()->tipo == 2){ //admin
-                return $next($request);
-            }
-          }
+      if(auth()->user()->isTipo(User::COORDENADORIA, User::ADMINISTRADOR)){
+        return $next($request);
+      }
           Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');
           return redirect('home');
     }

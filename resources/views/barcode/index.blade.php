@@ -3,7 +3,7 @@
 @section('content')
         
 <div class="container">
-        <div class="panel-heading">
+        <div id="form" class="panel-heading">
                 <h1 class="panel-title text-center my-3">Gerar códigos de barra</h1>
             </div>
     @include('layouts.statusMessages')

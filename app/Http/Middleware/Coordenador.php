@@ -19,8 +19,8 @@ class Coordenador
     {
         if(auth()->user()->isTipo(User::COORDENADOR, User::ADMINISTRADOR)){
             return $next($request);
-          }
-          Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');
-          return redirect('home');
+        }
+        Session::flash('message_danger', 'Você não possui permissão para acessar essa página.');
+        return redirect('home');
     }
 }

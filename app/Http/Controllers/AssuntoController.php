@@ -44,7 +44,7 @@ class AssuntoController extends Controller
         $assunto = new Assunto();
         $assunto->nome = $request->input('nome');
         $assunto->save();
-        return redirect()->route('assunto.index')->
+        return redirect()->route('assunto.create')->
             with('success', ['Assunto cadastrado com sucesso!']);
     }
 

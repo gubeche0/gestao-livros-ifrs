@@ -40,7 +40,7 @@ class AreaController extends Controller
         $area = new Area();
         $area->nome = $request->input('nome');
         $area->save();
-        return redirect()->route('area.index')->
+        return redirect()->route('area.create')->
             with('success', ['Área cadastrado com sucesso!']);
     }
 

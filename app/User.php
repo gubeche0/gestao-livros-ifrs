@@ -14,7 +14,7 @@ class User extends Authenticatable
     const ADMINISTRADOR = 2;
     const COORDENADOR= 3;
     const PROFESSOR= 4;
-    const CAE = 5;
+    // const CAE = 5;
 
     /**
      * The attributes that are mass assignable.

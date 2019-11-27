@@ -14,7 +14,7 @@
                     <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
                     <div class="col-sm-10">
     
-                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required value='@isset($curso){{ $curso->nome }}@endif' autofocus>
+                        <input type="text" name="nome" id="nome" value="{{ old('nome') }}" class="form-control" placeholder="Nome" required value='@isset($curso){{ $curso->nome }}@endif' autofocus>
                     </div>
                 </div>
                 <div class="form-group row">
@@ -22,7 +22,7 @@
                     <label for="abreviacao" class="col-sm-2 col-form-label">Abreviacao:</label>
                     <div class="col-sm-10">
     
-                        <input type="text" name="abreviacao" id="abreviacao" class="form-control" placeholder="Abreviacao" required value='@isset($curso){{ $curso->abreviacao }}@endif'>
+                        <input type="text" name="abreviacao" id="abreviacao" value="{{ old('abreviacao') }}" class="form-control" placeholder="Abreviacao" required value='@isset($curso){{ $curso->abreviacao }}@endif'>
                     </div>
                 </div>
     

@@ -15,14 +15,14 @@
                 <div class="form-group row">
                     <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
                     <div class="col-sm-10">
-                        <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" placeholder="Nome" required @isset($user) autofocus @endif value='@isset($user){{ $user->name }}@endif'>
+                        <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nome" required @isset($user) autofocus @endif value='@isset($user){{ $user->name }}@endif'>
                     </div>
                 </div>
     
                 <div class="form-group row">
                     <label for="email" class="col-sm-2 col-form-label">Email:</label>
                     <div class="col-sm-10">
-                        <input type="text" name="email" id="email" placeholder="Email" class="form-control @error('email') is-invalid @enderror" required value='@isset($user){{ $user->email }}@endif'>
+                        <input type="text" name="email" id="email" placeholder="Email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" required value='@isset($user){{ $user->email }}@endif'>
                     </div>
                 </div>
                 <div class="form-group row">

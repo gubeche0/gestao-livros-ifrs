@@ -14,7 +14,7 @@
                     <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
                     <div class="col-sm-10">
     
-                        <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome" required value='@isset($assunto){{ $assunto->nome }}@endif' autofocus>
+                        <input type="text" name="nome" id="nome" value="{{ old('nome') }}" class="form-control" placeholder="Nome" required value='@isset($assunto){{ $assunto->nome }}@endif' autofocus>
                     </div>
                 </div>
     

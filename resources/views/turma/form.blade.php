@@ -14,7 +14,7 @@
                 <label for="isbn" class="col-sm-2 col-form-label">Descrição:</label>
                 <div class="col-sm-10">
 
-                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Descrição" required value='@isset($turma){{ $turma->nome }}@endif' autofocus>
+                    <input type="text" name="nome" id="nome" value="{{ old('nome') }}" class="form-control" placeholder="Descrição" required value='@isset($turma){{ $turma->nome }}@endif' autofocus>
                 </div>
             </div> 
             

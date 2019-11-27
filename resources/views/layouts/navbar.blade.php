@@ -36,16 +36,21 @@
                     </li>
                     @endif
 
-                    @if(Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR) )
+                    @if(Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR, App\User::COORDENADOR) )
                     <li class="nav-item dropdown {{ Route::is(['curso*', 'turma*', 'barcode*']) ? 'active' : '' }}">
                         <a class="nav-link dropdown-toggle" href="#" id="outros" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i> Configurações</a>
                         <div class="dropdown-menu" aria-labelledby="outros">
                             @if ( Auth::user()->isTipo(App\User::ADMINISTRADOR) )
                                 <a class="dropdown-item" href="{{ route('user.index') }}"></i>Cadastrar Usuários</a>
                             @endif
+                            @if ( Auth::user()->isTipo(App\User::COORDENADORIA, App\User::ADMINISTRADOR) )
                             <a class="dropdown-item" href="{{ route('curso.index') }}">Cursos</a>
                             <a class="dropdown-item" href="{{ route('turma.index') }}">Turmas</a>
                             <a class="dropdown-item" href="{{ route('barcode.index') }}"><i class="fas fa-barcode"></i> Gerar Codigos de barras</a>
+                            @endif
+                            @if ( Auth::user()->isTipo(App\User::COORDENADOR, App\User::ADMINISTRADOR) )
+                            <a class="dropdown-item" href="{{ route('assunto.index') }}">Assuntos</a>
+                            @endif
                             <hr>
                             <a class="dropdown-item" href="{{ route('profile.index') }}"><i class="fas fa-user"></i> Perfil</a>
                         </div>

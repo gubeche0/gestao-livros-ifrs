@@ -113,3 +113,13 @@ Route::group(['prefix' => 'requisicao/livro', 'middleware' => ['auth']], functio
     Route::get('/{livro}/deletar', 'RequisicaoLivroController@destroy')->name('requisicaoLivro.delete');
     Route::get('/{livro}', 'RequisicaoLivroController@show')->name('requisicaoLivro.exemplar');    
 });
+
+
+Route::group(['prefix' => 'assuntos', 'middleware' => ['auth']], function () { // colocar validar se tem acesso a isso de alguma forma
+    Route::get('/', 'AssuntoController@index')->name('assunto.index');
+    Route::get('/create', 'AssuntoController@create')->name('assunto.create');
+    Route::post('/create', 'AssuntoController@store')->name('assunto.store');
+    Route::get('/{assunto}/editar', 'AssuntoController@edit')->name('assunto.edit');
+    Route::post('/{assunto}/editar', 'AssuntoController@update')->name('assunto.update');
+    Route::get('/{assunto}/deletar', 'AssuntoController@destroy')->name('assunto.delete');
+});
